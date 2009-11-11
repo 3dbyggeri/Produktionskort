@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  password:
+  database: produktionskort_development
+  encoding: utf8
+
+test:
+  adapter: postgresql
+  host: localhost
+  username: postgres
+  password:
+  database: produktionskort_test
+  schema_search_path: public
+  encoding: utf8
