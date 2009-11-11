@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  address: MyString
+  title_number: 1
+  postal_code: MyString
+  apv_location: MyString
+  health_safety_decided_by_owner: false
+  health_safety_decided_by_contractor: false
+  health_safety_plan: false
+  health_safety_plan_location: MyString
+  ssma_timestamp: 
+
+two:
+  name: MyString
+  address: MyString
+  title_number: 1
+  postal_code: MyString
+  apv_location: MyString
+  health_safety_decided_by_owner: false
+  health_safety_decided_by_contractor: false
+  health_safety_plan: false
+  health_safety_plan_location: MyString
+  ssma_timestamp: 

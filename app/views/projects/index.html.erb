@@ -1,0 +1,38 @@
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Title number</th>
+    <th>Postal code</th>
+    <th>Apv location</th>
+    <th>Health safety decided by owner</th>
+    <th>Health safety decided by contractor</th>
+    <th>Health safety plan</th>
+    <th>Health safety plan location</th>
+    <th>Ssma timestamp</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%=h project.name %></td>
+    <td><%=h project.address %></td>
+    <td><%=h project.title_number %></td>
+    <td><%=h project.postal_code %></td>
+    <td><%=h project.apv_location %></td>
+    <td><%=h project.health_safety_decided_by_owner %></td>
+    <td><%=h project.health_safety_decided_by_contractor %></td>
+    <td><%=h project.health_safety_plan %></td>
+    <td><%=h project.health_safety_plan_location %></td>
+    <td><%=h project.ssma_timestamp %></td>
+    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New project', new_project_path %>

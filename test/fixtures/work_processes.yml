@@ -1,0 +1,61 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  project_id: 1
+  component_type: MyString
+  activity: MyString
+  location: MyString
+  project_delivery_time: 2009-11-11 20:38:35
+  project_delivery_person: MyString
+  assembly_direction: MyString
+  planned_start: 2009-11-11 20:38:35
+  planned_end: 2009-11-11 20:38:35
+  actual_start: 2009-11-11 20:38:35
+  actual_start_place: MyString
+  actual_start_person: MyString
+  actual_end: 2009-11-11 20:38:35
+  actual_end_place: MyString
+  actual_end_person: MyString
+  main_start: 2009-11-11 20:38:35
+  main_end: 2009-11-11 20:38:35
+  preceding: MyString
+  subsequent: MyString
+  social_responcibility: MyString
+  piecework_rate: 9.99
+  hourly_rate: 9.99
+  bonus: false
+  eksiment_deal: false
+  allowance: 9.99
+  time_of_day: MyString
+  extra_work: false
+  ssma_timestamp: 
+
+two:
+  project_id: 1
+  component_type: MyString
+  activity: MyString
+  location: MyString
+  project_delivery_time: 2009-11-11 20:38:35
+  project_delivery_person: MyString
+  assembly_direction: MyString
+  planned_start: 2009-11-11 20:38:35
+  planned_end: 2009-11-11 20:38:35
+  actual_start: 2009-11-11 20:38:35
+  actual_start_place: MyString
+  actual_start_person: MyString
+  actual_end: 2009-11-11 20:38:35
+  actual_end_place: MyString
+  actual_end_person: MyString
+  main_start: 2009-11-11 20:38:35
+  main_end: 2009-11-11 20:38:35
+  preceding: MyString
+  subsequent: MyString
+  social_responcibility: MyString
+  piecework_rate: 9.99
+  hourly_rate: 9.99
+  bonus: false
+  eksiment_deal: false
+  allowance: 9.99
+  time_of_day: MyString
+  extra_work: false
+  ssma_timestamp: 

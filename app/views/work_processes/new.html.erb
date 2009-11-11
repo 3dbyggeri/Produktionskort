@@ -1,0 +1,123 @@
+<h1>New process</h1>
+
+<% form_for(@work_process) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :project_id %><br />
+    <%= f.select :project_id, Project.all.collect {|p| [ p.name, p.id ] }, {:include_blank => true} %> eller <%= link_to "opret ny sag", new_project_path %>
+  </p>
+  <p>
+    <%= f.label :component_type %><br />
+    <%= f.text_field :component_type %>
+  </p>
+  <p>
+    <%= f.label :activity %><br />
+    <%= f.text_field :activity %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :project_delivery_time %><br />
+    <%= f.datetime_select :project_delivery_time %>
+  </p>
+  <p>
+    <%= f.label :project_delivery_person %><br />
+    <%= f.text_field :project_delivery_person %>
+  </p>
+  <p>
+    <%= f.label :assembly_direction %><br />
+    <%= f.text_field :assembly_direction %>
+  </p>
+  <p>
+    <%= f.label :planned_start %><br />
+    <%= f.datetime_select :planned_start %>
+  </p>
+  <p>
+    <%= f.label :planned_end %><br />
+    <%= f.datetime_select :planned_end %>
+  </p>
+  <p>
+    <%= f.label :actual_start %><br />
+    <%= f.datetime_select :actual_start %>
+  </p>
+  <p>
+    <%= f.label :actual_start_place %><br />
+    <%= f.text_field :actual_start_place %>
+  </p>
+  <p>
+    <%= f.label :actual_start_person %><br />
+    <%= f.text_field :actual_start_person %>
+  </p>
+  <p>
+    <%= f.label :actual_end %><br />
+    <%= f.datetime_select :actual_end %>
+  </p>
+  <p>
+    <%= f.label :actual_end_place %><br />
+    <%= f.text_field :actual_end_place %>
+  </p>
+  <p>
+    <%= f.label :actual_end_person %><br />
+    <%= f.text_field :actual_end_person %>
+  </p>
+  <p>
+    <%= f.label :main_start %><br />
+    <%= f.datetime_select :main_start %>
+  </p>
+  <p>
+    <%= f.label :main_end %><br />
+    <%= f.datetime_select :main_end %>
+  </p>
+  <p>
+    <%= f.label :preceding %><br />
+    <%= f.text_field :preceding %>
+  </p>
+  <p>
+    <%= f.label :subsequent %><br />
+    <%= f.text_field :subsequent %>
+  </p>
+  <p>
+    <%= f.label :social_responcibility %><br />
+    <%= f.text_field :social_responcibility %>
+  </p>
+  <p>
+    <%= f.label :piecework_rate %><br />
+    <%= f.text_field :piecework_rate %>
+  </p>
+  <p>
+    <%= f.label :hourly_rate %><br />
+    <%= f.text_field :hourly_rate %>
+  </p>
+  <p>
+    <%= f.label :bonus %><br />
+    <%= f.check_box :bonus %>
+  </p>
+  <p>
+    <%= f.label :eksiment_deal %><br />
+    <%= f.check_box :eksiment_deal %>
+  </p>
+  <p>
+    <%= f.label :allowance %><br />
+    <%= f.text_field :allowance %>
+  </p>
+  <p>
+    <%= f.label :time_of_day %><br />
+    <%= f.text_field :time_of_day %>
+  </p>
+  <p>
+    <%= f.label :extra_work %><br />
+    <%= f.check_box :extra_work %>
+  </p>
+  <p>
+    <%= f.label :ssma_timestamp %><br />
+    <%= f.text_field :ssma_timestamp %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', work_processes_path %>

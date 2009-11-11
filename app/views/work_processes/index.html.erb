@@ -1,0 +1,74 @@
+<h1>Listing processes</h1>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Component type</th>
+    <th>Activity</th>
+    <th>Location</th>
+    <th>Project delivery time</th>
+    <th>Project delivery person</th>
+    <th>Assembly direction</th>
+    <th>Planned start</th>
+    <th>Planned end</th>
+    <th>Actual start</th>
+    <th>Actual start place</th>
+    <th>Actual start person</th>
+    <th>Actual end</th>
+    <th>Actual end place</th>
+    <th>Actual end person</th>
+    <th>Main start</th>
+    <th>Main end</th>
+    <th>Preceding</th>
+    <th>Subsequent</th>
+    <th>Social responcibility</th>
+    <th>Piecework rate</th>
+    <th>Hourly rate</th>
+    <th>Bonus</th>
+    <th>Eksiment deal</th>
+    <th>Allowance</th>
+    <th>Time of day</th>
+    <th>Extra work</th>
+    <th>Ssma timestamp</th>
+  </tr>
+
+<% @work_processes.each do |work_process| %>
+  <tr>
+    <td><%=h work_process.project_id %></td>
+    <td><%=h work_process.component_type %></td>
+    <td><%=h work_process.activity %></td>
+    <td><%=h work_process.location %></td>
+    <td><%=h work_process.project_delivery_time %></td>
+    <td><%=h work_process.project_delivery_person %></td>
+    <td><%=h work_process.assembly_direction %></td>
+    <td><%=h work_process.planned_start %></td>
+    <td><%=h work_process.planned_end %></td>
+    <td><%=h work_process.actual_start %></td>
+    <td><%=h work_process.actual_start_place %></td>
+    <td><%=h work_process.actual_start_person %></td>
+    <td><%=h work_process.actual_end %></td>
+    <td><%=h work_process.actual_end_place %></td>
+    <td><%=h work_process.actual_end_person %></td>
+    <td><%=h work_process.main_start %></td>
+    <td><%=h work_process.main_end %></td>
+    <td><%=h work_process.preceding %></td>
+    <td><%=h work_process.subsequent %></td>
+    <td><%=h work_process.social_responcibility %></td>
+    <td><%=h work_process.piecework_rate %></td>
+    <td><%=h work_process.hourly_rate %></td>
+    <td><%=h work_process.bonus %></td>
+    <td><%=h work_process.eksiment_deal %></td>
+    <td><%=h work_process.allowance %></td>
+    <td><%=h work_process.time_of_day %></td>
+    <td><%=h work_process.extra_work %></td>
+    <td><%=h work_process.ssma_timestamp %></td>
+    <td><%= link_to 'Show', work_process %></td>
+    <td><%= link_to 'Edit', edit_work_process_path(work_process) %></td>
+    <td><%= link_to 'Destroy', work_process, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New work_process', new_work_process_path %>
