@@ -20,15 +20,14 @@ class CreateProcesses < ActiveRecord::Migration
       t.datetime :main_end
       t.string :preceding
       t.string :subsequent
-      t.string :social_responcibility
+      t.string :social_responsibility
       t.decimal :piecework_rate
       t.decimal :hourly_rate
       t.boolean :bonus
-      t.boolean :eksiment_deal
+      t.boolean :incentive_deal
       t.decimal :allowance
       t.string :time_of_day
       t.boolean :extra_work
-      t.binary :ssma_timestamp
 
       t.timestamps
     end

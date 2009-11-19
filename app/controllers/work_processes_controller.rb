@@ -17,7 +17,22 @@ class WorkProcessesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @work_process, :include => [:project] }
+      format.xml  { render :xml => @work_process.to_xml(:include => [ :project, 
+                                                                      :companies, 
+                                                                      :equipment, 
+                                                                      :inspections, 
+                                                                      :material_packages,
+                                                                      :preconditions,
+                                                                      :protections,
+                                                                      :qualifications,
+                                                                      :requirements,
+                                                                      :wasted_times,
+                                                                      :activity_referrals,
+                                                                      :work_method_referrals,
+                                                                      :crew_referrals,
+                                                                      :material_referrals,
+                                                                      :equipment_referrals ],
+                                                        :methods => [  ]) }
     end
   end
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  roject_id: 1
+  kind: MyString
+  description: MyString
+
+two:
+  roject_id: 1
+  kind: MyString
+  description: MyString

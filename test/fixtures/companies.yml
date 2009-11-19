@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  project_id: 1
+  work_process_id: 1
+  kind: MyString
+  name: MyString
+  postal_code: 1
+  city: MyString
+  tel: MyString
+  fax: MyString
+  email: MyString
+  url: MyString
+
+two:
+  project_id: 1
+  work_process_id: 1
+  kind: MyString
+  name: MyString
+  postal_code: 1
+  city: MyString
+  tel: MyString
+  fax: MyString
+  email: MyString
+  url: MyString

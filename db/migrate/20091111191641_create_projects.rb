@@ -10,7 +10,7 @@ class CreateProjects < ActiveRecord::Migration
       t.boolean :health_safety_decided_by_contractor
       t.boolean :health_safety_plan
       t.string :health_safety_plan_location
-      t.binary :ssma_timestamp
+      t.string :bips_id
 
       t.timestamps
     end

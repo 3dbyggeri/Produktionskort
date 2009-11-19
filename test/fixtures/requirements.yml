@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  work_process_id: 1
+  kind: MyString
+  component: MyString
+  description: MyString
+
+two:
+  work_process_id: 1
+  kind: MyString
+  component: MyString
+  description: MyString

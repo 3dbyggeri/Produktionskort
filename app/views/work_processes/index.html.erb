@@ -21,7 +21,7 @@
     <th>Main end</th>
     <th>Preceding</th>
     <th>Subsequent</th>
-    <th>Social responcibility</th>
+    <th>Social responsibility</th>
     <th>Piecework rate</th>
     <th>Hourly rate</th>
     <th>Bonus</th>
@@ -29,7 +29,6 @@
     <th>Allowance</th>
     <th>Time of day</th>
     <th>Extra work</th>
-    <th>Ssma timestamp</th>
   </tr>
 
 <% @work_processes.each do |work_process| %>
@@ -53,15 +52,14 @@
     <td><%=h work_process.main_end %></td>
     <td><%=h work_process.preceding %></td>
     <td><%=h work_process.subsequent %></td>
-    <td><%=h work_process.social_responcibility %></td>
+    <td><%=h work_process.social_responsibility %></td>
     <td><%=h work_process.piecework_rate %></td>
     <td><%=h work_process.hourly_rate %></td>
     <td><%=h work_process.bonus %></td>
-    <td><%=h work_process.eksiment_deal %></td>
+    <td><%=h work_process.incentive_deal %></td>
     <td><%=h work_process.allowance %></td>
     <td><%=h work_process.time_of_day %></td>
     <td><%=h work_process.extra_work %></td>
-    <td><%=h work_process.ssma_timestamp %></td>
     <td><%= link_to 'Show', work_process %></td>
     <td><%= link_to 'Edit', edit_work_process_path(work_process) %></td>
     <td><%= link_to 'Destroy', work_process, :confirm => 'Are you sure?', :method => :delete %></td>

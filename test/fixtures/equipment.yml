@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  project_id: 1
+  work_process_id: 1
+  role: MyString
+  person: MyString
+  notes: MyString
+  manual: MyString
+  location: MyString
+  requirements: MyString
+  certificate: MyString
+  deal_rental: MyString
+  contract_service: MyString
+  registration: MyString
+  start_time: 2009-11-19 19:37:55
+  end_time: 2009-11-19 19:37:55
+  inspection: MyString
+
+two:
+  project_id: 1
+  work_process_id: 1
+  role: MyString
+  person: MyString
+  notes: MyString
+  manual: MyString
+  location: MyString
+  requirements: MyString
+  certificate: MyString
+  deal_rental: MyString
+  contract_service: MyString
+  registration: MyString
+  start_time: 2009-11-19 19:37:55
+  end_time: 2009-11-19 19:37:55
+  inspection: MyString

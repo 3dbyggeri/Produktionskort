@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  project_id: 1
+  kind: MyString
+  description: MyString
+  last_inspection: 2009-11-19 21:44:37
+
+two:
+  project_id: 1
+  kind: MyString
+  description: MyString
+  last_inspection: 2009-11-19 21:44:37

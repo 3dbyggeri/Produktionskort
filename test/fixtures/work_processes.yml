@@ -20,15 +20,14 @@ one:
   main_end: 2009-11-11 20:38:35
   preceding: MyString
   subsequent: MyString
-  social_responcibility: MyString
+  social_responsibility: MyString
   piecework_rate: 9.99
   hourly_rate: 9.99
   bonus: false
-  eksiment_deal: false
+  incentive_deal: false
   allowance: 9.99
   time_of_day: MyString
   extra_work: false
-  ssma_timestamp: 
 
 two:
   project_id: 1
@@ -50,12 +49,11 @@ two:
   main_end: 2009-11-11 20:38:35
   preceding: MyString
   subsequent: MyString
-  social_responcibility: MyString
+  social_responsibility: MyString
   piecework_rate: 9.99
   hourly_rate: 9.99
   bonus: false
-  eksiment_deal: false
+  incentive_deal: false
   allowance: 9.99
   time_of_day: MyString
   extra_work: false
-  ssma_timestamp: 
