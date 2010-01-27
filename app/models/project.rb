@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   has_many :work_processes
   has_many :approvals
   has_many :attentions
-  has_many :comapnies
+  has_many :companies
   has_many :equipment
   has_many :meetings
   has_many :people
