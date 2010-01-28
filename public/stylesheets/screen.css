@@ -1,0 +1,54 @@
+img.demo-front {
+  float: left;
+  margin-right: 15px;
+}
+.clear {
+	clear: both;
+}
+#frontpage-create-work-process {
+  margin: 20px;
+  border: 2px solid #000;
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+#frontpage-create-work-process a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #3c3;
+}
+#frontpage-create-work-process a:hover {
+  background-color: #3e3;
+}
+
+/***                   ***\
+ *** SHOW WORK PROCESS ***
+\***                   ***/
+
+div.info_box {
+  background-color:#fff;
+  margin: 10px;
+  border: 1px solid #000;
+}
+div.info_box h2{
+ margin:0;
+ padding:0;
+ font-size:12pt;
+ text-transform: uppercase;
+}
+div#left {float: left; width:50%}
+div#right {float: right; width:50%}
+div#stemdata {}
+div#stemdata h2 {
+  text-transform: uppercase;
+  text-align: center;
+}
+div#stemdata ul {
+  list-style:none;
+  text-align:right;
+  margin-right: 20%;
+}
+
+div#site {}

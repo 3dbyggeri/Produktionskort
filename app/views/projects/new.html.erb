@@ -1,47 +1,5 @@
-<h1>New project</h1>
+<% title t('new.work_process') %>
 
-<% form_for(@project) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => 'form' %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.label :title_number %><br />
-    <%= f.text_field :title_number %>
-  </p>
-  <p>
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code %>
-  </p>
-  <p>
-    <%= f.label :apv_location %><br />
-    <%= f.text_field :apv_location %>
-  </p>
-  <p>
-    <%= f.label :health_safety_decided_by_owner %><br />
-    <%= f.check_box :health_safety_decided_by_owner %>
-  </p>
-  <p>
-    <%= f.label :health_safety_decided_by_contractor %><br />
-    <%= f.check_box :health_safety_decided_by_contractor %>
-  </p>
-  <p>
-    <%= f.label :health_safety_plan %><br />
-    <%= f.check_box :health_safety_plan %>
-  </p>
-  <p>
-    <%= f.label :health_safety_plan_location %><br />
-    <%= f.text_field :health_safety_plan_location %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', projects_path %>
+<p><%= link_to "Back to List", projects_path %></p>

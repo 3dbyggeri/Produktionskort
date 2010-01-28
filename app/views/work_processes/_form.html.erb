@@ -1,0 +1,48 @@
+<% semantic_form_for @work_process do |f| %>
+  <% f.inputs :name => 'Stamdata' do %>
+    <% f.semantic_fields_for :project do |p| %>
+      <% p.inputs do %>
+        <div id="fetch_project"><%= link_to_add_fetch_project_form "Hent eksisterende sag" %></div>
+        <div id="import_project"><%= link_to_add_import_project_form "Importer stamdata" %></div>
+        <%= p.input :name %>
+        <%= p.input :address %>
+        <%= p.input :title_number %>
+        <%= p.input :postal_code %>
+      <% end %>
+    <% end %>
+    <% f.semantic_fields_for :companies do |builder| %>
+      <%= render 'company_fields', :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "Tilføj virksomhed", f, :companies %></p>
+  <% end %>
+
+  <% f.inputs :name => 'Byggeplads' do %>
+  <% end %>
+
+  <% f.inputs :name => 'Planlægning og opfølgning' do %>
+  <% end %>
+
+  <% f.inputs :name => 'Aktivitet' do %>
+    <%= f.input :component_type %>
+    <%= f.input :activity %>
+    <%= f.input :location %>
+  <% end %>
+
+  <% f.inputs :name => 'Arbejdsmetode' do %>
+  <% end %>
+
+  <% f.inputs :name => 'Materiel' do %>
+  <% end %>
+
+  <% f.inputs :name => 'Materialer' do %>
+    <% f.semantic_fields_for :material_packages do |builder| %>
+      <%= render 'material_package_fields', :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "Tilføj Materialer", f, :material_packages %></p>
+  <% end %>
+
+  <% f.inputs :name => 'Mandskab' do %>
+  <% end %>
+
+  <%= f.buttons %>
+<% end %>

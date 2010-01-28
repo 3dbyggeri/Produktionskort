@@ -1,139 +1,34 @@
-<p>
-  <b>Project:</b>
-  <%=h @work_process.project_id %>
-</p>
-
-<p>
-  <b>Component type:</b>
-  <%=h @work_process.component_type %>
-</p>
-
-<p>
-  <b>Activity:</b>
-  <%=h @work_process.activity %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%=h @work_process.location %>
-</p>
-
-<p>
-  <b>Project delivery time:</b>
-  <%=h @work_process.project_delivery_time %>
-</p>
-
-<p>
-  <b>Project delivery person:</b>
-  <%=h @work_process.project_delivery_person %>
-</p>
-
-<p>
-  <b>Assembly direction:</b>
-  <%=h @work_process.assembly_direction %>
-</p>
-
-<p>
-  <b>Planned start:</b>
-  <%=h @work_process.planned_start %>
-</p>
-
-<p>
-  <b>Planned end:</b>
-  <%=h @work_process.planned_end %>
-</p>
-
-<p>
-  <b>Actual start:</b>
-  <%=h @work_process.actual_start %>
-</p>
-
-<p>
-  <b>Actual start place:</b>
-  <%=h @work_process.actual_start_place %>
-</p>
-
-<p>
-  <b>Actual start person:</b>
-  <%=h @work_process.actual_start_person %>
-</p>
-
-<p>
-  <b>Actual end:</b>
-  <%=h @work_process.actual_end %>
-</p>
-
-<p>
-  <b>Actual end place:</b>
-  <%=h @work_process.actual_end_place %>
-</p>
-
-<p>
-  <b>Actual end person:</b>
-  <%=h @work_process.actual_end_person %>
-</p>
-
-<p>
-  <b>Main start:</b>
-  <%=h @work_process.main_start %>
-</p>
-
-<p>
-  <b>Main end:</b>
-  <%=h @work_process.main_end %>
-</p>
-
-<p>
-  <b>Preceding:</b>
-  <%=h @work_process.preceding %>
-</p>
-
-<p>
-  <b>Subsequent:</b>
-  <%=h @work_process.subsequent %>
-</p>
-
-<p>
-  <b>Social responsibility:</b>
-  <%=h @work_process.social_responsibility %>
-</p>
-
-<p>
-  <b>Piecework rate:</b>
-  <%=h @work_process.piecework_rate %>
-</p>
-
-<p>
-  <b>Hourly rate:</b>
-  <%=h @work_process.hourly_rate %>
-</p>
-
-<p>
-  <b>Bonus:</b>
-  <%=h @work_process.bonus %>
-</p>
-
-<p>
-  <b>Eksiment deal:</b>
-  <%=h @work_process.incentive_deal %>
-</p>
-
-<p>
-  <b>Allowance:</b>
-  <%=h @work_process.allowance %>
-</p>
-
-<p>
-  <b>Time of day:</b>
-  <%=h @work_process.time_of_day %>
-</p>
-
-<p>
-  <b>Extra work:</b>
-  <%=h @work_process.extra_work %>
-</p>
-
-
-
-<%= link_to 'Edit', edit_work_process_path(@work_process) %> |
-<%= link_to 'Back', work_processes_path %>
+<% title h("Produktionskort") %>
+<div id="left">
+<div id="stemdata">
+  <h2><%=h @work_process.activity %></h2>
+  <ul>
+    <li><%=h @work_process.project.title_number %> <%=h @work_process.project.name %></li>
+    <li><%=h @work_process.project.address %></li>
+    <% for person in @work_process.project.people do %>
+    <li><%=h person.kind %>: <%=h person.name %> - <%=h person.mobile_tel %></li>
+    <%- end -%>
+  </ul>
+</div>
+<div id="site" class="info_box">
+  <h2>Byggeplads</h2>
+</div>
+<div id="planning" class="info_box">
+  <h2>Planlægning og opfølgning</h2>
+</div>
+</div>
+<div id="right">
+<div id="assembly_directions" class="info_box">
+  <h2>Montage</h2>
+</div>
+<div id="equipment" class="info_box">
+  <h2>Materiel</h2>
+</div>
+<div id="materials" class="info_box">
+  <h2>Materialer</h2>
+</div>
+<div id="staff" class="info_box">
+  <h2>Mandskab</h2>
+</div>
+</div>
+<div class="clear"> </div>

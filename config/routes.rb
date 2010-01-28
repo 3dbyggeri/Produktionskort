@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => "work_processes"
-  map.resources :work_processes
+  map.root :controller => "page"
   map.resources :projects
+  map.resources :work_processes
 end

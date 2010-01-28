@@ -2,4 +2,21 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  headings:
+    work_processes: Work processes
+    projects: Projects
+  navigation:
+    show: Show
+    edit: Edit
+    destroy: Destroy
+  new:
+    work_process: New work process
+    project: New project
+
+  formtastic:
+    :yes: 'Yes'
+    :no: 'No'
+    create: 'Create'
+    save: 'Save'
+    submit: 'Submit'
+    required: 'Required'
