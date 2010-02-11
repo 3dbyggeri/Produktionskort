@@ -9,13 +9,43 @@ form.formtastic fieldset ol li p.inline-hints { color:#333; }
 
 --------------------------------------------------------------------------------------------------*/
 
-form.formtastic fieldset { border:1px solid #000; margin: 5px; padding: 10px; }
-form.formtastic fieldset fieldset, form.formtastic fieldset.buttons { border:0; }
-form.formtastic fieldset legend { padding: 10px; font-weight: bold; }
-form.formtastic fieldset #project_form { margin: 10px; }
+form.formtastic fieldset { border:1px solid #000; margin: 0; padding: 10px; }
+form.formtastic fieldset legend { padding: 0.8em; font-weight: bold; }
+form.formtastic fieldset fieldset legend { padding-bottom: 0; }
+
+form.formtastic fieldset fieldset, form.formtastic fieldset.buttons { border:0; margin:0; padding:0; }
+
+form.formtastic fieldset ol li.date fieldset {
+  height: 0;
+}
+form.formtastic fieldset ol li.date fieldset ol {
+margin:0;
+padding:0;
+width:auto;
+position: relative;
+top: 20px;
+}
+form.formtastic fieldset ol li fieldset legend.label label {
+padding:0;
+margin:0;
+width:auto;
+font-weight:normal;
+}
+form.formtastic fieldset ol li fieldset legend {
+padding:0;
+margin:0;
+width:auto;
+}
 
 form.formtastic fieldset.table_group { margin:0; padding:0; }
-/*form.formtastic fieldset.tableize:first-child { border-top:1px solid #000; }*/
 form.formtastic fieldset.tableize { display:table; margin:0; padding:0; }
 form.formtastic fieldset.tableize ol { display:table-row; }
-form.formtastic fieldset.tableize li { display:table-cell !important; }
+form.formtastic fieldset.tableize ol li { display:table-cell !important; }
+form.formtastic fieldset.table_group fieldset ol li label { display:none; }
+form.formtastic fieldset.table_group legend + fieldset ol li label { display:block; float:none; width:auto; }
+
+form.formtastic fieldset.table_group fieldset ol li.date fieldset ol { position:relative; top:0px; }
+form.formtastic fieldset.table_group legend + fieldset ol li.date fieldset ol { position:relative; top:20px; }
+
+
+/*form.formtastic fieldset ol li.date fieldset legend.label label { float:none; }*/
