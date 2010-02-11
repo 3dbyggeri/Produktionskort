@@ -14,3 +14,8 @@ form.formtastic fieldset fieldset, form.formtastic fieldset.buttons { border:0; 
 form.formtastic fieldset legend { padding: 10px; font-weight: bold; }
 form.formtastic fieldset #project_form { margin: 10px; }
 
+form.formtastic fieldset.table_group { margin:0; padding:0; }
+/*form.formtastic fieldset.tableize:first-child { border-top:1px solid #000; }*/
+form.formtastic fieldset.tableize { display:table; margin:0; padding:0; }
+form.formtastic fieldset.tableize ol { display:table-row; }
+form.formtastic fieldset.tableize li { display:table-cell !important; }

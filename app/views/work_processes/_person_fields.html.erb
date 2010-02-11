@@ -1,9 +1,13 @@
 <% f.inputs :class => "tableize inputs" do %>
-  <%= f.input :kind, :collection => Company::KINDS, :include_blank => false %>
+  <%= f.input :kind, :collection => Person::KINDS, :include_blank => false %>
   <%= f.input :name %>
+  <%= f.input :street_address %>
+  <%= f.input :extended_address %>
   <%= f.input :postal_code %>
   <%= f.input :city %>
   <%= f.input :tel %>
+  <%= f.input :direct_tel %>
+  <%= f.input :mobile_tel %>
   <%= f.input :fax %>
   <%= f.input :email %>
   <%= f.input :url %>

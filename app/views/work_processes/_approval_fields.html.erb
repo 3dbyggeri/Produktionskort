@@ -1,0 +1,6 @@
+<% f.inputs :class => "tableize inputs" do %>
+  <%= f.input :kind, :collection => Approval::KINDS, :include_blank => false %>
+  <%= f.input :description %>
+  <%= f.input :time %>
+  <%= link_to_remove_fields "Slet", f %>
+<% end %>

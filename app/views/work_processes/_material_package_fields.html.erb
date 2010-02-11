@@ -1,0 +1,17 @@
+<% f.inputs :class => "tableize inputs" do %>
+  <%= f.input :unit_number %>
+  <%= f.input :load_number %>
+  <%= f.input :gate_number %>
+  <%= f.input :crane_number %>
+  <%= f.input :planned_delivery_date %>
+  <%= f.input :craning_time %>
+  <%= f.input :ordered_delivery_date %>
+  <%= f.input :delivery_conditions %>
+  <%= f.input :return_policy %>
+  <%= link_to_remove_fields "Slet", f %>
+<% end %>
+
+<% f.semantic_fields_for :materials do |builder| %>
+  <%= render 'material_fields', :f => builder %>
+<% end %>
+<p><%= link_to_add_fields "Tilføj Materialer", f, :materials %></p>

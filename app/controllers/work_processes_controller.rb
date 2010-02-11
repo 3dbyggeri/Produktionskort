@@ -33,8 +33,14 @@ class WorkProcessesController < ApplicationController
   end
   
   def create
+    project_attributes = params[:work_process].delete(:project_attributes)
     @work_process = WorkProcess.new(params[:work_process])
-    if @work_process.save
+    unless project_attributes[:id].blank?
+      @work_process.project = Project.find(project_attributes.delete(:id))
+    else
+      @work_process.project = Project.new(project_attributes)
+    end
+    if @work_process.save && @work_process.project.update_attributes(project_attributes)
       flash[:notice] = "Successfully created work process."
       redirect_to @work_process
     else

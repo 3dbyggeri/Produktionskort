@@ -1,4 +1,5 @@
-$('#new_work_process').before('<div id="flash_notice"><%= escape_javascript(flash.delete(:notice)) %></div>')
+$('#new_work_process').before('<div id="flash_notice"><%= escape_javascript("#{flash.delete(:notice)}: #{@project.id.to_s}") %></div>')
+$('input#work_process_project_attributes_id').attr({value: '<%= escape_javascript(@project.id.to_s) %>'})
 $('input#work_process_project_attributes_name').attr({value: '<%= escape_javascript(@project.name) %>'})
 $('input#work_process_project_attributes_address').attr({value: '<%= escape_javascript(@project.address) %>'})
 $('input#work_process_project_attributes_title_number').attr({value: '<%= escape_javascript(@project.title_number.to_s) %>'})

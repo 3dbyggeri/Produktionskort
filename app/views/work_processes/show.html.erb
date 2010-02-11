@@ -12,6 +12,17 @@
 </div>
 <div id="site" class="info_box">
   <h2>Byggeplads</h2>
+  <%= render 'group_referrals', :ref_arr => @work_process.project.site_referrals %>
+
+  <h3>Bemærkninger:</h3>
+  <ul>
+    <% for focus in @work_process.project.site_focuses do %>
+    <li><%=h focus.description %> (<%=h focus.kind %>)</li>
+    <%- end -%>
+    <% for operation in @work_process.project.site_operations do %>
+    <li><%=h operation.description %> (<%=h operation.kind %>)</li>
+    <%- end -%>
+  </ul>
 </div>
 <div id="planning" class="info_box">
   <h2>Planlægning og opfølgning</h2>
@@ -20,12 +31,40 @@
 <div id="right">
 <div id="assembly_directions" class="info_box">
   <h2>Montage</h2>
+  <dl>
+    <dt>Placering</dt><dd><%=h @work_process.location %></dd>
+    <dt>Levering senest</dt><dd><%=h @work_process.project_delivery_time.to_s(:short) %></dd>
+    <dt>Ansvarlig</dt><dd><%=h @work_process.project_delivery_person %></dd>
+  </dl>
+  
+  <%= render 'group_referrals', :ref_arr => @work_process.activity_referrals %>
 </div>
 <div id="equipment" class="info_box">
   <h2>Materiel</h2>
 </div>
 <div id="materials" class="info_box">
   <h2>Materialer</h2>
+  <% for material_package in @work_process.material_packages do %>
+  <h3>Materialepakke, unitnr.: <%=h material_package.unit_number %></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Antal</th>
+          <th>Vægt</th>
+          <th>Mål</th>
+          <th>Længde</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% for material in material_package.materials do %>
+        <tr><td><%=h material.kind %></td><td><%=h material.count %></td><td><%=h material.weight %></td><td><%=h material.measures %> <%=h material.unit %></td><td><%=h material.lengths %> <%=h material.unit %></td></tr>
+    <%- end -%>
+      </tbody>
+    </table>
+  <%- end -%>
+  
+  <%= render 'group_referrals', :ref_arr => @work_process.material_referrals %>
 </div>
 <div id="staff" class="info_box">
   <h2>Mandskab</h2>

@@ -184,10 +184,102 @@ da:
         title_number: Matrikelnummer
         postal_code: Postnummer
         apv_location: APV placering
-        health_safety_decided_by_owner: Sikkerhed sundhed bygherrebestemt
-        health_safety_decided_by_contractor: Sikkerhed sundhed entreprenørbestemt
-        health_safety_plan: Plan sikkerhed sundhed
-        health_safety_plan_location: Plan sikkerhed sundhed placering
+        health_safety_decided_by_owner: Bygherrebestemt sikkerhed/sundhed
+        health_safety_decided_by_contractor: Entreprenørbestemt sikkerhed/sundhed
+        health_safety_plan: Plan sikkerhed/sundhed
+        health_safety_plan_location: Placering plan sikkerhed/sundhed
+      company:
+        kind: Type
+        name: Navn
+        postal_code: Postnummer
+        city: By
+        tel: Telefon
+        fax: Fax
+        email: E-mail
+        url: Web
+      person:
+        kind: Type
+        name: Navn
+        street_address: Adresse
+        extended_address: Evt. udvidet adresse
+        postal_code: Postnummer
+        city: By
+        tel: Telefon
+        direct_tel: Direkte
+        mobile_tel: Mobil
+        fax: Fax
+        email: E-mail
+        url: Web
+      meeting:
+        kind: Type
+        time: Tidspunkt
+      approval:
+        kind: Type
+        description: Beskrivelse
+        time: Tidspunkt
+      attention:
+        kind: Type
+        description: Beskrivelse
+        time: Tidspunkt
+      referral:
+        kind: Type
+        notes: Tekst
+        identifier: Henvisning
+      site_focus:
+        kind: Type
+        description: Tekst
+        last_inspection: Seneste kontrol
+      site_operation:
+        kind: Type
+        description: Tekst
+      equipment:
+        role: 
+        person: 
+        kind: Type
+        notes: Tekst
+        manual: Brugsanvisning
+        location: Placering
+        requirements: Krav
+        certificate: Certifikat
+        deal_rental: Lejeaftale
+        contract_service: Servicekontrakt
+        registration: Registrering
+        start_time: Starttid
+        end_time: Sluttid
+      material_package:
+        unit_number: Unitnr.
+        load_number: Læsnr.
+        gate_number: Portnr.
+        crane_number: Kran/hejs nr.
+        planned_delivery_date: Planlagt lev.
+        craning_time: Indhejsning varighed
+        ordered_delivery_date: Afkaldt lev.
+        delivery_conditions: Lev. betingelser
+        return_policy: Returpolitik
+      material:
+        kind: Type
+        area_of_appliance: Anv. omr.
+        measures: Mål
+        weight: Vægt
+        colors: Farver
+        tolerances: Tolerancer
+        performance: Ydeevne
+        chemical_conditions: Kemiske forh.
+        count: Antal
+        lengths: Længder
+        unit: Enhed
+        delivery_time_stock: Lev.tid lager
+        delivery_time_order: Lev.tid skaffe
+        storage: Opbevaring
+        dry: Tørt
+        assembly_inspection: Montagekontrol
+        datasheets: Datablade
+        special_tools: Specialværktøj
+        facility_management: Drift/vedligehold
+        supplier: Leverandør
+        alternative_supplier: Alternativ leverandør
+        delivery_conditions: Leveringsbetingelser
+        return_policy: Returpolitik
     models:
       work_process: Produktionskort
       project: Sag
