@@ -27,7 +27,11 @@
 <div id="planning" class="info_box">
   <h2>Planlægning og opfølgning</h2>
 </div>
+<div id="staff" class="info_box">
+  <h2>Mandskab</h2>
 </div>
+</div>
+
 <div id="right">
 <div id="assembly_directions" class="info_box">
   <h2>Montage</h2>
@@ -38,9 +42,6 @@
   </dl>
   
   <%= render 'group_referrals', :ref_arr => @work_process.activity_referrals %>
-</div>
-<div id="equipment" class="info_box">
-  <h2>Materiel</h2>
 </div>
 <div id="materials" class="info_box">
   <h2>Materialer</h2>
@@ -58,7 +59,7 @@
       </thead>
       <tbody>
     <% for material in material_package.materials do %>
-        <tr><td><%=h material.kind %></td><td><%=h material.count %></td><td><%=h material.weight %></td><td><%=h material.measures %> <%=h material.unit %></td><td><%=h material.lengths %> <%=h material.unit %></td></tr>
+        <tr><td><%=h material.kind %></td><td class="right"><%=h material.count %></td><td class="right"><%=h material.weight %></td><td class="right"><%=h material.measures %> <%=h material.unit %></td><td class="right"><%=h material.lengths %> <%=h material.unit %></td></tr>
     <%- end -%>
       </tbody>
     </table>
@@ -66,8 +67,8 @@
   
   <%= render 'group_referrals', :ref_arr => @work_process.material_referrals %>
 </div>
-<div id="staff" class="info_box">
-  <h2>Mandskab</h2>
+<div id="equipment" class="info_box">
+  <h2>Materiel</h2>
 </div>
 </div>
 <div class="clear"> </div>
