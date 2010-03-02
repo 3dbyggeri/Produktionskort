@@ -280,6 +280,33 @@ da:
         alternative_supplier: Alternativ leverandør
         delivery_conditions: Leveringsbetingelser
         return_policy: Returpolitik
+      wasted_time:
+        caused_by: Årsag
+        start: Start
+        end: Slut
+      requirement:
+        kind: Type
+        component: Krav
+        description: Tekst
+      inspection:
+        kind: Type
+        method: Metode
+        notes: Tekst
+        person: Person
+        time: Tid
+        location: Sted
+      documentation:
+        kind: Type
+        description: Dokumentation
+      qualification:
+        super_kind: Overgruppe
+        kind: Type
+        notes: Tekst
+        immaterial_currency: Immatriel møntfod
+      protection:
+        kind: Type
+        notes: Tekst
+        usage: Benyttes ved
     models:
       work_process: Produktionskort
       project: Sag

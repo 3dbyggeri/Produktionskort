@@ -3,14 +3,14 @@
   <%#= f.input :person %>
   <%= f.input :kind, :collection => Equipment::KINDS, :include_blank => false %>
   <%= f.input :notes %>
-  <%= f.input :manual %>
-  <%= f.input :location %>
-  <%= f.input :requirements %>
-  <%= f.input :certificate %>
-  <%= f.input :deal_rental %>
-  <%= f.input :contract_service %>
-  <%= f.input :registration %>
-  <%= f.input :start_time, :as => :date %>
-  <%= f.input :end_time, :as => :date %>
+  <%#= f.input :manual %>
+  <%#= f.input :location %>
+  <%#= f.input :requirements %>
+  <%#= f.input :certificate %>
+  <%#= f.input :deal_rental %>
+  <%#= f.input :contract_service %>
+  <%#= f.input :registration %>
+  <%#= f.input :start_time, :as => :string %>
+  <%#= f.input :end_time, :as => :string %>
   <%= link_to_remove_fields "Slet", f %>
 <% end %>
