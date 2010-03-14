@@ -1,0 +1,7 @@
+<% f.inputs :class => "tableize inputs" do %>
+  <%= f.input :super_kind, :collection => Qualification::SUPER_KINDS, :include_blank => false %>
+  <%= f.input :kind, :collection => Qualification::KINDS, :include_blank => false %>
+  <%= f.input :notes %>
+  <%= f.input :immaterial_currency %>
+  <%= link_to_remove_fields "Slet", f %>
+<% end %>

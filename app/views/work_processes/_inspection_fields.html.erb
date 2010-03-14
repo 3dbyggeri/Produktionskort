@@ -1,0 +1,14 @@
+<% f.inputs :class => "tableize inputs" do %>
+  <%= f.input :kind, :collection => Inspection::KINDS, :include_blank => false %>
+  <%= f.input :method, :collection => Inspection::METHODS, :include_blank => false %>
+  <%= f.input :notes %>
+  <%= f.input :person %>
+  <%= f.input :time, :as => :string %>
+  <%= f.input :location %>
+  <%= link_to_remove_fields "Slet", f %>
+<% end %>
+
+<% f.semantic_fields_for :documentations do |builder| %>
+  <%= render 'documentation_fields', :f => builder %>
+<% end %>
+<p><%= link_to_add_fields "Tilføj dokumentation", f, :documentations %></p>
