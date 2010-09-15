@@ -68,8 +68,8 @@ class WorkProcessesController < ApplicationController
 
   def find_active_project
     if cookies['active_project'].blank?
-      flash[:notive] = "Du har ikke valgt nogen aktiv byggesag."
-      redirect_to :controller => 'projects', :action => 'index'
+      flash[:notice] = "Du har ikke valgt nogen aktiv byggesag."
+      redirect_to :controller => 'projects', :action => 'index' and return
     end
 
     @project = Project.find(cookies['active_project'])
