@@ -1,8 +1,4 @@
-<% title "Edit Work Process" %>
+<% title 'Rediger produktionskort' %>
+<% quicklinks [['Annuller', work_process_path(@work_process)]] %>
 
 <%= render :partial => 'form' %>
-
-<p>
-  <%= link_to t('navigation.show'), @work_process %> |
-  <%= link_to "View All", work_processes_path %>
-</p>

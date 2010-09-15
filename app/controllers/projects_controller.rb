@@ -3,15 +3,7 @@ class ProjectsController < ApplicationController
     @projects = Project.all
     @project = Project.new
   end
-  
-  def show
-    @project = Project.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-  
+
   def new
     @project = Project.new
     @project.work_processes.build
@@ -22,8 +14,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        flash[:notice] = "Successfully created project."
-        format.html { redirect_to @project }
+        flash[:notice] = "Byggesag oprettet."
+        format.html { redirect_to :action => 'index' }
         format.js
       else
         format.html { render :action => 'new' }
@@ -39,8 +31,8 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
-      flash[:notice] = "Successfully updated project."
-      redirect_to @project
+      flash[:notice] = "Stamdata for byggesag opdateret."
+      redirect_to :action => 'index'
     else
       render :action => 'edit'
     end
@@ -49,7 +41,17 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    flash[:notice] = "Successfully destroyed project."
+    flash[:notice] = "Byggesag slettet."
     redirect_to projects_url
+  end
+
+  def switch
+    if params[:id] == 'new'
+      redirect_to :action => 'new'
+    else
+      project = Project.find(params[:id])
+      cookies['active_project'] = project.id
+      redirect_to root_path
+    end
   end
 end

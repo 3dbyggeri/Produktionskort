@@ -1,16 +1,18 @@
 class WorkProcessesController < ApplicationController
+  before_filter :find_active_project
+
   def index
-    @work_processes = WorkProcess.all
+    @work_processes = @project.work_processes
   end
   
   def show
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = @project.work_processes.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @work_process.to_xml(:include => [ :project, 
-                                                                      :companies, 
-                                                                      :equipment, 
+      format.xml  { render :xml => @work_process.to_xml(:include => [ :project,
+                                                                      :companies,
+                                                                      :equipment,
                                                                       :inspections, 
                                                                       :material_packages,
                                                                       :preconditions,
@@ -28,20 +30,15 @@ class WorkProcessesController < ApplicationController
   end
   
   def new
-    @work_process = WorkProcess.new
-    @work_process.project = Project.new
+    @work_process = @project.work_processes.build
   end
   
   def create
     project_attributes = params[:work_process].delete(:project_attributes)
-    @work_process = WorkProcess.new(params[:work_process])
-    unless project_attributes[:id].blank?
-      @work_process.project = Project.find(project_attributes.delete(:id))
-    else
-      @work_process.project = Project.new(project_attributes)
-    end
+    project_attributes.delete(:id)
+    @work_process = @project.work_processes.build(params[:work_process])
     if @work_process.save && @work_process.project.update_attributes(project_attributes)
-      flash[:notice] = "Successfully created work process."
+      flash[:notice] = "Produktionskort oprettet."
       redirect_to @work_process
     else
       render :action => 'new'
@@ -49,13 +46,13 @@ class WorkProcessesController < ApplicationController
   end
   
   def edit
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = @project.work_processes.find(params[:id])
   end
   
   def update
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = @project.work_processes.find(params[:id])
     if @work_process.update_attributes(params[:work_process])
-      flash[:notice] = "Successfully updated work process."
+      flash[:notice] = "Produktionskort opdateret."
       redirect_to @work_process
     else
       render :action => 'edit'
@@ -63,9 +60,18 @@ class WorkProcessesController < ApplicationController
   end
   
   def destroy
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = @project.work_processes.find(params[:id])
     @work_process.destroy
-    flash[:notice] = "Successfully destroyed work process."
+    flash[:notice] = "Produktionskort slettet."
     redirect_to work_processes_url
+  end
+
+  def find_active_project
+    if cookies['active_project'].blank?
+      flash[:notive] = "Du har ikke valgt nogen aktiv byggesag."
+      redirect_to :controller => 'projects', :action => 'index'
+    end
+
+    @project = Project.find(cookies['active_project'])
   end
 end

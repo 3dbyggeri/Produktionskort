@@ -1,42 +1,35 @@
-<% title t('headings.projects') %>
+<% title 'Byggesager' %>
 
-<p>For at oprette et produktionskort, skal du først have en sag. Du har nu 3 muligheder:
-  <ul>
-    <li><%= link_to "Opret ny sag", new_project_path %></li>
-    <li><% form_for @project do |f| %>
-        Importér fra kilde: 
-        <%= select('import', :source, ['Byggeweb', 'RamByg', 'Beskrivelsesmateriale', 'Visual Kalkulation', 'you name it']) %>
-        <%= f.label :bips_ID %>
-        <%= f.text_field :name, :size => 10 %>
-        <%= f.label :adgangskode %>
-        <%= f.password_field :name, :size => 10 %>
-        <%= f.hidden_field :name, :value => "Mit test projekt" %>
-        <%= f.hidden_field :address, :value => "Abildgårdsvej 31" %>
-        <%= f.hidden_field :postal_code, :value => "8210" %>
-        <%= f.hidden_field :title_number, :value => "1231" %>
-        <%= f.submit %>
-      <% end %>
-    </li>
-    <li>Vælg en eksisterende sag i listen nedenfor</li>
-  </ul>
-</p>
+<h3>Oversigt</h3>
 
+<% if @projects.empty? %>
+<p>Der er p.t. ikke oprettet nogen byggesager.</p>
+<p><%= link_to 'Opret en med det samme!', new_project_path %></p>
+<% else %>
 <table>
-  <tr>
-    <th><%= Project.human_attribute_name('name') %></th>
-    <th><%= Project.human_attribute_name('address') %></th>
-    <th><%= Project.human_attribute_name('title_number') %></th>
-    <th><%= Project.human_attribute_name('postal_code') %></th>
-  </tr>
+  <thead>
+    <tr>
+      <th><%= Project.human_attribute_name('name') %></th>
+      <th><%= Project.human_attribute_name('address') %></th>
+      <th><%= Project.human_attribute_name('title_number') %></th>
+      <th><%= Project.human_attribute_name('postal_code') %></th>
+      <th></th>
+    </tr>
+  </thead>
   <% for project in @projects %>
+  <tbody>
     <tr>
       <td><%=h project.name %></td>
       <td><%=h project.address %></td>
       <td><%=h project.title_number %></td>
       <td><%=h project.postal_code %></td>
-      <td><%= link_to t('navigation.show'), project %></td>
-      <td><%= link_to t('navigation.edit'), edit_project_path(project) %></td>
-      <td><%= link_to t('navigation.destroy'), project, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td class="action" style="white-space:nowrap">
+        <%= link_to 'Vælg', switch_projects_path(:id => project.id), :class => 'view' %>
+        <%= link_to t('navigation.edit'), edit_project_path(project), :class => 'edit' %>
+        <%= link_to t('navigation.destroy'), project, :confirm => 'Er du sikker?', :method => :delete, :class => 'delete' %>
+      </td>
     </tr>
+  </tbody>
   <% end %>
 </table>
+<% end %>

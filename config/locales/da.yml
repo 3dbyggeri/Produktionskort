@@ -181,8 +181,8 @@ da:
       project:
         name: Navn
         address: Adresse
-        title_number: Matrikelnummer
-        postal_code: Postnummer
+        title_number: Matrikelnr
+        postal_code: Postnr
         apv_location: APV placering
         health_safety_decided_by_owner: Bygherrebestemt sikkerhed/sundhed
         health_safety_decided_by_contractor: Entreprenørbestemt sikkerhed/sundhed

@@ -1,5 +1,6 @@
-<% title t('new.work_process') %>
+<% title 'Byggesager' %>
+<% quicklinks [['Annuller', projects_path]] %>
+
+<h3>Opret byggesag</h3>
 
 <%= render :partial => 'form' %>
-
-<p><%= link_to "Back to List", projects_path %></p>

@@ -1,7 +1,0 @@
-<% title h(@project.name) %>
-
-<p>
-  <%= link_to t('navigation.edit'), edit_project_path(@project) %> |
-  <%= link_to t('navigation.destroy'), @project, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", projects_path %>
-</p>

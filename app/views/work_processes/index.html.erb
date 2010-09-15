@@ -1,23 +1,34 @@
-<% title t('headings.work_processes') %>
+<% title "Produktionskort" %>
+<% quicklinks [['Opret nyt produktionskort', new_work_process_path]] %>
 
+<h3>Oversigt</h3>
+
+<% if @work_processes.blank? %>
+<p>Der er p.t. ikke oprettet nogen produktionskort for denne byggesag.</p>
+<p><%= link_to 'Opret et med det samme!', new_work_process_path %></p>
+<% else %>
 <table>
-  <tr>
-    <th><%= Project.human_name %></th>
-    <th><%= WorkProcess.human_attribute_name('component_type') %></th>
-    <th><%= WorkProcess.human_attribute_name('activity') %></th>
-    <th><%= WorkProcess.human_attribute_name('location') %></th>
-  </tr>
-  <% for work_process in @work_processes %>
+  <thead>
     <tr>
-      <td><%=h work_process.project.name %></td>
+      <th><%= WorkProcess.human_attribute_name('component_type') %></th>
+      <th><%= WorkProcess.human_attribute_name('activity') %></th>
+      <th><%= WorkProcess.human_attribute_name('location') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <% for work_process in @work_processes %>
+  <tbody>
+    <tr>
       <td><%=h work_process.component_type %></td>
       <td><%=h work_process.activity %></td>
       <td><%=h work_process.location %></td>
-      <td><%= link_to t('navigation.show'), work_process %></td>
-      <td><%= link_to t('navigation.edit'), edit_work_process_path(work_process) %></td>
-      <td><%= link_to t('navigation.destroy'), work_process, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td class="action">
+        <%= link_to t('navigation.show'), work_process, :class => 'view' %>
+        <%= link_to t('navigation.edit'), edit_work_process_path(work_process), :class => 'edit' %>
+        <%= link_to t('navigation.destroy'), work_process, :confirm => 'Er du sikker?', :method => :delete, :class => 'delete' %>
+      </td>
     </tr>
+  </tbody>
   <% end %>
 </table>
-
-<p><%= link_to t('new.work_process'), new_work_process_path %></p>
+<% end %>

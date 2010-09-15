@@ -1,105 +1,95 @@
-<% semantic_form_for @work_process do |f| %>
-  <% f.inputs :name => 'Stamdata' do %>
-    <% f.semantic_fields_for :project do |p| %>
-      <% p.inputs do %>
-      <%- if @work_process.project.id.blank? -%>
-        <div id="fetch_project"><%= link_to_add_fetch_project_form "Hent eksisterende sag" %></div>
-        <div id="import_project"><%= link_to_add_import_project_form "Importer stamdata" %></div>
-        <input id="work_process_project_attributes_id" name="work_process[project_attributes][id]" type="hidden" value="" />
-      <%- end -%>
-        <%= p.input :name %>
-        <%= p.input :address %>
-        <%= p.input :postal_code %>
-        <%= p.input :title_number %>
-        <%= p.input :health_safety_decided_by_owner %>
-        <%= p.input :health_safety_decided_by_contractor %>
-        <%= p.input :health_safety_plan %>
-        <%= p.input :health_safety_plan_location %>
-      <% end %>
-    <% end %>
+<% sidebar [['Stamdata',                  '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
+            ['Byggeplads',                '#', {:class => 'tab', :rel => 'pane_buildingsite'}],
+            ['Planlægning / opfølgning',  '#', {:class => 'tab', :rel => 'pane_planning_and_follow_up'}],
+            ['Aktivitet',                 '#', {:class => 'tab', :rel => 'pane_activity'}],
+            ['Arbejdsmetode',             '#', {:class => 'tab', :rel => 'pane_work_method'}],
+            ['Materiel',                  '#', {:class => 'tab', :rel => 'pane_equipment'}],
+            ['Materialer',                '#', {:class => 'tab', :rel => 'pane_materials'}],
+            ['Mandskab',                  '#', {:class => 'tab', :rel => 'pane_men'}]], :submit => ['Gem', 'work_process_form'] %>
+
+<% semantic_form_for @work_process, :html => {:id => 'work_process_form'} do |f| %>
+  <% f.inputs :class => 'pane', :id => 'pane_stemdata' do %>
+    <h3>Stamdata</h3>
+    <%= f.input :component_type %>
+
     <fieldset class="table_group"><legend><span>Adresser</span></legend>
-    <% f.semantic_fields_for :companies do |builder| %>
-      <%= render 'company_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj virksomhed", f, :companies %></p>
+      <% f.semantic_fields_for :companies do |builder| %>
+        <%= render 'company_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj virksomhed", f, :companies %></p>
     </fieldset>
 
     <% f.semantic_fields_for :project do |p| %>
       <% p.inputs do %>
-    
-      <fieldset class="table_group"><legend><span>Personer</span></legend>
-      <% p.semantic_fields_for :people do |builder| %>
-        <%= render 'person_fields', :f => builder %>
-      <% end %>
-      <p><%= link_to_add_fields "Tilføj person", p, :people %></p>
-      </fieldset>
+        <fieldset class="table_group"><legend><span>Personer</span></legend>
+          <% p.semantic_fields_for :people do |builder| %>
+            <%= render 'person_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj person", p, :people %></p>
+        </fieldset>
 
-      <fieldset class="table_group"><legend><span>Møder</span></legend>
-      <% p.semantic_fields_for :meetings do |builder| %>
-        <%= render 'meeting_fields', :f => builder %>
-      <% end %>
-      <p><%= link_to_add_fields "Tilføj møde", p, :meetings %></p>
-      </fieldset>
+        <fieldset class="table_group"><legend><span>Møder</span></legend>
+          <% p.semantic_fields_for :meetings do |builder| %>
+            <%= render 'meeting_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj møde", p, :meetings %></p>
+        </fieldset>
 
-      <fieldset class="table_group"><legend><span>Godkendelser</span></legend>
-      <% p.semantic_fields_for :approvals do |builder| %>
-        <%= render 'approval_fields', :f => builder %>
-      <% end %>
-      <p><%= link_to_add_fields "Tilføj godkendelse", p, :approvals %></p>
-      </fieldset>
+        <fieldset class="table_group"><legend><span>Godkendelser</span></legend>
+          <% p.semantic_fields_for :approvals do |builder| %>
+            <%= render 'approval_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj godkendelse", p, :approvals %></p>
+        </fieldset>
 
-      <fieldset class="table_group"><legend><span>Hensyn</span></legend>
-      <% p.semantic_fields_for :attentions do |builder| %>
-        <%= render 'attention_fields', :f => builder %>
-      <% end %>
-      <p><%= link_to_add_fields "Tilføj hensyn", p, :attentions %></p>
-      </fieldset>
-
+        <fieldset class="table_group"><legend><span>Hensyn</span></legend>
+          <% p.semantic_fields_for :attentions do |builder| %>
+            <%= render 'attention_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj hensyn", p, :attentions %></p>
+        </fieldset>
       <% end %>
     <% end %>
-
   <% end %>
 
-  <% f.inputs :name => 'Byggeplads' do %>
-  
-  <% f.semantic_fields_for :project do |p| %>
-    <% p.inputs do %>
-  
-    <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-    <% p.semantic_fields_for :site_referrals do |builder| %>
-      <%= render 'site_referral_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj henvisning", p, :site_referrals %></p>
-    </fieldset>
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_buildingsite' do %>
+    <h3>Byggeplads</h3>
+    <% f.semantic_fields_for :project do |p| %>
+      <% p.inputs do %>
+        <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
+          <% p.semantic_fields_for :site_referrals do |builder| %>
+            <%= render 'site_referral_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj henvisning", p, :site_referrals %></p>
+        </fieldset>
 
-    <fieldset class="table_group"><legend><span>Byggepladsfokus</span></legend>
-    <% p.semantic_fields_for :site_focuses do |builder| %>
-      <%= render 'site_focus_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj fokusområde", p, :site_focuses %></p>
-    </fieldset>
+        <fieldset class="table_group"><legend><span>Byggepladsfokus</span></legend>
+          <% p.semantic_fields_for :site_focuses do |builder| %>
+            <%= render 'site_focus_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj fokusområde", p, :site_focuses %></p>
+        </fieldset>
 
-    <fieldset class="table_group"><legend><span>Byggepladsdrift</span></legend>
-    <% p.semantic_fields_for :site_operations do |builder| %>
-      <%= render 'site_operation_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj driftsinformation", p, :site_operations %></p>
-    </fieldset>
+        <fieldset class="table_group"><legend><span>Byggepladsdrift</span></legend>
+          <% p.semantic_fields_for :site_operations do |builder| %>
+            <%= render 'site_operation_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj driftsinformation", p, :site_operations %></p>
+        </fieldset>
 
-    <fieldset class="table_group"><legend><span>Materiel</span></legend>
-    <% p.semantic_fields_for :equipment do |builder| %>
-      <%= render 'equipment_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj materiel", p, :equipment %></p>
-    </fieldset>
-
+        <fieldset class="table_group"><legend><span>Materiel</span></legend>
+          <% p.semantic_fields_for :equipment do |builder| %>
+            <%= render 'equipment_fields', :f => builder %>
+          <% end %>
+          <p><%= link_to_add_fields "Tilføj materiel", p, :equipment %></p>
+        </fieldset>
+      <% end %>
     <% end %>
   <% end %>
-  
-  <% end %>
 
-  <% f.inputs :name => 'Planlægning og opfølgning' do %>
-  <%# see http://groups.google.com.au/group/formtastic/browse_thread/thread/5ffd565ddcad412f regarding default date values %>
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_planning_and_follow_up' do %>
+    <h3>Planlægning og opfølgning</h3>
+    <%# see http://groups.google.com.au/group/formtastic/browse_thread/thread/5ffd565ddcad412f regarding default date values %>
     <%= f.input :main_start, :as => :string %>
     <%= f.input :main_end, :as => :string %>
     <%= f.input :preceding %>
@@ -123,86 +113,90 @@
     </fieldset>
 
     <fieldset class="table_group"><legend><span>Spildtid</span></legend>
-    <% f.semantic_fields_for :wasted_times do |builder| %>
-      <%= render 'wasted_time_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj spildtid", f, :wasted_times %></p>
+      <% f.semantic_fields_for :wasted_times do |builder| %>
+        <%= render 'wasted_time_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj spildtid", f, :wasted_times %></p>
     </fieldset>
-
   <% end %>
 
-  <% f.inputs :name => 'Aktivitet' do %>
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_activity' do %>
+    <h3>Aktivitet</h3>
     <%= f.input :activity %>
     <%= f.input :location %>
     <%= f.input :project_delivery_time, :as => :string %>
     <%= f.input :project_delivery_person %>
 
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-    <% f.semantic_fields_for :activity_referrals do |builder| %>
-      <%= render 'activity_referral_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj henvisning", f, :activity_referrals %></p>
+      <% f.semantic_fields_for :activity_referrals do |builder| %>
+        <%= render 'activity_referral_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj henvisning", f, :activity_referrals %></p>
     </fieldset>
   <% end %>
 
-  <% f.inputs :name => 'Arbejdsmetode' do %>
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_work_method' do %>
+    <h3>Arbejdsmetode</h3>
     <%= f.input :assembly_direction %>
-    
+
     <fieldset class="table_group"><legend><span>Krav</span></legend>
-    <% f.semantic_fields_for :requirements do |builder| %>
-      <%= render 'requirement_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj krav", f, :requirements %></p>
+      <% f.semantic_fields_for :requirements do |builder| %>
+        <%= render 'requirement_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj krav", f, :requirements %></p>
     </fieldset>
 
     <fieldset class="table_group"><legend><span>Udførelseskontrol</span></legend>
-    <% f.semantic_fields_for :inspections do |builder| %>
-      <%= render 'inspection_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj kontrol", f, :inspections %></p>
+      <% f.semantic_fields_for :inspections do |builder| %>
+        <%= render 'inspection_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj kontrol", f, :inspections %></p>
     </fieldset>
 
     <fieldset class="table_group"><legend><span>Værnemidler</span></legend>
-    <% f.semantic_fields_for :protections do |builder| %>
-      <%= render 'protection_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj værnemiddel", f, :protections %></p>
+      <% f.semantic_fields_for :protections do |builder| %>
+        <%= render 'protection_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj værnemiddel", f, :protections %></p>
     </fieldset>
   <% end %>
 
-  <% f.inputs :name => 'Materiel' do %>
-  
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_equipment' do %>
+    <h3>Materiel</h3>
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-    <% f.semantic_fields_for :equipment_referrals do |builder| %>
-      <%= render 'equipment_referral_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj henvisning", f, :equipment_referrals %></p>
+      <% f.semantic_fields_for :equipment_referrals do |builder| %>
+        <%= render 'equipment_referral_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj henvisning", f, :equipment_referrals %></p>
     </fieldset>
-    
+
     <fieldset class="table_group"><legend><span>Process specifikt materiel</span></legend>
-    <% f.semantic_fields_for :equipment do |builder| %>
-      <%= render 'equipment_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj materiel", f, :equipment %></p>
+      <% f.semantic_fields_for :equipment do |builder| %>
+        <%= render 'equipment_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj materiel", f, :equipment %></p>
     </fieldset>
   <% end %>
 
-  <% f.inputs :name => 'Materialer' do %>
-    <% f.semantic_fields_for :material_packages do |builder| %>
-      <%= render 'material_package_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj Materialepakke", f, :material_packages %></p>
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_materials' do %>
+    <h3>Materialer</h3>
+    <fieldset class="table_group"><legend><span>Materialepakker</span></legend>
+      <% f.semantic_fields_for :material_packages do |builder| %>
+        <%= render 'material_package_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj Materialepakke", f, :material_packages %></p>
+    </fieldset>
 
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-    <% f.semantic_fields_for :material_referrals do |builder| %>
-      <%= render 'material_referral_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj henvisning", f, :material_referrals %></p>
+      <% f.semantic_fields_for :material_referrals do |builder| %>
+        <%= render 'material_referral_fields', :f => builder %>
+       <% end %>
+       <p><%= link_to_add_fields "Tilføj henvisning", f, :material_referrals %></p>
     </fieldset>
-
   <% end %>
 
-  <% f.inputs :name => 'Mandskab' do %>
+  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_men' do %>
+    <h3>Mandskab</h3>
     <%= f.input :social_responsibility %>
     <%= f.input :piecework_rate %>
     <%= f.input :hourly_rate %>
@@ -211,21 +205,19 @@
     <%= f.input :allowance %>
     <%= f.input :time_of_day %>
     <%= f.input :extra_work %>
-    
+
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-    <% f.semantic_fields_for :crew_referrals do |builder| %>
-      <%= render 'crew_referral_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj henvisning", f, :crew_referrals %></p>
+      <% f.semantic_fields_for :crew_referrals do |builder| %>
+        <%= render 'crew_referral_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj henvisning", f, :crew_referrals %></p>
     </fieldset>
-    
+
     <fieldset class="table_group"><legend><span>Kompetencer</span></legend>
-    <% f.semantic_fields_for :qualifications do |builder| %>
-      <%= render 'qualification_fields', :f => builder %>
-    <% end %>
-    <p><%= link_to_add_fields "Tilføj kompetence", f, :qualifications %></p>
+      <% f.semantic_fields_for :qualifications do |builder| %>
+        <%= render 'qualification_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj kompetence", f, :qualifications %></p>
     </fieldset>
   <% end %>
-
-  <%= f.buttons %>
 <% end %>

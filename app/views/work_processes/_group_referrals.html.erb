@@ -1,5 +1,5 @@
   <% group_referrals(ref_arr).each_pair do |kind,referrals| %>
-    <h3>Relevante <%=h kind.to_s.pluralize.capitalize %></h3>
+    <h3>Relevante <%=h kind.to_s %><%= kind.to_s =~ /er$/ ? '' : (kind.to_s =~ /e$/ ? 'r' : 'er') %></h3>
     <ul>
     <% for referral in referrals do %>
     <li><%=h referral.notes %> <%= " - Se #{h referral.identifier}" unless referral.identifier.blank? %></li>

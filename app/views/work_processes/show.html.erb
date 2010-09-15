@@ -1,20 +1,35 @@
-<% title h("Produktionskort") %>
-<div id="left">
-<div id="stemdata">
-  <h2><%=h @work_process.activity %></h2>
-  <ul>
-    <li><%=h @work_process.project.title_number %> <%=h @work_process.project.name %></li>
-    <li><%=h @work_process.project.address %></li>
+<% title 'Produktionskort' %>
+<% quicklinks [['Rediger', edit_work_process_path(@work_process)]] %>
+<% sidebar [['Stamdata',                  '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
+            ['Byggeplads',                '#', {:class => 'tab', :rel => 'pane_buildingsite'}],
+            ['Planlægning / opfølgning',  '#', {:class => 'tab', :rel => 'pane_planning_and_follow_up'}],
+            ['Aktivitet',                 '#', {:class => 'tab', :rel => 'pane_activity'}],
+            ['Arbejdsmetode',             '#', {:class => 'tab', :rel => 'pane_work_method'}],
+            ['Materiel',                  '#', {:class => 'tab', :rel => 'pane_equipment'}],
+            ['Materialer',                '#', {:class => 'tab', :rel => 'pane_materials'}],
+            ['Mandskab',                  '#', {:class => 'tab', :rel => 'pane_men'}]] %>
+<div id="left_print_col">
+<div class="pane content" id="pane_stemdata">
+  <h3 class="first"><%=h @work_process.activity %></h3>
+  <%=h @work_process.project.title_number %> <%=h @work_process.project.name %><br />
+
+  <h3>Adresse</h3>
+  <%=h @work_process.project.address %>
+
+  <h3>Personer</h3>
+  <dl>
     <% for person in @work_process.project.people do %>
-    <li><%=h person.kind %>: <%=h person.name %> - <%=h person.mobile_tel %></li>
+    <dt><%=h person.kind %></dt>
+    <dd><%=h person.name %> - <%=h person.mobile_tel %></dd>
     <%- end -%>
-  </ul>
+  </dl>
 </div>
-<div id="site" class="info_box">
-  <h2>Byggeplads</h2>
+
+<div class="pane content" style="display:none" id="pane_buildingsite">
+  <h3>Byggeplads</h3>
   <%= render 'group_referrals', :ref_arr => @work_process.project.site_referrals %>
 
-  <h3>Bemærkninger:</h3>
+  <h3>Bemærkninger</h3>
   <ul>
     <% for focus in @work_process.project.site_focuses do %>
     <li><%=h focus.description %> (<%=h focus.kind %>)</li>
@@ -24,20 +39,84 @@
     <%- end -%>
   </ul>
 </div>
-<div id="planning" class="info_box">
-  <h2>Planlægning og opfølgning</h2>
+
+<div class="pane content" style="display:none" id="pane_planning_and_follow_up">
+  <h3>Planlægning og opfølgning</h3>
   <dl>
-    <dt>Planlagt start</dt><dd><%=h @work_process.planned_start.to_s(:short) %></dd>
-    <dt>Planlagt slut</dt><dd><%=h @work_process.planned_end.to_s(:short) %></dd>
+    <dt>Planlagt start</dt><dd><%=h @work_process.planned_start.to_s(:short) unless @work_process.planned_start.blank? %></dd>
+    <dt>Planlagt slut</dt><dd><%=h @work_process.planned_end.to_s(:short) unless @work_process.planned_end.blank? %></dd>
     <dt>Forudgående</dt><dd><%=h @work_process.preceding %></dd>
     <dt>Efterfølgende</dt><dd><%=h @work_process.subsequent %></dd>
   </dl>
   <%= render 'group_referrals', :ref_arr => @work_process.project.planning_referrals %>
-  
 </div>
-<div id="staff" class="info_box">
-  <h2>Mandskab</h2>
-  
+
+<div class="pane content" style="display:none" id="pane_activity">
+  <h3>Montage</h3>
+  <dl>
+    <dt>Placering</dt><dd><%=h @work_process.location %></dd>
+    <dt>Levering senest</dt><dd><%=h @work_process.project_delivery_time.to_s(:short) unless @work_process.project_delivery_time.blank? %></dd>
+    <dt>Ansvarlig</dt><dd><%=h @work_process.project_delivery_person %></dd>
+  </dl>
+  <%= render 'group_referrals', :ref_arr => @work_process.activity_referrals %>
+</div>
+</div>
+
+<div id="right_print_col">
+<div class="pane content" style="display:none" id="pane_work_method">
+  <h3>Krav</h3>
+  <ul>
+    <% for requirement in @work_process.requirements do %>
+    <li><%=h requirement.kind %><%= " #{h requirement.component}:" unless requirement.component.blank? %><%= " #{h requirement.description}" unless requirement.description.blank? %></li>
+    <%- end -%>
+  </ul>
+
+  <h3>Værnemidler</h3>
+  <ul>
+    <% for protection in @work_process.protections do %>
+    <li><%= "#{h protection.kind}:" %><%= " #{h protection.notes}" unless protection.notes.blank? %><%= " #{h protection.usage}" unless protection.usage.blank? %></li>
+    <%- end -%>
+  </ul>
+</div>
+
+<div class="pane content" style="display:none" id="pane_equipment">
+  <h3>Materiel</h3>
+  <%= render 'group_referrals', :ref_arr => @work_process.equipment_referrals %>
+
+  <h3>Process specifikt materiel</h3>
+  <ul>
+    <% for equipment in @work_process.equipment do %>
+    <li><%= "#{h equipment.kind}:" %><%= " #{h equipment.notes}" unless equipment.notes.blank? %></li>
+    <%- end -%>
+  </ul>
+</div>
+
+<div class="pane content" style="display:none" id="pane_materials">
+  <h3>Materialer</h3>
+  <% for material_package in @work_process.material_packages do %>
+    <h3>Materialepakke, unitnr.: <%=h material_package.unit_number %></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Antal</th>
+          <th>Vægt</th>
+          <th>Mål</th>
+          <th>Længde</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for material in material_package.materials do %>
+        <tr><td><%=h material.kind %></td><td class="right"><%=h material.count %></td><td class="right"><%=h material.weight %></td><td class="right"><%=h material.measures %> <%=h material.unit %></td><td class="right"><%=h material.lengths %> <%=h material.unit %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%- end -%>
+  <%= render 'group_referrals', :ref_arr => @work_process.material_referrals %>
+</div>
+
+<div class="pane content" style="display:none" id="pane_men">
+  <h3>Mandskab</h3>
   <dl>
     <% unless @work_process.social_responsibility.blank? %><dt>Socialt ansvar</dt><dd><%=h @work_process.social_responsibility %></dd><% end %>
     <% unless @work_process.piecework_rate.blank? %><dt>Akkord</dt><dd><%=h @work_process.piecework_rate %></dd><% end %>
@@ -52,75 +131,9 @@
 
   <h3>Kompetencer</h3>
   <ul>
-  <% for qualification in @work_process.qualifications do %>
-  <li><%= "#{h qualification.kind}:" %><%= " #{h qualification.notes}" unless qualification.notes.blank? %><%= " (Immatriel møntfod #{h qualification.immaterial_currency})" unless qualification.immaterial_currency.blank? %></li>
-  <%- end -%>
-  </ul>
-</div>
-</div>
-
-<div id="right">
-<div id="assembly_directions" class="info_box">
-  <h2>Montage</h2>
-  <dl>
-    <dt>Placering</dt><dd><%=h @work_process.location %></dd>
-    <dt>Levering senest</dt><dd><%=h @work_process.project_delivery_time.to_s(:short) %></dd>
-    <dt>Ansvarlig</dt><dd><%=h @work_process.project_delivery_person %></dd>
-  </dl>
-  
-  <%= render 'group_referrals', :ref_arr => @work_process.activity_referrals %>
-
-  <h3>Krav</h3>
-  <ul>
-  <% for requirement in @work_process.requirements do %>
-  <li><%=h requirement.kind %><%= " #{h requirement.component}:" unless requirement.component.blank? %><%= " #{h requirement.description}" unless requirement.description.blank? %></li>
-  <%- end -%>
-  </ul>
-
-  <h3>Værnemidler</h3>
-  <ul>
-  <% for protection in @work_process.protections do %>
-  <li><%= "#{h protection.kind}:" %><%= " #{h protection.notes}" unless protection.notes.blank? %><%= " #{h protection.usage}" unless protection.usage.blank? %></li>
-  <%- end -%>
-  </ul>
-
-</div>
-<div id="materials" class="info_box">
-  <h2>Materialer</h2>
-  <% for material_package in @work_process.material_packages do %>
-  <h3>Materialepakke, unitnr.: <%=h material_package.unit_number %></h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Antal</th>
-          <th>Vægt</th>
-          <th>Mål</th>
-          <th>Længde</th>
-        </tr>
-      </thead>
-      <tbody>
-    <% for material in material_package.materials do %>
-        <tr><td><%=h material.kind %></td><td class="right"><%=h material.count %></td><td class="right"><%=h material.weight %></td><td class="right"><%=h material.measures %> <%=h material.unit %></td><td class="right"><%=h material.lengths %> <%=h material.unit %></td></tr>
+    <% for qualification in @work_process.qualifications do %>
+    <li><%= "#{h qualification.kind}:" %><%= " #{h qualification.notes}" unless qualification.notes.blank? %><%= " (Immatriel møntfod #{h qualification.immaterial_currency})" unless qualification.immaterial_currency.blank? %></li>
     <%- end -%>
-      </tbody>
-    </table>
-  <%- end -%>
-  
-  <%= render 'group_referrals', :ref_arr => @work_process.material_referrals %>
-</div>
-<div id="equipment" class="info_box">
-  <h2>Materiel</h2>
-  <%= render 'group_referrals', :ref_arr => @work_process.equipment_referrals %>
-
-  <h3>Process specifikt materiel</h3>
-  <ul>
-  <% for equipment in @work_process.equipment do %>
-  <li><%= "#{h equipment.kind}:" %><%= " #{h equipment.notes}" unless equipment.notes.blank? %></li>
-  <%- end -%>
   </ul>
-
-  
 </div>
 </div>
-<div class="clear"> </div>

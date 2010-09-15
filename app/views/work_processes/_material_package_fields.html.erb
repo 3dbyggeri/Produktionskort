@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs" do %>
+<% f.inputs :class => "tableize inputs contains_sub_inserts" do %>
   <%= f.input :unit_number %>
   <%= f.input :load_number %>
   <%= f.input :gate_number %>
@@ -11,7 +11,8 @@
   <%= link_to_remove_fields "Slet", f %>
 <% end %>
 
+<h4>Materialer</h4>
 <% f.semantic_fields_for :materials do |builder| %>
   <%= render 'material_fields', :f => builder %>
 <% end %>
-<p><%= link_to_add_fields "Tilføj Materialer", f, :materials %></p>
+<p class="sub_insert"><%= link_to_add_fields "Tilføj Materialer", f, :materials %></p>
