@@ -1,3 +1,4 @@
+# coding: utf-8
 class Equipment < ActiveRecord::Base
   belongs_to :project
   belongs_to :work_process

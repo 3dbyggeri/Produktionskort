@@ -1,3 +1,4 @@
+# coding: utf-8
 class Inspection < ActiveRecord::Base
   attr_accessible :kind,
                   :method,

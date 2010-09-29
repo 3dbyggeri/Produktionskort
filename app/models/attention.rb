@@ -1,3 +1,4 @@
+# coding: utf-8
 class Attention < ActiveRecord::Base
   belongs_to :project
 

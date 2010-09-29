@@ -1,3 +1,4 @@
+# coding: utf-8
 class SiteFocus < ActiveRecord::Base
   belongs_to :project
 

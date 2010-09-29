@@ -1,3 +1,4 @@
+# coding: utf-8
 class Meeting < ActiveRecord::Base
   belongs_to :project
   
