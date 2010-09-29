@@ -26,6 +26,7 @@ GEM
       activesupport (= 2.3.9)
       rake (>= 0.8.3)
     rake (0.8.7)
+    validation_reflection (0.3.8)
 
 PLATFORMS
   ruby
@@ -34,3 +35,4 @@ DEPENDENCIES
   formtastic
   pg
   rails (= 2.3.9)
+  validation_reflection
