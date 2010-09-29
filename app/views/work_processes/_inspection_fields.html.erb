@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs contains_sub_inserts" do %>
+<%= f.inputs :class => "tableize inputs contains_sub_inserts" do %>
   <%= f.input :kind, :collection => Inspection::KINDS, :include_blank => false %>
   <%= f.input :method, :collection => Inspection::METHODS, :include_blank => false %>
   <%= f.input :notes %>

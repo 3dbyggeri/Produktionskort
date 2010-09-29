@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs" do %>
+<%= f.inputs :class => "tableize inputs" do %>
   <%= f.input :kind, :collection => Requirement::KINDS, :include_blank => false %>
   <%= f.input :component %>
   <%= f.input :description %>

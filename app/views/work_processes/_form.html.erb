@@ -6,8 +6,8 @@
             ['Materialer',                '#', {:class => 'tab', :rel => 'pane_materials'}],
             ['Mandskab',                  '#', {:class => 'tab', :rel => 'pane_men'}]], :submit => ['Gem', 'work_process_form'] %>
 
-<% semantic_form_for @work_process, :html => {:id => 'work_process_form'} do |f| %>
-  <% f.inputs :class => 'pane', :id => 'pane_stemdata' do %>
+<%= semantic_form_for @work_process, :html => {:id => 'work_process_form'} do |f| %>
+  <%= f.inputs :class => 'pane', :id => 'pane_stemdata' do %>
     <h3>Stamdata</h3>
     <%= f.input :component_type %>
 
@@ -19,7 +19,7 @@
     </fieldset>
   <% end %>
 
-  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_planning_and_follow_up' do %>
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_planning_and_follow_up' do %>
     <h3>Planlægning og opfølgning</h3>
     <%# see http://groups.google.com.au/group/formtastic/browse_thread/thread/5ffd565ddcad412f regarding default date values %>
     <%= f.input :main_start, :as => :string %>
@@ -52,7 +52,7 @@
     </fieldset>
   <% end %>
 
-  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_activity' do %>
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_activity' do %>
     <h3>Aktivitet</h3>
     <%= f.input :activity %>
     <%= f.input :location %>
@@ -67,7 +67,7 @@
     </fieldset>
   <% end %>
 
-  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_work_method' do %>
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_work_method' do %>
     <h3>Arbejdsmetode</h3>
     <%= f.input :assembly_direction %>
 
@@ -93,7 +93,7 @@
     </fieldset>
   <% end %>
 
-  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_equipment' do %>
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_equipment' do %>
     <h3>Materiel</h3>
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
       <% f.semantic_fields_for :equipment_referrals do |builder| %>
@@ -110,7 +110,7 @@
     </fieldset>
   <% end %>
 
-  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_materials' do %>
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_materials' do %>
     <h3>Materialer</h3>
     <fieldset class="table_group"><legend><span>Materialepakker</span></legend>
       <% f.semantic_fields_for :material_packages do |builder| %>
@@ -127,7 +127,7 @@
     </fieldset>
   <% end %>
 
-  <% f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_men' do %>
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_men' do %>
     <h3>Mandskab</h3>
     <%= f.input :social_responsibility %>
     <%= f.input :piecework_rate %>

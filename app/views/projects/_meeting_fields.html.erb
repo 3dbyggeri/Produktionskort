@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs" do %>
+<%= f.inputs :class => "tableize inputs" do %>
   <%= f.input :kind, :collection => Meeting::KINDS, :include_blank => false %>
   <%= f.input :time %>
   <%= link_to_remove_fields "Slet", f %>

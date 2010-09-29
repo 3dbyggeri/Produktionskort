@@ -19,10 +19,10 @@
   <% for project in @projects %>
   <tbody>
     <tr>
-      <td><%=h project.name %></td>
-      <td><%=h project.address %></td>
-      <td><%=h project.title_number %></td>
-      <td><%=h project.postal_code %></td>
+      <td><%= project.name %></td>
+      <td><%= project.address %></td>
+      <td><%= project.title_number %></td>
+      <td><%= project.postal_code %></td>
       <td class="action" style="white-space:nowrap">
         <%= link_to 'Vælg', switch_projects_path(:id => project.id), :class => 'view' %>
         <%= link_to t('navigation.edit'), edit_project_path(project), :class => 'edit' %>

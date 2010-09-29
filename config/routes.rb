@@ -1,6 +1,14 @@
-ActionController::Routing::Routes.draw do |map|
-  map.root :controller => 'work_processes'
-  map.about 'om', :controller => 'about', :action => 'index', :conditions => { :method => :get }
-  map.resources :projects, :collection => { :switch => [:post, :get] }, :except => :show
-  map.resources :work_processes
+Produktionskort::Application.routes.draw do
+  root :to => 'work_processes#index'
+
+  match 'om' => 'about#index', :as => 'about', :conditions => { :method => :get }
+
+  resources :projects, :except => :show do
+    collection do
+      get :switch
+      post :switch
+    end
+  end
+
+  resources :work_processes
 end

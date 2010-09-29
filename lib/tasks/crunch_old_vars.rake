@@ -15,13 +15,13 @@ namespace :old_data do
         match = /^`([^`]+)` (VARCHAR|INT|DATETIME|TINYINT|TINYBLOB|DECIMAL|BLOB|).*$/.match(record)
         if match
           type = case match[2]
-          when "VARCHAR": 'string'
-          when "INT": 'integer'
-          when "DATETIME": 'datetime'
-          when "TINYINT": 'integer'
-          when "TINYBLOB": 'binary'
-          when "DECIMAL": 'decimal'
-          when "BLOB": 'binary'
+          when "VARCHAR"  then 'string'
+          when "INT"      then 'integer'
+          when "DATETIME" then 'datetime'
+          when "TINYINT"  then 'integer'
+          when "TINYBLOB" then 'binary'
+          when "DECIMAL"  then 'decimal'
+          when "BLOB"     then 'binary'
           end
           vars << [match[1], type]
         end

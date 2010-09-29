@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs" do %>
+<%= f.inputs :class => "tableize inputs" do %>
   <%= f.input :super_kind, :collection => Qualification::SUPER_KINDS, :include_blank => false %>
   <%= f.input :kind, :collection => Qualification::KINDS, :include_blank => false %>
   <%= f.input :notes %>

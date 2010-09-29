@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs" do %>
+<%= f.inputs :class => "tableize inputs" do %>
   <%= f.input :kind, :collection => Referral::KINDS, :include_blank => false %>
   <%= f.input :notes %>
   <%= f.input :identifier %>

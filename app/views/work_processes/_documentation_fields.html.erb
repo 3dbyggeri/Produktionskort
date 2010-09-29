@@ -1,4 +1,4 @@
-<% f.inputs :class => "tableize inputs sub_insert" do %>
+<%= f.inputs :class => "tableize inputs sub_insert" do %>
   <%= f.input :kind, :collection => Documentation::KINDS, :include_blank => false %>
   <%= f.input :description %>
   <%= link_to_remove_fields "Slet", f %>

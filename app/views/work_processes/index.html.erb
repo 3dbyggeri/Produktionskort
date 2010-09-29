@@ -19,9 +19,9 @@
   <% for work_process in @work_processes %>
   <tbody>
     <tr>
-      <td><%=h work_process.component_type %></td>
-      <td><%=h work_process.activity %></td>
-      <td><%=h work_process.location %></td>
+      <td><%= work_process.component_type %></td>
+      <td><%= work_process.activity %></td>
+      <td><%= work_process.location %></td>
       <td class="action">
         <%= link_to t('navigation.show'), work_process, :class => 'view' %>
         <%= link_to t('navigation.edit'), edit_work_process_path(work_process), :class => 'edit' %>
