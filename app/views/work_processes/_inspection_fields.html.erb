@@ -9,7 +9,7 @@
 <% end %>
 
 <h4>Dokumentation</h4>
-<% f.semantic_fields_for :documentations do |builder| %>
+<%= f.semantic_fields_for :documentations do |builder| %>
   <%= render 'documentation_fields', :f => builder %>
 <% end %>
 <p class="sub_insert"><%= link_to_add_fields "Tilføj dokumentation", f, :documentations %></p>

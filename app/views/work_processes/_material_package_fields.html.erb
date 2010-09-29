@@ -12,7 +12,7 @@
 <% end %>
 
 <h4>Materialer</h4>
-<% f.semantic_fields_for :materials do |builder| %>
+<%= f.semantic_fields_for :materials do |builder| %>
   <%= render 'material_fields', :f => builder %>
 <% end %>
 <p class="sub_insert"><%= link_to_add_fields "Tilføj Materialer", f, :materials %></p>
