@@ -51,6 +51,15 @@ class WorkProcessesController < ApplicationController
   
   def update
     @work_process = @project.work_processes.find(params[:id])
+
+    # remove attachments if requested by user
+    attachment_keys = [:activity_referrals_attributes, :equipment_referrals_attributes, :material_referrals_attributes, :crew_referrals_attributes]
+    attachment_keys.each do |attachment_key|
+      params[:work_process][attachment_key].each_value do |referral|
+        referral[:attachment] = nil if referral[:remove_attachment] == '1' && !referral.has_key?(:attachment)
+      end
+    end
+
     if @work_process.update_attributes(params[:work_process])
       flash[:notice] = "Produktionskort opdateret."
       redirect_to @work_process

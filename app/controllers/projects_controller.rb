@@ -30,6 +30,15 @@ class ProjectsController < ApplicationController
   
   def update
     @project = Project.find(params[:id])
+
+    # remove attachment if requested by user
+    attachment_keys = [:planning_referrals_attributes, :site_referrals_attributes]
+    attachment_keys.each do |attachment_key|
+      params[:project][attachment_key].each_value do |referral|
+        referral[:attachment] = nil if referral[:remove_attachment] == '1' && !referral.has_key?(:attachment)
+      end
+    end
+
     if @project.update_attributes(params[:project])
       flash[:notice] = "Stamdata for byggesag opdateret."
       redirect_to :action => 'index'

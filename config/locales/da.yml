@@ -225,6 +225,7 @@ da:
         kind: Type
         notes: Tekst
         identifier: Henvisning
+        attachment: Vedhæftning
       site_focus:
         kind: Type
         description: Tekst

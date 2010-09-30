@@ -6,7 +6,7 @@
             ['Planlægning',   '#', {:class => 'tab', :rel => 'pane_planning'}],
             ['Byggeplads',    '#', {:class => 'tab', :rel => 'pane_buildingsite'}]], :submit => ['Gem', 'project_form'] %>
 
-<%= semantic_form_for @project, :html => {:id => 'project_form'} do |f| %>
+<%= semantic_form_for @project, :html => {:id => 'project_form', :multipart => true} do |f| %>
   <%= f.inputs :class => 'pane', :id => 'pane_stemdata' do %>
     <h3>Stamdata</h3>
     <%= f.inputs %>

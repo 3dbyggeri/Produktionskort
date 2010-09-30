@@ -2,5 +2,9 @@
   <%= f.input :kind, :collection => Referral::KINDS, :include_blank => false %>
   <%= f.input :notes %>
   <%= f.input :identifier %>
+  <%= f.input :attachment,
+              :as => :file,
+              :hint => f.object.attachment_file_name.blank? ? nil : link_to(f.object.attachment_file_name, f.object.attachment.url) + " (" + link_to_function("slet", "remove_referral(this)") + ")" %>
+  <%= f.input :remove_attachment, :as => :hidden, :value => 0 %>
   <%= link_to_remove_fields "Slet", f %>
 <% end %>

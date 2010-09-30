@@ -9,6 +9,11 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
+var remove_referral = function(obj) {
+  $(obj).parents('li').next().find('input').val('1');
+  $(obj).parents('p.inline-hints').remove();
+}
+
 $(document).ready(function() {
   $('#switch_project').change(function() {
     if ($(this).val() != '')

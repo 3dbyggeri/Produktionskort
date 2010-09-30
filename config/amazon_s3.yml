@@ -1,0 +1,20 @@
+development:
+  bucket: twa-development
+  access_key_id: AKIAIIXZM6Q55RCHAKSQ
+  secret_access_key: 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
+  max_file_size: 52428800
+  acl: public-read
+
+test:
+  bucket: twa-test
+  access_key_id: AKIAIIXZM6Q55RCHAKSQ
+  secret_access_key: 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
+  max_file_size: 52428800
+  acl: public-read
+
+production:
+  bucket: production
+  access_key_id: AKIAIIXZM6Q55RCHAKSQ
+  secret_access_key: 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
+  max_file_size: 52428800
+  acl: public-read
