@@ -67,14 +67,14 @@
   <h3>Krav</h3>
   <ul>
     <% for requirement in @work_process.requirements do %>
-    <li><%= requirement.kind %><%= " #{h requirement.component}:" unless requirement.component.blank? %><%= " #{h requirement.description}" unless requirement.description.blank? %></li>
+    <li><%= requirement.kind %><%= " #{requirement.component}:" unless requirement.component.blank? %><%= " #{requirement.description}" unless requirement.description.blank? %></li>
     <% end %>
   </ul>
 
   <h3>Værnemidler</h3>
   <ul>
     <% for protection in @work_process.protections do %>
-    <li><%= "#{h protection.kind}:" %><%= " #{h protection.notes}" unless protection.notes.blank? %><%= " #{h protection.usage}" unless protection.usage.blank? %></li>
+    <li><%= "#{protection.kind}:" %><%= " #{protection.notes}" unless protection.notes.blank? %><%= " #{protection.usage}" unless protection.usage.blank? %></li>
     <% end %>
   </ul>
 </div>
@@ -86,7 +86,7 @@
   <h3>Process specifikt materiel</h3>
   <ul>
     <% for equipment in @work_process.equipment do %>
-    <li><%= "#{h equipment.kind}:" %><%= " #{h equipment.notes}" unless equipment.notes.blank? %></li>
+    <li><%= "#{equipment.kind}:" %><%= " #{equipment.notes}" unless equipment.notes.blank? %></li>
     <% end %>
   </ul>
 </div>
@@ -132,7 +132,7 @@
   <h3>Kompetencer</h3>
   <ul>
     <% for qualification in @work_process.qualifications do %>
-    <li><%= "#{h qualification.kind}:" %><%= " #{h qualification.notes}" unless qualification.notes.blank? %><%= " (Immatriel møntfod #{h qualification.immaterial_currency})" unless qualification.immaterial_currency.blank? %></li>
+    <li><%= "#{qualification.kind}:" %><%= " #{qualification.notes}" unless qualification.notes.blank? %><%= " (Immatriel møntfod #{qualification.immaterial_currency})" unless qualification.immaterial_currency.blank? %></li>
     <% end %>
   </ul>
 </div>

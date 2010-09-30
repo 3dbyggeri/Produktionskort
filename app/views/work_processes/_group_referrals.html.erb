@@ -2,7 +2,7 @@
     <h3>Relevante <%= kind.to_s %><%= kind.to_s =~ /er$/ ? '' : (kind.to_s =~ /e$/ ? 'r' : 'er') %></h3>
     <ul>
     <% for referral in referrals do %>
-    <li><%= referral.notes %> <%= " - Se #{h referral.identifier}" unless referral.identifier.blank? %></li>
+    <li><%= referral.notes %> <%= " - Se #{referral.identifier}" unless referral.identifier.blank? %></li>
     <% end %>
     </ul>
   <% end %>
