@@ -107,7 +107,7 @@
       </thead>
       <tbody>
         <% for material in material_package.materials do %>
-        <tr><td><%= material.kind %></td><td class="right"><%= material.count %></td><td class="right"><%= material.weight %></td><td class="right"><%= material.measures %> <%= material.unit %></td><td class="right"><%= material.lengths %> <%= material.unit %></td></tr>
+        <tr class="<%= cycle("odd", "even") -%>"><td><%= material.kind %></td><td class="right"><%= material.count %></td><td class="right"><%= material.weight %></td><td class="right"><%= material.measures %> <%= material.unit %></td><td class="right"><%= material.lengths %> <%= material.unit %></td></tr>
         <% end %>
       </tbody>
     </table>

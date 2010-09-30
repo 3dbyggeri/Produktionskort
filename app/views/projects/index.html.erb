@@ -18,7 +18,7 @@
   </thead>
   <% for project in @projects %>
   <tbody>
-    <tr>
+    <tr class="<%= cycle("odd", "even") -%>">
       <td><%= project.name %></td>
       <td><%= project.address %></td>
       <td><%= project.title_number %></td>

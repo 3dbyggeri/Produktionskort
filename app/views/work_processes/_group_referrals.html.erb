@@ -10,7 +10,7 @@
       </thead>
       <tbody>
       <% for referral in referrals do %>
-        <tr>
+        <tr class="<%= cycle("odd", "even") -%>">
           <td><%= referral.notes %></td>
           <td><%= referral.identifier %></td>
           <td><%= link_to(referral.attachment_file_name, referral.attachment.url) unless referral.attachment_file_name.blank? %></td>

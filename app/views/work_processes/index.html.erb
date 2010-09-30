@@ -18,7 +18,7 @@
   </thead>
   <% for work_process in @work_processes %>
   <tbody>
-    <tr>
+    <tr class="<%= cycle("odd", "even") -%>">
       <td><%= work_process.component_type %></td>
       <td><%= work_process.activity %></td>
       <td><%= work_process.location %></td>
