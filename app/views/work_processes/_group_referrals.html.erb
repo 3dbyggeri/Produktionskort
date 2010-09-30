@@ -1,8 +1,21 @@
   <% group_referrals(ref_arr).each_pair do |kind,referrals| %>
     <h3>Relevante <%= kind.to_s %><%= kind.to_s =~ /er$/ ? '' : (kind.to_s =~ /e$/ ? 'r' : 'er') %></h3>
-    <ul>
-    <% for referral in referrals do %>
-    <li><%= referral.notes %> <%= " - Se #{referral.identifier}" unless referral.identifier.blank? %></li>
-    <% end %>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Tekst</th>
+          <th>Henvisning</th>
+          <th>Vedhæftning</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% for referral in referrals do %>
+        <tr>
+          <td><%= referral.notes %></td>
+          <td><%= referral.identifier %></td>
+          <td><%= link_to(referral.attachment_file_name, referral.attachment.url) unless referral.attachment_file_name.blank? %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   <% end %>
