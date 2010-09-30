@@ -3,6 +3,7 @@
             ['Møder',         '#', {:class => 'tab', :rel => 'pane_meetings'}],
             ['Godkendelser',  '#', {:class => 'tab', :rel => 'pane_approvals'}],
             ['Hensyn',        '#', {:class => 'tab', :rel => 'pane_attentions'}],
+            ['Planlægning',   '#', {:class => 'tab', :rel => 'pane_planning'}],
             ['Byggeplads',    '#', {:class => 'tab', :rel => 'pane_buildingsite'}]], :submit => ['Gem', 'project_form'] %>
 
 <%= semantic_form_for @project, :html => {:id => 'project_form'} do |f| %>
@@ -52,6 +53,17 @@
         <%= render 'attention_fields', :f => builder %>
       <% end %>
       <p><%= link_to_add_fields "Tilføj hensyn", f, :attentions %></p>
+    </fieldset>
+  <% end %>
+
+  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_planning' do %>
+    <h3>Planlægning</h3>
+
+    <fieldset class="table_group">
+      <% f.semantic_fields_for :planning_referrals do |builder| %>
+        <%= render 'planning_referral_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj henvisning", f, :planning_referrals %></p>
     </fieldset>
   <% end %>
 

@@ -35,15 +35,6 @@
     <%= f.input :actual_end_place %>
     <%= f.input :actual_end_person %>
 
-    <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-      <%= f.semantic_fields_for :project do |p| %>
-        <% p.semantic_fields_for :planning_referrals do |builder| %>
-          <%= render 'planning_referral_fields', :f => builder %>
-        <% end %>
-        <p><%= link_to_add_fields "Tilføj henvisning", p, :planning_referrals %></p>
-      <% end %>
-    </fieldset>
-
     <fieldset class="table_group"><legend><span>Spildtid</span></legend>
       <%= f.semantic_fields_for :wasted_times do |builder| %>
         <%= render 'wasted_time_fields', :f => builder %>
