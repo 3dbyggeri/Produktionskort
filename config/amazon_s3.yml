@@ -13,7 +13,7 @@ test:
   acl: public-read
 
 production:
-  bucket: produktionskort-production
+  bucket: produktionskort-prod
   access_key_id: AKIAIIXZM6Q55RCHAKSQ
   secret_access_key: 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
   max_file_size: 52428800
