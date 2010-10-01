@@ -104,7 +104,11 @@
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_byggeweb' do %>
     <h3>Byggeweb</h3>
     <%= f.inputs do %>
+      <% if current_user && current_user.byggeweb_username %>
       <%= f.input :byggeweb_project, :label => 'Projekt', :as => :select, :collection => ByggewebHelper::Byggeweb.get_projects(current_user) %>
+      <% else %>
+      <%= f.input :byggeweb_project, :label => 'Projekt' %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
