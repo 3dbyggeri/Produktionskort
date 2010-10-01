@@ -34,8 +34,6 @@ class WorkProcessesController < ApplicationController
   end
   
   def create
-    project_attributes = params[:work_process].delete(:project_attributes)
-    project_attributes.delete(:id)
     @work_process = @project.work_processes.build(params[:work_process])
     if @work_process.save && @work_process.project.update_attributes(project_attributes)
       flash[:notice] = "Produktionskort oprettet."
