@@ -21,6 +21,7 @@ da:
     save: 'Gem'
     submit: 'Send'
     required: 'Skal udfyldes'
+    sign_in: 'Log ind'
 
   # active_support
   date:
@@ -308,9 +309,14 @@ da:
         kind: Type
         notes: Tekst
         usage: Benyttes ved
+      user:
+        password_confirmation: Gentag password
+        current_password: Nuværende password
+        remember_me: Husk mig på denne computer
     models:
       work_process: Produktionskort
       project: Sag
+      user: Bruger
     errors:
       messages:
         inclusion: "er ikke i listen"

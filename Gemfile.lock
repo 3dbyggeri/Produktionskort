@@ -34,7 +34,11 @@ GEM
       builder
       mime-types
       xml-simple
+    bcrypt-ruby (2.1.2)
     builder (2.1.2)
+    devise (1.1.3)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 0.10.7)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     formtastic (1.1.0)
@@ -76,6 +80,8 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
     validation_reflection (0.3.8)
+    warden (0.10.7)
+      rack (>= 1.0.0)
     xml-simple (1.0.12)
 
 PLATFORMS
@@ -83,6 +89,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-s3
+  devise
   formtastic
   paperclip
   pg

@@ -44,6 +44,10 @@ form.formtastic fieldset.table_group p.sub_insert {
   margin-bottom: 12px;
 }
 
+form.no-headline {
+  margin-top: 20px;
+}
+
 /*
 #main fieldset p { margin: 0 0 14px 0; float: left; width: 100%;  }
 

@@ -18,6 +18,14 @@
 <body>
   <div id="wrapper">
     <h1><a href="/"><span>Produktionskort</span></a></h1>
+    <div id="user_nav">
+      <% if user_signed_in? %>
+        Logget ind som <%= link_to current_user.email, edit_user_registration_path %>. Ikke dig?
+        <%= link_to "Log ud", destroy_user_session_path %>
+      <% else %>
+        <%= link_to "Opret ny bruger", new_user_registration_path %> | <%= link_to "Log ind", new_user_session_path %>
+      <% end %>
+    </div>
     <div id="active_project_name"><%= link_to(@project.name, edit_project_path(@project)) if @project && !@project.new_record? %></div>
 
     <ul id="mainNav">

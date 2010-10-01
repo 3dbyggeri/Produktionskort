@@ -34,6 +34,13 @@ h1 a {
 
 h1 span { display: none; }
 
+#user_nav {
+  float: right;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 #active_project_name {
   float: right;
   position: absolute;

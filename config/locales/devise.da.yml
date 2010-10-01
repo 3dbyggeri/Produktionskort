@@ -1,0 +1,39 @@
+da:
+  errors:
+    messages:
+      not_found: "ikke fundet"
+      already_confirmed: "var allerede godkendt"
+      not_locked: "var ikke låst"
+
+  devise:
+    failure:
+      unauthenticated: 'Du må først logge ind eller oprette en dig som bruger for at fortsætte.'
+      unconfirmed: 'Du skal bekræfte din konto inden du kan fortsætte.'
+      locked: 'Din konto er låst.'
+      invalid: 'Forkert brugernavn eller password.'
+      invalid_token: 'Ugyldigt godkendelses-token.'
+      timeout: 'Din session er ikke længere gyldig, venligst log ind igen før du kan fortsætte.'
+      inactive: 'Din konto er endnu ikke aktiveret.'
+    sessions:
+      signed_in: 'Du er nu logget ind.'
+      signed_out: 'Du er nu logget ud.'
+    passwords:
+      send_instructions: 'Du vil inden for få minutter modtage en email med instruktioner om hvordan du nulstiller dit password.'
+      updated: 'Dit password er blevet opdateret. Du er nu logget ind.'
+    confirmations:
+      send_instructions: 'Du vil inden for få minutter modtage en email med instruktioner om hvordan du godkender din konto.'
+      confirmed: 'Din konto er blevet godkendt. Du er nu logget ind.'
+    registrations:
+      signed_up: 'Du er nu registreret.'
+      updated: 'Du har opdateret din konto.'
+      destroyed: 'Farvel! Din konto er nu nedlagt. Vi håber at se dig igen snart.'
+    unlocks:
+      send_instructions: 'Du vil inden for få minutter modtage en email med instruktioner om hvordan du låser din konto op.'
+      unlocked: 'Din konto er blevet låst op. Du er nu logget ind.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Godkendelsesinstruktioner'
+      reset_password_instructions:
+        subject: 'Nulstil password instruktioner'
+      unlock_instructions:
+        subject: 'Instruktioner til at låse din konto op'
