@@ -189,6 +189,7 @@ da:
         health_safety_decided_by_contractor: Entreprenørbestemt sikkerhed/sundhed
         health_safety_plan: Plan sikkerhed/sundhed
         health_safety_plan_location: Placering plan sikkerhed/sundhed
+        byggeweb_project: Byggeweb projekt
       company:
         kind: Type
         name: Navn

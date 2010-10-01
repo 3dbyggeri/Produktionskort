@@ -18,7 +18,8 @@ class Project < ActiveRecord::Base
                   :site_operations_attributes, 
                   :site_responsibilities_attributes, 
                   :planning_referrals_attributes, 
-                  :site_referrals_attributes
+                  :site_referrals_attributes,
+                  :byggeweb_project
   
   has_many :work_processes, :dependent => :destroy
   has_many :approvals, :dependent => :destroy
