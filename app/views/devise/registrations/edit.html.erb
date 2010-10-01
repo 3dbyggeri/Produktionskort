@@ -6,7 +6,9 @@
     <%= f.input :email %>
     <%= f.input :password, :as => :password, :hint => "Undlad at udfylde hvis du ikke vil ændre det" %>
     <%= f.input :password_confirmation, :as => :password %>
-    <%= f.input :current_password, :as => :password, :hint => "Vi har brug for dit nuværende password for godkende dine ændringer" %>
+    <%= f.input :byggeweb_username %>
+    <%= f.input :byggeweb_password, :as => :password %>
+    <%= f.input :current_password, :as => :password, :hint => "Vi har brug for dit nuværende password for godkende dine ændringer", :required => true %>
     <%= f.buttons %>
   <% end %>
 <% end %>

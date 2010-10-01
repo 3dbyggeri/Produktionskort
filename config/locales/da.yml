@@ -313,6 +313,7 @@ da:
         password_confirmation: Gentag password
         current_password: Nuværende password
         remember_me: Husk mig på denne computer
+        byggeweb_username: Byggeweb brugernavn
     models:
       work_process: Produktionskort
       project: Sag
