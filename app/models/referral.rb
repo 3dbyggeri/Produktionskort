@@ -1,4 +1,3 @@
-# coding: utf-8
 class Referral < ActiveRecord::Base
   has_attached_file :attachment,
                     :storage => :s3,
@@ -7,5 +6,9 @@ class Referral < ActiveRecord::Base
 
   attr_writer :remove_attachment
 
-  KINDS = ["Tegning","3-D model/objekter","Referencenavn","Detaljetegning","Beskrivelse","Tidsplan","Mockup","Følgeseddel","Faktura","Returseddel","Produktcertificat"]
+  class << self
+    def kinds
+      raise "Override this!"
+    end
+  end
 end

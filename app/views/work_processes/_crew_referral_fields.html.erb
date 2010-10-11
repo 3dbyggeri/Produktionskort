@@ -1,5 +1,5 @@
 <%= f.inputs :class => "tableize inputs" do %>
-  <%= f.input :kind, :collection => Referral::KINDS, :include_blank => false %>
+  <%= f.input :kind, :collection => f.object.class.kinds, :include_blank => false %>
   <%= f.input :notes %>
   <%= f.input :identifier %>
   <%= f.input :attachment,

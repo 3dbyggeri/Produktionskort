@@ -2,5 +2,6 @@
 class Meeting < ActiveRecord::Base
   belongs_to :project
   
-  KINDS = %w[Projektmøde Opstartsmøde Byggemøde Formandsmøde Sikkerhedsmøde]
+  KINDS = ["Projektgennemgangsmøde", "Opstartsmøde", "Byggemøde", "Formandsmøde",
+           "Sikkerhedsmøde", "Uge / Produktionsmøde"]
 end
