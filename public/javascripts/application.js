@@ -33,4 +33,6 @@ $(document).ready(function() {
     var form = $(this).attr('rel');
     $('#' + form).submit();
   });
+
+  $('#project_form, #work_process_form').FormNavigate("Du har foretaget ændringer!\n\nEr du sikker på du vil fortsætte uden at gemme?");
 });
