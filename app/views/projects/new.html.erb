@@ -1,4 +1,11 @@
 <% title 'Opret byggesag' %>
 <% quicklinks [['Annuller', projects_path]] %>
 
-<%= render :partial => 'form' %>
+<% sidebar [['Stamdata',          '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
+            ['Eksterne systemer', '#', {:class => 'tab', :rel => 'pane_external_systems'}]], :submit => ['Gem', 'project_form'] %>
+
+<%= semantic_form_for @project, :html => {:id => 'project_form', :multipart => true} do |f| %>
+  <%= render 'stemdata_pane', :f => f %>
+  <%= render 'external_systems_pane', :f => f %>
+<% end %>
+

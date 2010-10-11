@@ -62,6 +62,7 @@ da:
         health_safety_plan: Plan sikkerhed/sundhed
         health_safety_plan_location: Placering plan sikkerhed/sundhed
         byggeweb_project: Byggeweb projekt
+        byggeweb_username: Byggeweb brugernavn
       company:
         kind: Type
         name: Navn
@@ -187,7 +188,6 @@ da:
         password_confirmation: Gentag password
         current_password: Nuværende password
         remember_me: Husk mig på denne computer
-        byggeweb_username: Byggeweb brugernavn
     models:
       work_process: Produktionskort
       project: Sag

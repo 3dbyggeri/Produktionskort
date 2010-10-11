@@ -19,7 +19,9 @@ class Project < ActiveRecord::Base
                   :site_responsibilities_attributes, 
                   :planning_referrals_attributes, 
                   :site_referrals_attributes,
-                  :byggeweb_project
+                  :byggeweb_project,
+                  :byggeweb_username,
+                  :byggeweb_password
   
   has_many :work_processes, :dependent => :destroy
   has_many :approvals, :dependent => :destroy
@@ -46,4 +48,12 @@ class Project < ActiveRecord::Base
                                 :site_responsibilities, 
                                 :planning_referrals, 
                                 :site_referrals, :allow_destroy => true
+
+  def byggeweb
+    @byggeweb ||= Byggeweb.new :username => byggeweb_username, :password => byggeweb_password
+  end
+
+  def byggeweb?
+    byggeweb.log_in
+  end
 end

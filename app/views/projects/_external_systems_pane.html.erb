@@ -1,0 +1,16 @@
+<%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_external_systems' do %>
+  <h3>Eksterne systemer</h3>
+
+  <%= f.inputs "Byggeweb", :class => "table_group" do %>
+    <%= f.input :byggeweb_username, :label => 'Brugernavn' %>
+    <%= f.input :byggeweb_password, :label => 'Password', :as => :password %>
+    <% if @project.byggeweb? %>
+    <%= f.input :byggeweb_project, :label => 'Projekt', :as => :select, :collection => @project.byggeweb.projects %>
+    <% else %>
+    <li class="string optional" id="project_byggeweb_project_input">
+      <label for="project_byggeweb_project">Projekt</label>
+      <p class="inline-hints">Kan ikke logge ind i Byggeweb (udfyld venligst korrekte bruger-oplysninger oven for)</p>
+    </li>
+    <% end %>
+  <% end %>
+<% end %>

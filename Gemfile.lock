@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/rubiii/savon_model.git
+  revision: b1b1792601fb3da2f937de3101c540b4ab8fd145
+  branch: dev
+  specs:
+    savon_model (0.2.0)
+      activemodel
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -99,4 +107,5 @@ DEPENDENCIES
   pg
   rails (= 3.0.0)
   savon
+  savon_model!
   validation_reflection
