@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101001012606) do
+ActiveRecord::Schema.define(:version => 20101011100110) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(:version => 20101001012606) do
     t.string   "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "attentions", :force => true do |t|

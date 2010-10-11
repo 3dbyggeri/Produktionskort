@@ -9,7 +9,7 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
-var remove_referral = function(obj) {
+var remove_attachment = function(obj) {
   $(obj).parents('li').next().find('input').val('1');
   $(obj).parents('p.inline-hints').remove();
 }

@@ -219,6 +219,7 @@ da:
         kind: Type
         description: Beskrivelse
         time: Tidspunkt
+        attachment: Vedhæftning
       attention:
         kind: Type
         description: Beskrivelse

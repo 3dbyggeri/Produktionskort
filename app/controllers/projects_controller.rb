@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     # remove attachment if requested by user
-    attachment_keys = [:planning_referrals_attributes, :site_referrals_attributes]
+    attachment_keys = [:planning_referrals_attributes, :site_referrals_attributes, :approvals_attributes]
     attachment_keys.each do |attachment_key|
       next unless params[:project].has_key? attachment_key
       params[:project][attachment_key].each_value do |referral|
