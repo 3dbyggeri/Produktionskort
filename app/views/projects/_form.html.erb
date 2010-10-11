@@ -62,7 +62,7 @@
     <h3>Planlægning</h3>
 
     <fieldset class="table_group">
-      <% f.semantic_fields_for :planning_referrals do |builder| %>
+      <%= f.semantic_fields_for :planning_referrals do |builder| %>
         <%= render 'planning_referral_fields', :f => builder %>
       <% end %>
       <p><%= link_to_add_fields "Tilføj henvisning", f, :planning_referrals %></p>
