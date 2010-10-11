@@ -1,44 +1,24 @@
 # Danish translation file for standard Ruby on Rails internationalization
 # by Lars Hoeg (larshoeg@gmail.com, http://www.lenio.dk/)
+
 da:
-  headings:
-    work_processes: Produktionskort
-    projects: Sager
-  navigation:
-    show: Vis
-    edit: Rediger
-    destroy: Slet
-  new:
-    work_process: Opret produktionskort
-    project: Opret sag
-
-
-  # formtastic
-  formtastic:
-    :yes: 'Ja'
-    :no: 'Nej'
-    create: 'Opret'
-    save: 'Gem'
-    submit: 'Send'
-    required: 'Skal udfyldes'
-    sign_in: 'Log ind'
-
   # active_support
   date:
     # See http://www.dsn.dk/oss_faq.htm#datoer and http://en.wikipedia.org/wiki/Date_formats
     # either use traditional (2.10.03, 2. oktober 2003): "%e.%m.%y", "%e. %B %Y"
     # or international ISO 8601 format (2003-10-20): "%Y-%m-%d"
+    # Note: some Windows distributions do not support %e - you may have to use %d instead
     formats:
       default: "%d.%m.%Y"
       short: "%e. %b %Y"
       long: "%e. %B %Y"
- 
+
     day_names: [søndag, mandag, tirsdag, onsdag, torsdag, fredag, lørdag]
-    abbr_day_names: [sø, ma, ti, 'on', to, fr, lø]
+    abbr_day_names: [sø, ma, ti, 'on', to, fr, lø] # Note: unescaped 'on' is parsed as true
     month_names: [~, januar, februar, marts, april, maj, juni, juli, august, september, oktober, november, december]
     abbr_month_names: [~, jan, feb, mar, apr, maj, jun, jul, aug, sep, okt, nov, dec]
     order: [ :day, :month, :year ]
- 
+
   time:
     formats:
       default: "%e. %B %Y, %H:%M"
@@ -46,7 +26,7 @@ da:
       long: "%A, %e. %B %Y, %H:%M"
     am: ""
     pm: ""
- 
+
   support:
     array:
       # Rails 2.2
@@ -59,43 +39,43 @@ da:
     select:
       # default value for :prompt => true in FormOptionsHelper
       prompt: "Vælg..."
- 
+
   datetime:
     distance_in_words:
       half_a_minute: "et halvt minut"
       less_than_x_seconds:
-        one: "mindre end et sekund"
-        other: "mindre end {{count}} sekunder"
+        one:  "mindre end et sekund"
+        other: "mindre end %{count} sekunder"
       x_seconds:
-        one: "et sekund"
-        other: "{{count}} sekunder"
+        one:  "et sekund"
+        other: "%{count} sekunder"
       less_than_x_minutes:
-        one: "mindre end et minut"
-        other: "mindre end {{count}} minutter"
+        one:  "mindre end et minut"
+        other: "mindre end %{count} minutter"
       x_minutes:
-        one: "et minut"
-        other: "{{count}} minutter"
+        one:  "et minut"
+        other: "%{count} minutter"
       about_x_hours:
-        one: "cirka en time"
-        other: "cirka {{count}} timer"
+        one:  "cirka en time"
+        other: "cirka %{count} timer"
       x_days:
-        one: "en dag"
-        other: "{{count}} dage"
+        one:  "en dag"
+        other: "%{count} dage"
       about_x_months:
-        one: "cirka en måned"
-        other: "cirka {{count}} måneder"
+        one:  "cirka en måned"
+        other: "cirka %{count} måneder"
       x_months:
-        one: "en måned"
-        other: "{{count}} måneder"
+        one:  "en måned"
+        other: "%{count} måneder"
       about_x_years:
-        one: "cirka et år"
-        other: "cirka {{count}} år"
+        one:  "cirka et år"
+        other: "cirka %{count} år"
       over_x_years:
-        one: "mere end et år"
-        other: "mere end {{count}} år"
+        one:  "mere end et år"
+        other: "mere end %{count} år"
       almost_x_years:
-        one: "næsten et år"
-        other: "næsten {{count}} years"
+        one:   "næsten et år"
+        other: "næsten %{count} years"
     prompts:
       second: "Sekund"
       minute: "Minut"
@@ -103,7 +83,7 @@ da:
       day: "Dag"
       month: "Måned"
       year: "År"
- 
+
   # action_view
   number:
     format:
@@ -124,7 +104,7 @@ da:
         # precision:
     human:
       format:
-        # separator:
+        # separator: 
         delimiter: ""
         precision: 1
       # Rails 2.2
@@ -136,7 +116,7 @@ da:
         format: "%n %u"
         units:
           byte:
-            one: "Byte"
+            one:   "Byte"
             other: "Bytes"
           kb: "KB"
           mb: "MB"
@@ -147,212 +127,43 @@ da:
         # separator:
         delimiter: ""
         # precision:
- 
+
   # active_record
   activerecord:
-    attributes:
-      work_process:
-        project: Sag
-        component_type: Bygningsdel
-        activity: Aktivitet
-        location: Placering
-        project_delivery_time: "Projektoverdragelse, tid"
-        project_delivery_person: "Projektoverdragelse, person"
-        assembly_direction: Montagevejledning
-        planned_start: Planlagt start
-        planned_end: Planlagt slut
-        actual_start: "Faktisk start, tid"
-        actual_start_place: "Faktisk start, sted"
-        actual_start_person: "Faktisk start, person"
-        actual_end: "Faktisk slut, tid"
-        actual_end_place: "Faktisk slut, sted"
-        actual_end_person: "Faktisk slut, person"
-        main_start: Hovedtid start
-        main_end: Hovedtid slut
-        preceding: Forudgående
-        subsequent: Efterfølgende
-        social_responsibility: Socialt ansvar
-        piecework_rate: "Akkord, kr"
-        hourly_rate: "Timeløn, kr"
-        bonus: "Bonus"
-        incentive_deal: "Incitamentaftale"
-        allowance: Godtgørelse
-        time_of_day: Tid på dagen
-        extra_work: Ekstra arbejde
-      project:
-        name: Navn
-        address: Adresse
-        title_number: Matrikelnr
-        postal_code: Postnr
-        apv_location: APV placering
-        health_safety_decided_by_owner: Bygherrebestemt sikkerhed/sundhed
-        health_safety_decided_by_contractor: Entreprenørbestemt sikkerhed/sundhed
-        health_safety_plan: Plan sikkerhed/sundhed
-        health_safety_plan_location: Placering plan sikkerhed/sundhed
-        byggeweb_project: Byggeweb projekt
-      company:
-        kind: Type
-        name: Navn
-        postal_code: Postnummer
-        city: By
-        tel: Telefon
-        fax: Fax
-        email: E-mail
-        url: Web
-      person:
-        kind: Type
-        name: Navn
-        street_address: Adresse
-        extended_address: Evt. udvidet adresse
-        postal_code: Postnummer
-        city: By
-        tel: Telefon
-        direct_tel: Direkte
-        mobile_tel: Mobil
-        fax: Fax
-        email: E-mail
-        url: Web
-      meeting:
-        kind: Type
-        time: Tidspunkt
-      approval:
-        kind: Type
-        description: Beskrivelse
-        time: Tidspunkt
-        attachment: Vedhæftning
-      attention:
-        kind: Type
-        description: Beskrivelse
-        time: Tidspunkt
-      referral:
-        kind: Type
-        notes: Tekst
-        identifier: Henvisning
-        attachment: Vedhæftning
-      site_focus:
-        kind: Type
-        description: Tekst
-        last_inspection: Seneste kontrol
-      site_operation:
-        kind: Type
-        description: Tekst
-      equipment:
-        role: 
-        person: 
-        kind: Type
-        notes: Tekst
-        manual: Brugsanvisning
-        location: Placering
-        requirements: Krav
-        certificate: Certifikat
-        deal_rental: Lejeaftale
-        contract_service: Servicekontrakt
-        registration: Registrering
-        start_time: Starttid
-        end_time: Sluttid
-      material_package:
-        unit_number: Unitnr.
-        load_number: Læsnr.
-        gate_number: Portnr.
-        crane_number: Kran/hejs nr.
-        planned_delivery_date: Planlagt lev.
-        craning_time: Indhejsning varighed
-        ordered_delivery_date: Afkaldt lev.
-        delivery_conditions: Lev. betingelser
-        return_policy: Returpolitik
-      material:
-        kind: Type
-        area_of_appliance: Anv. omr.
-        measures: Mål
-        weight: Vægt
-        colors: Farver
-        tolerances: Tolerancer
-        performance: Ydeevne
-        chemical_conditions: Kemiske forh.
-        count: Antal
-        lengths: Længder
-        unit: Enhed
-        delivery_time_stock: Lev.tid lager
-        delivery_time_order: Lev.tid skaffe
-        storage: Opbevaring
-        dry: Tørt
-        assembly_inspection: Montagekontrol
-        datasheets: Datablade
-        special_tools: Specialværktøj
-        facility_management: Drift/vedligehold
-        supplier: Leverandør
-        alternative_supplier: Alternativ leverandør
-        delivery_conditions: Leveringsbetingelser
-        return_policy: Returpolitik
-      wasted_time:
-        caused_by: Årsag
-        start: Start
-        end: Slut
-      requirement:
-        kind: Type
-        component: Krav
-        description: Tekst
-      inspection:
-        kind: Type
-        method: Metode
-        notes: Tekst
-        person: Person
-        time: Tid
-        location: Sted
-      documentation:
-        kind: Type
-        description: Dokumentation
-      qualification:
-        super_kind: Overgruppe
-        kind: Type
-        notes: Tekst
-        immaterial_currency: Immatriel møntfod
-      protection:
-        kind: Type
-        notes: Tekst
-        usage: Benyttes ved
-      user:
-        password_confirmation: Gentag password
-        current_password: Nuværende password
-        remember_me: Husk mig på denne computer
-        byggeweb_username: Byggeweb brugernavn
-    models:
-      work_process: Produktionskort
-      project: Sag
-      user: Bruger
     errors:
       messages:
         inclusion: "er ikke i listen"
         exclusion: "er reserveret"
         invalid: "er ikke gyldig"
-        confirmation: "stemmer ikke overens"
+        confirmation: stemmer ikke overens med bekræftelse"
         accepted: "skal accepteres"
         empty: "må ikke udelades"
         blank: "skal udfyldes"
-        too_long: "er for lang (maksimum {{count}} tegn)"
-        too_short: "er for kort (minimum {{count}} tegn)"
-        wrong_length: "har forkert længde (skulle være {{count}} tegn)"
+        too_long: "er for lang (maksimum %{count} tegn)"
+        too_short: "er for kort (minimum %{count} tegn)"
+        wrong_length: "har forkert længde (skulle være %{count} tegn)"
         taken: "er allerede brugt"
         not_a_number: "er ikke et tal"
-        greater_than: "skal være større end {{count}}"
-        greater_than_or_equal_to: "skal være større end eller lig med {{count}}"
-        equal_to: "skal være lig med {{count}}"
-        less_than: "skal være mindre end {{count}}"
-        less_than_or_equal_to: "skal være mindre end eller lig med {{count}}"
+        not_an_integer: "er ikke et heltal"
+        greater_than: "skal være større end %{count}"
+        greater_than_or_equal_to: "skal være større end eller lig med %{count}"
+        equal_to: "skal være lig med %{count}"
+        less_than: "skal være mindre end %{count}"
+        less_than_or_equal_to: "skal være mindre end eller lig med %{count}"
         odd: "skal være ulige"
         even: "skal være lige"
-        record_invalid: "Validering fejlede: {{errors}}"
- 
+        record_invalid: "Validering fejlede: %{errors}"
+
       template:
         header:
-          one: "En fejl forhindrede {{model}} i at blive gemt"
-          other: "{{count}} fejl forhindrede denne {{model}} i at blive gemt"
+          one:   "En fejl forhindrede %{model} i at blive gemt"
+          other:  "%{count} fejl forhindrede denne %{model} i at blive gemt"
         body: "Der var problemer med følgende felter:"
- 
+
   activemodel:
     errors:
       template:
         header:
-          one: "En fejl forhindrede {{model}} i at blive gemt"
-          other: "{{count}} fejl forhindrede denne {{model}} i at blive gemt"
+          one:   "En fejl forhindrede %{model} i at blive gemt"
+          other:  "%{count} fejl forhindrede denne %{model} i at blive gemt"
         body: "Der var problemer med følgende felter:"
