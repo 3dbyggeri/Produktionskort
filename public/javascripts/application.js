@@ -9,6 +9,17 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
 }
 
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
 var remove_attachment = function(obj) {
   $(obj).closest('li').next().find('input').val('1');
   $(obj).closest('p.inline-hints').remove();
@@ -33,6 +44,11 @@ var undo_file_upload = function(container) {
   var field = container.find('.attachment_upload');
   field.hide();
   field.html(field.html()); // clear selected file
+}
+
+var projects_path = function() {
+  var path = window.location.pathname.match('^/projects/[0-9]+')
+  return path == null ? '/projects/' + getCookie('active_project') : path[0]
 }
 
 $.jstree._themes = "/jstree_themes/"
@@ -80,8 +96,7 @@ $(document).ready(function() {
           json_data: {
             ajax: {
               url: function(n) {
-                var path = 'byggeweb/folders' + (n == -1 ? '' : '/' + n.attr('rel')) + '.json';
-                return window.location.pathname.replace('edit', path);
+                return projects_path() + '/byggeweb/folders' + (n == -1 ? '' : '/' + n.attr('rel')) + '.json';
               }
             }
           },
@@ -99,7 +114,7 @@ $(document).ready(function() {
   $('.tree-node').live('click', function(e) {
     e.preventDefault();
     var id = $(this).parent().attr('rel');
-    var url = window.location.pathname.replace('edit', 'byggeweb/folders/' + id + '/files');
+    var url = projects_path() + '/byggeweb/folders/' + id + '/files';
     $.getJSON(url, function(data) {
       var names = $.map(data, function(a) { return '<li><a href="#" rel="' + a.id + '">' + a.name + '</a></li>' });
       $('#byggeweb_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
