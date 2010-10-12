@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  ATTACHMENT_KEYS = [:planning_referrals_attributes, :site_referrals_attributes, :approvals_attributes]
+
   def index
     @projects = Project.all
     @project = Project.new
@@ -10,6 +12,7 @@ class ProjectsController < ApplicationController
   end
   
   def create
+    process_attachments :project, ATTACHMENT_KEYS
     @project = Project.new(params[:project])
 
     respond_to do |format|
@@ -30,15 +33,7 @@ class ProjectsController < ApplicationController
   
   def update
     @project = Project.find(params[:id])
-
-    # remove attachment if requested by user
-    attachment_keys = [:planning_referrals_attributes, :site_referrals_attributes, :approvals_attributes]
-    attachment_keys.each do |attachment_key|
-      next unless params[:project].has_key? attachment_key
-      params[:project][attachment_key].each_value do |referral|
-        referral[:attachment] = nil if referral[:remove_attachment] == '1' && !referral.has_key?(:attachment)
-      end
-    end
+    process_attachments :project, ATTACHMENT_KEYS
 
     if @project.update_attributes(params[:project])
       flash[:notice] = "Stamdata for byggesag opdateret."

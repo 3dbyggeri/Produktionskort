@@ -10,6 +10,11 @@ Produktionskort::Application.routes.draw do
       get :switch
       post :switch
     end
+    namespace :byggeweb do
+      resources :folders, :only => [:index, :show] do
+        resources :files, :only => :index
+      end
+    end
   end
 
   resources :work_processes

@@ -20,4 +20,27 @@ module ApplicationHelper
     end
     result
   end
+
+  def attachment_fiels(f)
+    existing = !f.object.attachment_file_name.blank?
+    s = "".html_safe
+
+    s += f.input :attachment_origin,
+                 :collection => ATTACHMENT_ORIGINS,
+                 :as => :select,
+                 :include_blank => false,
+                 :hint => existing ? link_to(f.object.attachment_file_name, f.object.attachment.url) : nil,
+                 :input_html => { :class => 'attachment_origin' }
+    s += f.input :attachment,
+                 :as => :file,
+                 :label => '&nbsp;',
+                 :wrapper_html => {
+                   :style => f.object.attachment_origin == 1 ? nil : 'display:none',
+                   :class => 'attachment_upload'
+                 }
+    s += f.input :attachment_origin_id, :as => :hidden, :input_html => { :class => 'attachment_origin_id' }
+    s += f.input :existing_attachment, :as => :hidden, :value => existing ? 1 : 0, :wrapper_html => { :class => 'existing_attachment' }
+    s += f.input :new_attachment_import, :as => :hidden, :value => 0, :wrapper_html => { :class => 'new_attachment_import' }
+    s += f.input :remove_attachment, :as => :hidden, :value => 0, :wrapper_html => { :class => 'remove_attachment' }
+  end
 end

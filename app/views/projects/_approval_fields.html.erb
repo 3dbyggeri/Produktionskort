@@ -2,9 +2,6 @@
   <%= f.input :kind, :collection => Approval::KINDS, :include_blank => false %>
   <%= f.input :description %>
   <%= f.input :time %>
-  <%= f.input :attachment,
-              :as => :file,
-              :hint => f.object.attachment_file_name.blank? ? nil : link_to(f.object.attachment_file_name, f.object.attachment.url) + " (" + link_to_function("slet", "remove_attachment(this)") + ")" %>
-  <%= f.input :remove_attachment, :as => :hidden, :value => 0 %>
+  <%= attachment_fiels f %>
   <%= link_to_remove_fields "Slet", f %>
 <% end %>

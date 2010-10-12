@@ -331,3 +331,35 @@ button#form_submitter:hover {
 #main .content dd {
   margin: 4px 0 8px 20px;
 }
+
+/* Byggeweb --------------------------------- */
+
+#byggeweb_attachment {
+  width: 600px;
+}
+
+#byggeweb_folders {
+  width: 250px;
+  float: left;
+  margin-right: 20px;
+}
+
+#byggeweb_files {
+  width: 330px;
+  float: left;
+}
+
+#byggeweb_files .message {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin: 10px 0;
+}
+
+#byggeweb_files h3 {
+  margin-top: 0;
+}
+
+#byggeweb_files li {
+  margin-bottom: 5px;
+}

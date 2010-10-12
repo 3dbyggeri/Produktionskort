@@ -17,6 +17,24 @@ class Byggeweb < Savon::Model
     projects.map &:reverse
   end
 
+  def root_folder
+    jsonize_folder "Dummy rod folder", nil, true, folder(nil)
+  end
+
+  def folder(folder_id)
+    folders = ["Lorem Ipsum", "Vigtig folder", "En underfolder", "Endnu en folder", "Dummy", "Test 123"]
+    folders.map! { |name| jsonize_folder name }
+    folders.reject! { rand(2) == 0 }
+    folders.shuffle
+  end
+
+  def files(folder_id)
+    files = ['Foobar.pdf', 'Projektoversigt.doc', 'Budget 2010.xls', 'Lorem Ipsum.doc', 'Plantegning.pdf', 'En eller anden fil.txt', 'Readme.doc']
+    files.map! { |name| { :name => name, :id => rand(1024) } }
+    files.reject! { rand(2) == 0 }
+    files.shuffle
+  end
+
   private
 
   def authenticate
@@ -43,5 +61,28 @@ class Byggeweb < Savon::Model
 
     client(:byggeweb).request.headers["cookie"] = session_cookie
     return true
+  end
+
+  # when generating dummy nodes, you can leave the ID blank to get a random ID
+  def jsonize_folder(name, id = nil, open = false, children = [])
+    {
+      :data => {
+        :title => name,
+        :attr => { :class => 'tree-node' }
+      },
+      :attr => { :rel => id || rand(1024) },
+      :state => (open ? 'open' : 'closed'),
+      :children => children
+    }
+  end
+end
+
+class Array
+  def shuffle
+    sort_by { rand }
+  end
+
+  def shuffle!
+    self.replace shuffle
   end
 end

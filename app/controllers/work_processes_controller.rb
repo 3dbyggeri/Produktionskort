@@ -1,4 +1,6 @@
 class WorkProcessesController < ApplicationController
+  ATTACHMENT_KEYS = [:activity_referrals_attributes, :equipment_referrals_attributes, :material_referrals_attributes, :crew_referrals_attributes]
+
   before_filter :find_active_project
 
   def index
@@ -39,6 +41,7 @@ class WorkProcessesController < ApplicationController
   end
   
   def create
+    process_attachments :work_process, ATTACHMENT_KEYS
     @work_process = @project.work_processes.build(params[:work_process])
     if @work_process.save && @work_process.project.update_attributes(project_attributes)
       flash[:notice] = "Produktionskort oprettet."
@@ -54,14 +57,7 @@ class WorkProcessesController < ApplicationController
   
   def update
     @work_process = @project.work_processes.find(params[:id])
-
-    # remove attachments if requested by user
-    attachment_keys = [:activity_referrals_attributes, :equipment_referrals_attributes, :material_referrals_attributes, :crew_referrals_attributes]
-    attachment_keys.each do |attachment_key|
-      params[:work_process][attachment_key].each_value do |referral|
-        referral[:attachment] = nil if referral[:remove_attachment] == '1' && !referral.has_key?(:attachment)
-      end
-    end
+    process_attachments :work_process, ATTACHMENT_KEYS
 
     if @work_process.update_attributes(params[:work_process])
       flash[:notice] = "Produktionskort opdateret."

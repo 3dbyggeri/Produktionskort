@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101011141053) do
+ActiveRecord::Schema.define(:version => 20101011204036) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20101011141053) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.integer  "attachment_origin"
+    t.string   "attachment_origin_id"
   end
 
   create_table "attentions", :force => true do |t|
@@ -219,6 +221,8 @@ ActiveRecord::Schema.define(:version => 20101011141053) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.integer  "attachment_origin"
+    t.string   "attachment_origin_id"
   end
 
   create_table "requirements", :force => true do |t|

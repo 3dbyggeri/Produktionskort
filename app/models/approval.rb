@@ -7,7 +7,7 @@ class Approval < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root.to_s}/config/amazon_s3.yml",
                     :path => "/:attachment/:id/:filename"
 
-  attr_writer :remove_attachment
+  attr_writer :remove_attachment, :new_attachment_import
 
   KINDS = ['Byggetilladelse', 'Geoteknisk rapport', 'Statiske beregninger', 'Miljøgodkendelse',
            'Parkeringstilladelse', 'Kranopstilling', 'Anmeldelse til arbejdstilsyn',

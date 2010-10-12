@@ -44,3 +44,5 @@ module Produktionskort
     config.filter_parameters += [:password]
   end
 end
+
+ATTACHMENT_ORIGINS = [['Ingen', 0], ['Via fil-upload', 1], ['Importer fra Byggeweb', 2]]

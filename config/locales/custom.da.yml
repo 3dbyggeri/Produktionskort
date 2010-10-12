@@ -92,6 +92,7 @@ da:
         kind: Type
         description: Beskrivelse
         time: Tidspunkt
+        attachment_origin: Vedhæftning
         attachment: Vedhæftning
       attention:
         kind: Type
@@ -101,6 +102,7 @@ da:
         kind: Type
         notes: Tekst
         identifier: Henvisning
+        attachment_origin: Vedhæftning
         attachment: Vedhæftning
       site_focus:
         kind: Type
