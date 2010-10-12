@@ -10,22 +10,27 @@ class WorkProcessesController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @work_process.to_xml(:include => [ :project,
-                                                                      :companies,
-                                                                      :equipment,
-                                                                      :inspections, 
-                                                                      :material_packages,
-                                                                      :preconditions,
-                                                                      :protections,
-                                                                      :qualifications,
-                                                                      :requirements,
-                                                                      :wasted_times,
-                                                                      :activity_referrals,
-                                                                      :work_method_referrals,
-                                                                      :crew_referrals,
-                                                                      :material_referrals,
-                                                                      :equipment_referrals ],
-                                                        :methods => [  ]) }
+      format.xml do
+        render :xml => @work_process.to_xml(
+                            :include => {
+                              :project => {},
+                              :companies => {},
+                              :equipment => {},
+                              :inspections => { :include => :documentations },
+                              :preconditions => {},
+                              :protections => {},
+                              :qualifications => {},
+                              :requirements => {},
+                              :wasted_times => {},
+                              :activity_referrals => {},
+                              :work_method_referrals => {},
+                              :equipment_referrals => {},
+                              :material_packages => { :include => :materials },
+                              :material_referrals => {},
+                              :crew_referrals => {}
+                            }
+                          )
+      end
     end
   end
   
