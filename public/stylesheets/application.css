@@ -349,7 +349,8 @@ button#form_submitter:hover {
   float: left;
 }
 
-#byggeweb_files .message {
+#byggeweb_files .message,
+#bips_content .message {
   text-align: center;
   font-size: 14px;
   color: #888;
@@ -362,4 +363,25 @@ button#form_submitter:hover {
 
 #byggeweb_files li {
   margin-bottom: 5px;
+}
+
+/* Bips --------------------------------- */
+
+#bips_attachment {
+  width: 800px;
+}
+
+#bips_sections {
+  width: 250px;
+  float: left;
+  margin-right: 20px;
+}
+
+#bips_content {
+  width: 530px;
+  float: left;
+}
+
+#bips_content h3 {
+  margin-top: 0;
 }

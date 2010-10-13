@@ -15,6 +15,11 @@ Produktionskort::Application.routes.draw do
         resources :files, :only => :index
       end
     end
+    namespace :bips do
+      resources :sections, :only => [:index, :show] do
+        resources :content, :only => :index
+      end
+    end
   end
 
   resources :work_processes

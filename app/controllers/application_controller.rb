@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
           if object[:new_attachment_import] == '1'
             object[:attachment] = File.new File.join(Rails.root.to_s, 'public/favicon.ico')
           end
+        when 3
+          if object[:new_attachment_import] == '1'
+            object[:attachment] = Tempfile.new 'bips-beskrivelse.txt'
+          end
         end
 
         # remove existing attachment if requested by user (only relevant when updating)

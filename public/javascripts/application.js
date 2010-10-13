@@ -40,6 +40,13 @@ var undo_byggeweb_attachment = function(container) {
   container.find('.attachment_origin_filename').remove();
 }
 
+var undo_bips_attachment = function(container) {
+  if (container.find('.attachment_origin').val() == '3')
+    container.find('.attachment_origin').val('0');
+  container.find('.attachment_origin_id').val('');
+  container.find('.attachment_origin_section').remove();
+}
+
 var undo_file_upload = function(container) {
   var field = container.find('.attachment_upload');
   field.hide();
@@ -82,16 +89,19 @@ $(document).ready(function() {
       case 0:
         undo_file_upload(container);
         undo_byggeweb_attachment(container);
+        undo_bips_attachment(container);
         break;
       case 1:
         undo_byggeweb_attachment(container);
+        undo_bips_attachment(container);
         container.find('.attachment_upload').show();
         break;
       case 2:
         undo_file_upload(container);
+        undo_bips_attachment(container);
         var id = container.find('.attachment_origin_id').attr('id');
         $.facebox('<div id="byggeweb_attachment" rel="' + id + '"><div id="byggeweb_folders"></div><div id="byggeweb_files"><div class="message">Ingen folder valgt</div></div><div class="clear"></div></div>');
-        $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') });
+        $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') }); // should we not unbind this later?
         $('#byggeweb_folders').jstree({
           json_data: {
             ajax: {
@@ -108,16 +118,48 @@ $(document).ready(function() {
           plugins: ['themes', 'json_data']
         });
         break;
+      case 3:
+        undo_file_upload(container);
+        undo_byggeweb_attachment(container);
+        var id = container.find('.attachment_origin_id').attr('id');
+        $.facebox('<div id="bips_attachment" rel="' + id + '"><div id="bips_sections"></div><div id="bips_content"><div class="message">Ingen sektion valgt</div></div><div class="clear"></div></div>');
+        $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') }); // should we not unbind this later?
+        $('#bips_sections').jstree({
+          json_data: {
+            ajax: {
+              url: function(n) {
+                return projects_path() + '/bips/sections' + (n == -1 ? '' : '/' + n.attr('rel')) + '.json';
+              }
+            }
+          },
+          themes: {
+            theme: 'apple',
+            dots: true,
+            icons: true
+          },
+          plugins: ['themes', 'json_data']
+        });
+        break;
     }
   });
 
-  $('.tree-node').live('click', function(e) {
+  $('#byggeweb_attachment .tree-node').live('click', function(e) {
     e.preventDefault();
     var id = $(this).parent().attr('rel');
     var url = projects_path() + '/byggeweb/folders/' + id + '/files';
     $.getJSON(url, function(data) {
       var names = $.map(data, function(a) { return '<li><a href="#" rel="' + a.id + '">' + a.name + '</a></li>' });
       $('#byggeweb_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
+    });
+  });
+
+  $('#bips_attachment .tree-node').live('click', function(e) {
+    e.preventDefault();
+    var id = $(this).parent().attr('rel');
+    var url = projects_path() + '/bips/sections/' + id + '/content';
+    $.getJSON(url, function(data) {
+      console.log(data);
+      $('#bips_content').html('<h3>' + data.headline + '</h3><p>' + data.body + '</p><p><input type="button" value="Benyt" rel="' + data.id + '" /></p>');
     });
   });
 
@@ -132,5 +174,18 @@ $(document).ready(function() {
     container.find('.new_attachment_import input').val('1');
     $(document).trigger('close.facebox');
     container.find('.attachment_origin').val('2'); // reset select box due to too agressive close.facebox hook
+  });
+
+  $('#bips_content input').live('click', function(e) {
+    e.preventDefault();
+    var id = $(this).attr('rel');
+    var name = $(this).closest('div').find('h3').html();
+    var attachment_origin_id = $('#' + $('#bips_attachment').attr('rel'));
+    var container = attachment_origin_id.closest('ol');
+    attachment_origin_id.val(id);
+    container.find('.attachment_origin').after('<p class="inline-hints attachment_origin_section">' + name + '</p>');
+    container.find('.new_attachment_import input').val('1');
+    $(document).trigger('close.facebox');
+    container.find('.attachment_origin').val('3'); // reset select box due to too agressive close.facebox hook
   });
 });

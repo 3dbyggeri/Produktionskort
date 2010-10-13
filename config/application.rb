@@ -45,4 +45,14 @@ module Produktionskort
   end
 end
 
-ATTACHMENT_ORIGINS = [['Ingen', 0], ['Via fil-upload', 1], ['Importer fra Byggeweb', 2]]
+ATTACHMENT_ORIGINS = [['Ingen', 0], ['Via fil-upload', 1], ['Importer fra Byggeweb', 2], ['Importer bips beskrivelse', 3]]
+
+class Array
+  def shuffle
+    sort_by { rand }
+  end
+
+  def shuffle!
+    self.replace shuffle
+  end
+end
