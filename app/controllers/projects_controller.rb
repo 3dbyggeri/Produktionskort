@@ -3,7 +3,11 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    @project = Project.new
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @projects.to_xml }
+    end
   end
 
   def new
@@ -19,14 +23,39 @@ class ProjectsController < ApplicationController
       if @project.save
         flash[:notice] = "Byggesag oprettet."
         format.html { redirect_to :action => 'index' }
-        format.js
+        format.xml { render :xml => @project.to_xml }
       else
         format.html { render :action => 'new' }
-        format.js
+        format.xml { render :xml => @project.errors.to_xml, :status => 400 }
       end
     end
   end
-  
+
+  def show
+    @project = Project.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :nothing => true, :status => 404 }
+      format.xml do
+        render :xml => @project.to_xml(
+                            :include => {
+                              :approvals => {},
+                              :attentions => {},
+                              :companies => {},
+                              :equipment => {},
+                              :meetings => {},
+                              :people => {},
+                              :site_focuses => {},
+                              :site_operations => {},
+                              :site_responsibilities => {},
+                              :planning_referrals => {},
+                              :site_referrals => {}
+                            }
+                          )
+      end
+    end
+  end
+
   def edit
     @project = Project.find(params[:id])
   end
@@ -35,19 +64,26 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     process_attachments :project, ATTACHMENT_KEYS
 
-    if @project.update_attributes(params[:project])
-      flash[:notice] = "Stamdata for byggesag opdateret."
-      redirect_to :action => 'index'
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @project.update_attributes(params[:project])
+        flash[:notice] = "Stamdata for byggesag opdateret."
+        format.html { redirect_to :action => 'index' }
+        format.xml { render :xml => @project.to_xml }
+      else
+        format.html { render :action => 'edit' }
+        format.xml { render :xml => @project.errors.to_xml, :status => 400 }
+      end
     end
   end
   
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    flash[:notice] = "Byggesag slettet."
-    redirect_to projects_url
+    respond_to do |format|
+      flash[:notice] = "Byggesag slettet."
+      format.html { redirect_to projects_url }
+      format.xml { render :nothing => true }
+    end
   end
 
   def switch
@@ -56,7 +92,7 @@ class ProjectsController < ApplicationController
     else
       project = Project.find(params[:id])
       cookies['active_project'] = project.id
-      redirect_to root_path
+      redirect_to project_work_processes_path(project)
     end
   end
 end

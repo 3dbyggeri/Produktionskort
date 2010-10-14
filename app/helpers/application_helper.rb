@@ -21,6 +21,16 @@ module ApplicationHelper
     result
   end
 
+  def current_project
+    if !@project.nil?
+      @project
+    elsif !@work_process.nil?
+      @work_process.project
+    elsif !cookies['active_project'].blank?
+      Project.find(cookies[:active_project])
+    end
+  end
+
   def attachment_fiels(f)
     existing = !f.object.attachment_file_name.blank?
     s = "".html_safe

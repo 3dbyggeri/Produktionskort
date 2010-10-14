@@ -1,15 +1,18 @@
 Produktionskort::Application.routes.draw do
   devise_for :users
 
-  root :to => 'work_processes#index'
+  root :to => 'projects#index'
 
   match 'om' => 'about#index', :as => 'about', :conditions => { :method => :get }
 
-  resources :projects, :except => :show do
+  resources :projects do
     collection do
       get :switch
       post :switch
     end
+
+    resources :work_processes, :shallow => true
+
     namespace :byggeweb do
       resources :folders, :only => [:index, :show] do
         resources :files, :only => :index
@@ -21,6 +24,4 @@ Produktionskort::Application.routes.draw do
       end
     end
   end
-
-  resources :work_processes
 end

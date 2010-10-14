@@ -1,11 +1,11 @@
 <% title "Produktionskort" %>
-<% quicklinks [['Opret nyt produktionskort', new_work_process_path]] %>
+<% quicklinks [['Opret nyt produktionskort', new_project_work_process_path(@project)]] %>
 
 <h3>Oversigt</h3>
 
 <% if @work_processes.blank? %>
 <p>Der er p.t. ikke oprettet nogen produktionskort for denne byggesag.</p>
-<p><%= link_to 'Opret et med det samme!', new_work_process_path %></p>
+<p><%= link_to 'Opret et med det samme!', new_project_work_process_path(@project) %></p>
 <% else %>
 <table>
   <thead>
