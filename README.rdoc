@@ -1,0 +1,178 @@
+== API
+
+Produktionskort stiller et {REST API}(http://en.wikipedia.org/wiki/Representational_State_Transfer)
+til rådighed. Dette kan benyttes til at tilgå samt manipulere byggesags og produktionskort-data.
+
+Data udveksles i XML-format.
+
+=== Overblik over RESTful URL'er
+
+  GET    /projects/:project_id/work_processes(.:format)
+  POST   /projects/:project_id/work_processes(.:format)
+  GET    /projects/:project_id/work_processes/new(.:format)
+  GET    /work_processes/:id/edit(.:format)
+  GET    /work_processes/:id(.:format)
+  PUT    /work_processes/:id(.:format)
+  DELETE /work_processes/:id(.:format)
+  GET    /projects(.:format)
+  POST   /projects(.:format)
+  GET    /projects/new(.:format)
+  GET    /projects/:id/edit(.:format)
+  GET    /projects/:id(.:format)
+  PUT    /projects/:id(.:format)
+  DELETE /projects/:id(.:format)
+
+=== HTML eller XML?
+
+URL'en <tt>/projects</tt> kan returnere både HTML og XML. Der er to måder at
+specificere det ønskede format. Normalt benyttes HTTP headeren <tt>Accept</tt>.
+
+  curl -H 'Accept: text/xml' http://localhost:3000/projects
+
+Alternativ kan man tilføje enten <tt>.html</tt> eller <tt>.xml</tt> som format
+i slutningen af URL'en:
+
+  curl http://localhost:3000/projects.xml
+
+Det er ikke nød
+
+=== GET eksempeler
+
+Se alle byggesager
+
+  curl -v -H 'Accept: text/xml' http://localhost:3000/projects
+
+==== Request
+
+  GET /projects HTTP/1.1
+  Accept: text/xml
+
+==== Response
+
+  HTTP/1.1 200 OK
+  Content-Type: application/xml; charset=utf-8
+  Status: 200
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+  <projects type="array">
+    <project>...</project>
+    <project>...</project>
+    <project>...</project>
+  </projects>
+
+==== Andre GET eksempler
+
+Se detaljer omkring byggesag #1
+
+  curl -H 'Accept: text/xml' http://localhost:3000/projects/1
+
+Se all produktionskort for byggesag #1
+
+  curl -H 'Accept: text/xml' http://localhost:3000/projects/1/work_processes
+
+Se detaljer omkring produktionskort #1
+
+  curl -H 'Accept: text/xml' http://localhost:3000/work_processes/1
+
+=== POST eksempler
+
+Opret ny byggesag
+
+  curl -H 'Accept: text/xml' -H 'Content-type: application/xml' -X POST -d [...] http://localhost:3000/projects
+
+==== Request
+
+  POST /projects HTTP/1.1
+  Accept: text/xml
+  Content-type: application/xml
+  
+  <project>
+    <name>Navn på byggesag</name>
+  </project>
+
+==== Response
+
+  HTTP/1.1 200 OK
+  Content-Type: application/xml; charset=utf-8
+  Status: 200
+   
+  <?xml version="1.0" encoding="UTF-8"?>
+  <project>
+    ...
+  </project>
+
+==== Andre POST eksempler
+
+Opret nyt produktionskort under byggesag #1
+
+  curl -H 'Accept: text/xml' -H 'Content-type: application/xml' -X POST -d [...] http://localhost:3000/projects/1/work_processes
+
+=== PUT eksempler
+
+Opdater navnet på byggesag #1
+
+  curl -H 'Accept: text/xml' -H 'Content-type: application/xml' -X PUT -d '<project><name>Nyt navn</name></project>' http://localhost:3000/projects/1
+
+==== Request
+
+  PUT /projects/1 HTTP/1.1
+  Accept: text/xml
+  Content-type: application/xml
+
+  <project>
+    <name>Nyt navn</name>
+  </project>
+
+==== Response
+
+  HTTP/1.1 200 OK
+  Content-Type: application/xml; charset=utf-8
+  Status: 200
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+  <project>
+    ...
+  </project>
+
+==== Andre PUT eksempler
+
+Opdater aktivitet på produktionskort #1
+
+  curl -H 'Accept: text/xml' -H 'Content-type: application/xml' -X PUT -d '<work_process><activity>Nyt navn</activity></work_process>' http://localhost:3000/work_processes/1
+
+=== DELETE eksempler
+
+Sletning af byggesag #1
+
+  curl -v -H 'Accept: text/xml' -X DELETE http://localhost:3000/projects/1
+
+==== Request
+
+  DELETE /projects/1 HTTP/1.1
+  Accept: text/xml
+
+==== Response
+
+  HTTP/1.1 200 OK
+  Content-Type: application/xml; charset=utf-8
+  Status: 200
+
+==== Andre DELETE eksempler
+
+Sletning af produktionskort #1
+
+  curl -v -H 'Accept: text/xml' -X DELETE http://localhost:3000/work_processes/1
+
+=== Håndtering af fejl
+
+Ved validerings-fejl ifm. POST og PUT reqests vil responset se således ud:
+
+  HTTP/1.1 400 Bad Request
+  Content-Type: application/xml; charset=utf-8
+  Status: 400
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+  <errors>
+    <error>...</error>
+    <error>...</error>
+  </errors>
