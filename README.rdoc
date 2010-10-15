@@ -5,7 +5,7 @@
 Produktionskort er en del af {Dansk Byggeri}[http://www.danskbyggeri.dk] og
 udviklet i samarbejde med {3dbyggeri danmark}[http://www.3dbyggeri.dk],
 {CodeGroup}[http://www.codegroup.dk], {EG}[http://www.eg.dk],
-{JAKON}[http://www.jakon.dk] og {LinKS Advice}[http://www.linkslabs.com]
+{JAKON}[http://www.jakon.dk] og {LinKS Advice}[http://www.linkslabs.com].
 
 === Entreprenørens dataenhed
 
