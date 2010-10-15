@@ -63,7 +63,7 @@ i slutningen af URL'en:
 
 Se alle byggesager
 
-  curl -v -H 'Accept: text/xml' \
+  curl -H 'Accept: text/xml' \
        http://produktionskort.heroku.com/projects
 
 ==== Request
@@ -206,7 +206,7 @@ Sletning af byggesag #1
 
 Sletning af produktionskort #1
 
-  curl -v -H 'Accept: text/xml' \
+  curl -H 'Accept: text/xml' \
        -X DELETE \
        http://produktionskort.heroku.com/work_processes/1
 
