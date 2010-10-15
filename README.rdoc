@@ -59,6 +59,19 @@ i slutningen af URL'en:
 
   curl http://produktionskort.heroku.com/projects.xml
 
+=== Authentication
+
+Da http://produktionskort.heroku.com i dag er beskyttet bag HTTP Basic
+Authentication, skal du sørge for at din API klient logger ind med det korrekte
+brugernavn og password.
+
+Bemærk at nedenstående eksempler ikke viser dette.
+
+Den simpleste måde vil blot være at tilføje brugernavn og password som en del
+af URL'en:
+
+  http://brugernavn:password@produktionskort.heroku.com
+
 === GET eksempeler
 
 Se alle byggesager
