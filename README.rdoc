@@ -1,7 +1,31 @@
+== Generelt
+
+=== Entreprenørens dataenhed
+
+Produktionskortet er entreprenørens struktur, hvor information fra en række
+parter kan samles. En proces - et produktionskort. Det er defineret i en
+standardiseret data-struktur (XML). Strukturen kan bruges til at gemme data i.
+
+=== Demonstrator: Opret, importer, eksporter, og udskriv produktionskort
+
+Vi har udviklet en demonstrator. Formålet er at demonstrere hvordan
+produktionskort kan genereres umiddelbart, også uden tilknytning til en 3D
+objektmodel eller andre forudsætninger.
+
+Demonstratoren er et simpelt værktøj der er baseret på produktionskortets
+struktur. Mere avancerede systemer og værktøjer vil kunne bygges ud fra samme
+struktur. Med demonstratoren kan du oprette dine egne produktionskort og gemme
+dem som XML-filer til senere viderebearbejdning.
+
+XML-strukturen kan bruges til at bygge nye fleksible systemer op omkring, så
+entreprenøren kan få nye fleksible værktøjer til rådighed.
+
 == API
 
-Produktionskort stiller et {REST API}(http://en.wikipedia.org/wiki/Representational_State_Transfer)
-til rådighed. Dette kan benyttes til at tilgå samt manipulere byggesags og produktionskort-data.
+Produktionskort stiller et
+{REST API}[http://en.wikipedia.org/wiki/Representational_State_Transfer]
+til rådighed. Dette kan benyttes til at tilgå samt manipulere byggesags og
+produktionskort-data.
 
 Data udveksles i XML-format.
 
@@ -33,8 +57,6 @@ Alternativ kan man tilføje enten <tt>.html</tt> eller <tt>.xml</tt> som format
 i slutningen af URL'en:
 
   curl http://localhost:3000/projects.xml
-
-Det er ikke nød
 
 === GET eksempeler
 
