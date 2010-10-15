@@ -81,7 +81,7 @@ af URL'en:
 
   http://brugernavn:password@produktionskort.heroku.com
 
-=== GET eksempeler
+=== GET eksempler
 
 Se alle byggesager
 
