@@ -44,18 +44,16 @@ Data udveksles i XML-format.
 
 === Overblik over RESTful URL'er
 
-  GET    /projects/:project_id/work_processes(.:format)
-  POST   /projects/:project_id/work_processes(.:format)
-  GET    /work_processes/:id/edit(.:format)
-  GET    /work_processes/:id(.:format)
-  PUT    /work_processes/:id(.:format)
-  DELETE /work_processes/:id(.:format)
-  GET    /projects(.:format)
-  POST   /projects(.:format)
-  GET    /projects/:id/edit(.:format)
-  GET    /projects/:id(.:format)
-  PUT    /projects/:id(.:format)
-  DELETE /projects/:id(.:format)
+  GET    /projects/:project_id/work_processes(.:format)   # Se alle produktionskort under given byggesag
+  POST   /projects/:project_id/work_processes(.:format)   # Opret nyt produktionskort under given byggesag
+  GET    /work_processes/:id(.:format)                    # Se detaljer om produktionskort
+  PUT    /work_processes/:id(.:format)                    # Opdater produktionskort
+  DELETE /work_processes/:id(.:format)                    # Slet produktionskort
+  GET    /projects(.:format)                              # Se alle byggesager
+  POST   /projects(.:format)                              # Opret byggesag
+  GET    /projects/:id(.:format)                          # Se detaljer om byggesag
+  PUT    /projects/:id(.:format)                          # Opdater byggesag
+  DELETE /projects/:id(.:format)                          # Slet byggesag
 
 === HTML eller XML?
 
