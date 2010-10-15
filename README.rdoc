@@ -171,7 +171,7 @@ Opdater navnet på byggesag #1
   curl -H 'Accept: text/xml' \
        -H 'Content-type: application/xml' \
        -X PUT \
-       -d '<project><name>Nyt navn</name></project>' \
+       -d [...] \
        http://produktionskort.heroku.com/projects/1
 
 ==== Request
@@ -202,7 +202,7 @@ Opdater aktivitet på produktionskort #1
   curl -H 'Accept: text/xml' \
        -H 'Content-type: application/xml' \
        -X PUT \
-       -d '<work_process><activity>Nyt navn</activity></work_process>' \
+       -d [...] \
        http://produktionskort.heroku.com/work_processes/1
 
 === DELETE eksempler
