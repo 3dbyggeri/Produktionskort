@@ -2,6 +2,11 @@
 
 == Generelt
 
+Produktionskort er en del af {Dansk Byggeri}[http://www.danskbyggeri.dk] og
+udviklet i samarbejde med {3dbyggeri danmark}[http://www.3dbyggeri.dk],
+{CodeGroup}[http://www.codegroup.dk], {EG}[http://www.eg.dk],
+{JAKON}[http://www.jakon.dk] og {LinKS Advice}[http://www.linkslabs.com]
+
 === Entreprenørens dataenhed
 
 Produktionskortet er entreprenørens struktur, hvor information fra en række
@@ -21,6 +26,12 @@ dem som XML-filer til senere viderebearbejdning.
 
 XML-strukturen kan bruges til at bygge nye fleksible systemer op omkring, så
 entreprenøren kan få nye fleksible værktøjer til rådighed.
+
+== Demo
+
+Du kan se en demo af Produktionskort på http://produktionskort.heroku.com.
+Demoen er password-beskyttet. For adgang hertil bedes ud kontakte
+projektkoordinator {Torben Klitgaard}[mailto:tk@linksadvice.com].
 
 == API
 
