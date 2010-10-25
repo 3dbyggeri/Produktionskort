@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101011204036) do
+ActiveRecord::Schema.define(:version => 20101025150709) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -319,6 +319,8 @@ ActiveRecord::Schema.define(:version => 20101011204036) do
     t.boolean  "extra_work"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unit"
+    t.string   "value"
   end
 
 end

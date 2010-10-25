@@ -49,6 +49,8 @@
     <%= f.input :location %>
     <%= f.input :project_delivery_time, :as => :string %>
     <%= f.input :project_delivery_person %>
+    <%= f.input :value %>
+    <%= f.input :unit %>
 
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
       <%= f.semantic_fields_for :activity_referrals do |builder| %>
