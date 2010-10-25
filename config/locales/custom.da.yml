@@ -51,6 +51,8 @@ da:
         allowance: Godtgørelse
         time_of_day: Tid på dagen
         extra_work: Ekstra arbejde
+        value: Værdi
+        unit: Enhed
       project:
         name: Navn
         address: Adresse
