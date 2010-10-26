@@ -51,6 +51,8 @@ class Project < ActiveRecord::Base
 
   def byggeweb
     @byggeweb ||= Byggeweb.new :username => byggeweb_username, :password => byggeweb_password
+    @byggeweb.project_id ||= byggeweb_project
+    @byggeweb
   end
 
   def byggeweb?

@@ -3,7 +3,7 @@ class Byggeweb < Savon::Model
     :endpoint => "http://ws.byggeweb.dk/services/Controller",
     :namespace => "http://ws"
 
-  attr_accessor :username, :password, :session_cookie
+  attr_accessor :username, :password, :session_cookie, :project_id
 
   def log_in
     username && password ? authenticate : false
@@ -12,27 +12,47 @@ class Byggeweb < Savon::Model
   def projects
     authenticate or return []
     response = client(:byggeweb).get_projects!
-    # we cant convert to a hash because the id tag we are looking for is overwritten by the id attribute on the parent tag (this must be a bug in savon) - there we just to a regex scan
-    projects = response.to_xml.scan(/<id xsi:type="xsd:int">(\d+)<\/id>\s*<metadataTemplateID xsi:type="xsd:int">\d+<\/metadataTemplateID>\s*<name xsi:type="xsd:string">([^<]*)<\/name>/)
-    projects.map &:reverse
+
+    xml = XML::Parser.string(response.to_xml).parse
+    xml.find('//multiRef').map do |project|
+      [project.find('name').first.content, project.find('projectNumber').first.content]
+    end
   end
 
   def root_folder
-    jsonize_folder "Dummy rod folder", nil, true, folder(nil)
+    authenticate or return
+    response = client(:byggeweb).get_top_directory! do |soap|
+      soap.body = { :_projectNumber => project_id }
+    end
+
+    xml = XML::Parser.string(response.to_xml).parse
+    name = xml.find('//multiRef/title').first.content
+    id = xml.find('//multiRef/id').first.content
+    jsonize_folder name, id, true, folder(id)
   end
 
   def folder(folder_id)
-    folders = ["Lorem Ipsum", "Vigtig folder", "En underfolder", "Endnu en folder", "Dummy", "Test 123"]
-    folders.map! { |name| jsonize_folder name }
-    folders.reject! { rand(2) == 0 }
-    folders.shuffle
+    authenticate or return []
+    response = client(:byggeweb).get_sub_directories! do |soap|
+      soap.body = { :_projectNumber => project_id, :dirId => folder_id }
+    end
+
+    xml = XML::Parser.string(response.to_xml).parse
+    xml.find('//multiRef').map do |folder|
+      jsonize_folder folder.find('title').first.content, folder.find('id').first.content
+    end
   end
 
   def files(folder_id)
-    files = ['Foobar.pdf', 'Projektoversigt.doc', 'Budget 2010.xls', 'Lorem Ipsum.doc', 'Plantegning.pdf', 'En eller anden fil.txt', 'Readme.doc']
-    files.map! { |name| { :name => name, :id => rand(1024) } }
-    files.reject! { rand(2) == 0 }
-    files.shuffle
+    authenticate or return []
+    response = client(:byggeweb).get_files_from_directory! do |soap|
+      soap.body = { :_projectNumber => project_id, :dirId => folder_id, :_withAttachment => false }
+    end
+
+    xml = XML::Parser.string(response.to_xml).parse
+    xml.find("//multiRef[substring(@xsi:type,4)=':FileVW']").map do |file|
+      { :name => file.find('name').first.content, :id => file.find('id').first.content }
+    end
   end
 
   private
@@ -63,14 +83,13 @@ class Byggeweb < Savon::Model
     return true
   end
 
-  # when generating dummy nodes, you can leave the ID blank to get a random ID
-  def jsonize_folder(name, id = nil, open = false, children = [])
+  def jsonize_folder(name, id, open = false, children = [])
     {
       :data => {
         :title => name,
         :attr => { :class => 'tree-node' }
       },
-      :attr => { :rel => id || rand(1024) },
+      :attr => { :rel => id },
       :state => (open ? 'open' : 'closed'),
       :children => children
     }
