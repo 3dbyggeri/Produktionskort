@@ -1,10 +1,12 @@
 GIT
-  remote: git://github.com/rubiii/savon_model.git
-  revision: b1b1792601fb3da2f937de3101c540b4ab8fd145
-  branch: dev
+  remote: git://github.com/rubiii/savon.git
+  revision: c9b0a2df21eb5130d3358a0954c21a56f6d51c1c
+  branch: eight
   specs:
-    savon_model (0.2.0)
-      activemodel
+    savon (0.8.0.beta.1)
+      builder (~> 2.1.2)
+      crack (~> 0.1.8)
+      httpi (>= 0.6.0)
 
 GEM
   remote: http://rubygems.org/
@@ -54,6 +56,8 @@ GEM
       actionpack (>= 2.3.0)
       activesupport (>= 2.3.0)
       i18n (>= 0.4.0)
+    httpclient (2.1.5.2)
+    httpi (0.6.0)
     i18n (0.4.1)
     libxml-ruby (1.1.4)
     mail (2.2.6.1)
@@ -85,9 +89,7 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
-    savon (0.7.9)
-      builder (>= 2.1.2)
-      crack (>= 0.1.4)
+    savon_model (0.1.2)
     thor (0.14.2)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -104,10 +106,11 @@ DEPENDENCIES
   aws-s3
   devise
   formtastic
+  httpclient
   libxml-ruby
   paperclip
   pg
   rails (= 3.0.0)
-  savon
-  savon_model!
+  savon!
+  savon_model (= 0.1.2)
   validation_reflection
