@@ -50,13 +50,7 @@ class Project < ActiveRecord::Base
                                 :site_referrals, :allow_destroy => true
 
   def byggeweb
-    byggeweb?
-    Byggeweb.project_id ||= byggeweb_project
-    return Byggeweb
-  end
-
-  def byggeweb?
-    Byggeweb.log_in byggeweb_username, byggeweb_password
+    @byggeweb ||= Byggeweb.new byggeweb_username, byggeweb_password, byggeweb_project
   end
 
   def bips_root_sections

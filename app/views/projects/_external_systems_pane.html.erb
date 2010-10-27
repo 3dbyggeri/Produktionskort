@@ -4,7 +4,7 @@
   <%= f.inputs "Byggeweb", :class => "table_group" do %>
     <%= f.input :byggeweb_username, :label => 'Brugernavn' %>
     <%= f.input :byggeweb_password, :label => 'Password', :as => :password %>
-    <% if @project.byggeweb? %>
+    <% if @project.byggeweb.logged_in? %>
     <%= f.input :byggeweb_project, :label => 'Projekt', :as => :select, :collection => @project.byggeweb.projects %>
     <% else %>
     <li class="string optional" id="project_byggeweb_project_input">

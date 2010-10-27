@@ -89,7 +89,6 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
-    savon_model (0.1.2)
     thor (0.14.2)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -112,5 +111,4 @@ DEPENDENCIES
   pg
   rails (= 3.0.0)
   savon!
-  savon_model (= 0.1.2)
   validation_reflection
