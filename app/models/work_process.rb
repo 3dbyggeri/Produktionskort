@@ -25,6 +25,8 @@ class WorkProcess < ActiveRecord::Base
                   :allowance,
                   :time_of_day,
                   :extra_work,
+                  :value,
+                  :unit,
                   :project_attributes,
                   :companies_attributes,
                   :equipment_attributes,

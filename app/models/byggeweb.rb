@@ -68,7 +68,7 @@ class Byggeweb
   def files(folder_id)
     logged_in? or return []
     response = @client.request :get_files_from_directory do
-      soap.body = { :_projectNumber => project_id, :dirId => folder_id, :_withAttachment => false }
+      soap.body = { :_projectNumber => project_id, :_dirId => folder_id, :_withAttachment => false }
     end
 
     xml = XML::Parser.string(response.to_xml).parse
