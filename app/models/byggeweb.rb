@@ -77,6 +77,29 @@ class Byggeweb
     end
   end
 
+  def file(file_id)
+    logged_in? or return []
+    response = @client.request :get_file do
+      soap.body = { :_projectNumber => project_id, :_fileId => file_id, :_withAttachment => true }
+    end
+
+    raise "No attachment found!" if response.http.attachments.empty?
+
+    xml = XML::Parser.string(response.to_xml).parse
+    file = xml.find("//multiRef[substring(@xsi:type,4)=':FileVW']").first
+    id = file.find('id').first.content
+    filename = file.find('name').first.content
+
+    Rails.logger.debug "[BYGGEWEB] Importing attachment #{filename} with id #{id} from project #{project_id}"
+    attachment = response.http.attachments.select{ |a| a.id == id }.first.data
+    attachment.instance_eval <<-RUBY
+      def original_filename
+        '#{filename}'
+      end
+    RUBY
+    return attachment
+  end
+
   private
 
   def jsonize_folder(name, id, open = false, children = [])

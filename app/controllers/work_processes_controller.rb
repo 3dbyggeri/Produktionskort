@@ -29,7 +29,7 @@ class WorkProcessesController < ApplicationController
   
   def create
     @project = Project.find(params[:project_id])
-    process_attachments :work_process, ATTACHMENT_KEYS
+    process_attachments :work_process, ATTACHMENT_KEYS, @project
     @work_process = @project.work_processes.build(params[:work_process])
     respond_to do |format|
       if @work_process.save
@@ -49,7 +49,7 @@ class WorkProcessesController < ApplicationController
   
   def update
     @work_process = WorkProcess.find(params[:id])
-    process_attachments :work_process, ATTACHMENT_KEYS
+    process_attachments :work_process, ATTACHMENT_KEYS, @work_process.project
 
     respond_to do |format|
       if @work_process.update_attributes(params[:work_process])

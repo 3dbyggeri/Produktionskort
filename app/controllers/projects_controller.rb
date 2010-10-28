@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
   
   def update
     @project = Project.find(params[:id])
-    process_attachments :project, ATTACHMENT_KEYS
+    process_attachments :project, ATTACHMENT_KEYS, @project
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

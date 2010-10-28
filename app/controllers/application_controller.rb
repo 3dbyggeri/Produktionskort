@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     warden.custom_failure! if performed?
   end
 
-  def process_attachments(base_key, attachment_keys)
+  def process_attachments(base_key, attachment_keys, current_project = nil)
     attachment_keys.each do |attachment_key|
       next unless params[base_key].has_key? attachment_key
       params[base_key][attachment_key].each_value do |object|
@@ -30,7 +30,8 @@ class ApplicationController < ActionController::Base
         when 2
           # import from Byggeweb requested by user
           if object[:new_attachment_import] == '1'
-            object[:attachment] = File.new File.join(Rails.root.to_s, 'public/favicon.ico')
+            raise ArgumentError, "Unable to connect to Byggeweb unless current_project is given" if current_project.nil?
+            object[:attachment] = current_project.byggeweb.file(object[:attachment_origin_id])
           end
         when 3
           if object[:new_attachment_import] == '1'

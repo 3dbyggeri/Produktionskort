@@ -8,6 +8,13 @@ GIT
       crack (~> 0.1.8)
       httpi (>= 0.6.0)
 
+GIT
+  remote: git://github.com/watson/httpi.git
+  revision: 82004afcc0dde14b0a7dd4654b4b13e3809132d1
+  ref: 82004afcc0dde14b0a7dd4654b4b13e3809132d1
+  specs:
+    httpi (0.6.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -57,7 +64,6 @@ GEM
       activesupport (>= 2.3.0)
       i18n (>= 0.4.0)
     httpclient (2.1.5.2)
-    httpi (0.6.0)
     i18n (0.4.1)
     libxml-ruby (1.1.4)
     mail (2.2.6.1)
@@ -106,6 +112,7 @@ DEPENDENCIES
   devise
   formtastic
   httpclient
+  httpi!
   libxml-ruby
   paperclip
   pg
