@@ -93,4 +93,22 @@ class Project < ActiveRecord::Base
       :children => children
     }
   end
+
+  def to_xml_deep
+    to_xml(
+      :include => {
+        :approvals => {},
+        :attentions => {},
+        :companies => {},
+        :equipment => {},
+        :meetings => {},
+        :people => {},
+        :site_focuses => {},
+        :site_operations => {},
+        :site_responsibilities => {},
+        :planning_referrals => {},
+        :site_referrals => {}
+      }
+    )
+  end
 end

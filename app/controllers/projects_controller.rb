@@ -37,21 +37,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { render :nothing => true, :status => 404 }
       format.xml do
-        render :xml => @project.to_xml(
-                            :include => {
-                              :approvals => {},
-                              :attentions => {},
-                              :companies => {},
-                              :equipment => {},
-                              :meetings => {},
-                              :people => {},
-                              :site_focuses => {},
-                              :site_operations => {},
-                              :site_responsibilities => {},
-                              :planning_referrals => {},
-                              :site_referrals => {}
-                            }
-                          )
+        render :xml => @project.to_xml_deep
       end
     end
   end

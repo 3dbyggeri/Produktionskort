@@ -74,5 +74,26 @@ class WorkProcess < ActiveRecord::Base
                                 :crew_referrals, :allow_destroy => true
   
   validates_presence_of :project
-  
+
+  def to_xml_deep
+    to_xml(
+      :include => {
+        :project => {},
+        :companies => {},
+        :equipment => {},
+        :inspections => { :include => :documentations },
+        :preconditions => {},
+        :protections => {},
+        :qualifications => {},
+        :requirements => {},
+        :wasted_times => {},
+        :activity_referrals => {},
+        :work_method_referrals => {},
+        :equipment_referrals => {},
+        :material_packages => { :include => :materials },
+        :material_referrals => {},
+        :crew_referrals => {}
+      }
+    )
+  end
 end

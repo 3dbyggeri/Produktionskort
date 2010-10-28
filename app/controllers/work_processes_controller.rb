@@ -17,25 +17,7 @@ class WorkProcessesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml do
-        render :xml => @work_process.to_xml(
-                            :include => {
-                              :project => {},
-                              :companies => {},
-                              :equipment => {},
-                              :inspections => { :include => :documentations },
-                              :preconditions => {},
-                              :protections => {},
-                              :qualifications => {},
-                              :requirements => {},
-                              :wasted_times => {},
-                              :activity_referrals => {},
-                              :work_method_referrals => {},
-                              :equipment_referrals => {},
-                              :material_packages => { :include => :materials },
-                              :material_referrals => {},
-                              :crew_referrals => {}
-                            }
-                          )
+        render :xml => @work_process.to_xml_deep
       end
     end
   end
@@ -46,13 +28,14 @@ class WorkProcessesController < ApplicationController
   end
   
   def create
+    @project = Project.find(params[:project_id])
     process_attachments :work_process, ATTACHMENT_KEYS
-    @work_process = WorkProcess.new(params[:work_process])
+    @work_process = @project.work_processes.build(params[:work_process])
     respond_to do |format|
       if @work_process.save
         flash[:notice] = "Produktionskort oprettet."
         format.html { redirect_to @work_process }
-        format.xml { render :xml => @work_process.to_xml }
+        format.xml { render :xml => @work_process.to_xml_deep }
       else
         format.html { render :action => 'new' }
         format.xml { render :xml => @work_process.errors.to_xml, :status => 400 }
@@ -72,7 +55,7 @@ class WorkProcessesController < ApplicationController
       if @work_process.update_attributes(params[:work_process])
         flash[:notice] = "Produktionskort opdateret."
         format.html { redirect_to @work_process }
-        format.xml { render :xml => @work_process.to_xml }
+        format.xml { render :xml => @work_process.to_xml_deep }
       else
         format.html { render :action => 'edit' }
         format.xml { render :xml => @work_process.errors.to_xml, :status => 400 }
