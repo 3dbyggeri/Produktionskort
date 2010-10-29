@@ -1,6 +1,8 @@
 class WorkProcessesController < ApplicationController
   ATTACHMENT_KEYS = [:activity_referrals_attributes, :equipment_referrals_attributes, :material_referrals_attributes, :crew_referrals_attributes]
 
+  before_filter :fix_nested_attribute_structure, :only => [:create, :update]
+
   def index
     @project = Project.find(params[:project_id])
     @work_processes = @project.work_processes

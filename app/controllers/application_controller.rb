@@ -46,4 +46,37 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def fix_nested_attribute_structure(data = nil, model = nil)
+    unless data
+      # guess data based on current controller
+      data = params[self.class.to_s.match(/^(.*)Controller$/)[1].singularize.underscore.to_sym]
+    end
+    unless model
+      # guess model based on current controller
+      model = eval(self.class.to_s.match(/^(.*)Controller$/)[1].singularize)
+    end
+
+    # iterate over the nested attribute keys for the given model
+    model.nested_attributes_options.keys.each do |key|
+      # skip if current data-set doesn't contain this key
+      next unless data.has_key? key
+
+      # When recieving the XML all nested attributes are "doubble-nested".
+      # We need to remove this doubble-nesting and also ensure that the
+      # content is wrapped inside an array (e.g. if the orignal XML only
+      # contained a single sub-node, the XML->Hash conversion would not
+      # have done this
+      raise "More than one sub-key found inside a nested attribute key" if data[key].keys.size > 1
+      sub_key = data[key].keys[0]
+      data[key] = [ data[key].delete(sub_key) ].flatten
+
+      # Recursively fix nested attributes
+      fix_nested_attribute_structure data[key], eval(key.to_s.classify)
+
+      # Renamed the nested attribute name by appending '_attributes' to
+      # the key-name
+      data["#{key.to_s}_attributes".to_sym] = data.delete(key)
+    end
+  end
 end
