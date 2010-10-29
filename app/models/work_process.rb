@@ -14,9 +14,8 @@ class WorkProcess < ActiveRecord::Base
   has_many :crew_referrals, :dependent => :destroy
   has_many :material_referrals, :dependent => :destroy
   has_many :equipment_referrals, :dependent => :destroy
-  
-  accepts_nested_attributes_for :project,
-                                :companies,
+
+  accepts_nested_attributes_for :companies,
                                 :equipment,
                                 :inspections,
                                 :preconditions,
