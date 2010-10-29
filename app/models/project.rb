@@ -1,28 +1,4 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, 
-                  :address, 
-                  :title_number, 
-                  :postal_code, 
-                  :apv_location, 
-                  :health_safety_decided_by_owner, 
-                  :health_safety_decided_by_contractor, 
-                  :health_safety_plan, 
-                  :health_safety_plan_location,
-                  :approvals_attributes,
-                  :attentions_attributes,
-                  :companies_attributes, 
-                  :equipment_attributes, 
-                  :meetings_attributes, 
-                  :people_attributes, 
-                  :site_focuses_attributes, 
-                  :site_operations_attributes, 
-                  :site_responsibilities_attributes, 
-                  :planning_referrals_attributes, 
-                  :site_referrals_attributes,
-                  :byggeweb_project,
-                  :byggeweb_username,
-                  :byggeweb_password
-  
   has_many :work_processes, :dependent => :destroy
   has_many :approvals, :dependent => :destroy
   has_many :attentions, :dependent => :destroy
