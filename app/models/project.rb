@@ -70,6 +70,16 @@ class Project < ActiveRecord::Base
     }
   end
 
+  def to_xml(options = {}, &block)
+    options[:except].concat([:byggeweb_project, :byggeweb_username, :byggeweb_password]).uniq!
+    super
+  end
+
+  def to_json(options = {})
+    options[:except].concat([:byggeweb_project, :byggeweb_username, :byggeweb_password]).uniq!
+    super
+  end
+
   def to_xml_deep
     to_xml(
       :include => {
