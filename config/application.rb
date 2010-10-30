@@ -45,7 +45,7 @@ module Produktionskort
   end
 end
 
-ATTACHMENT_ORIGINS = [['Ingen', 0], ['Via fil-upload', 1], ['Importer fra Byggeweb', 2], ['Importer bips beskrivelse', 3]]
+ATTACHMENT_ORIGINS = [['Ingen', 0], ['Via fil-upload', 1], ['Importer fra Byggeweb', 2], ['Importer bips beskrivelse', 3], ['Importer fra filbibliotek', 4]]
 
 class Array
   def shuffle

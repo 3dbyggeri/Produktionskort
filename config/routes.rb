@@ -18,6 +18,10 @@ Produktionskort::Application.routes.draw do
         resources :files, :only => :index
       end
     end
+    namespace :fileshare do
+      resources :folders, :only => :index
+      resources :files, :only => :index
+    end
     namespace :bips do
       resources :sections, :only => [:index, :show] do
         resources :content, :only => :index

@@ -350,6 +350,7 @@ button#form_submitter:hover {
 }
 
 #byggeweb_files .message,
+#fileshare_files .message,
 #bips_content .message {
   text-align: center;
   font-size: 14px;
@@ -362,6 +363,31 @@ button#form_submitter:hover {
 }
 
 #byggeweb_files li {
+  margin-bottom: 5px;
+}
+
+/* Fileshare --------------------------------- */
+
+#fileshare_attachment {
+  width: 600px;
+}
+
+#fileshare_folders {
+  width: 250px;
+  float: left;
+  margin-right: 20px;
+}
+
+#fileshare_files {
+  width: 330px;
+  float: left;
+}
+
+#fileshare_files h3 {
+  margin-top: 0;
+}
+
+#fileshare_files li {
   margin-bottom: 5px;
 }
 

@@ -25,8 +25,17 @@ class Project < ActiveRecord::Base
                                 :planning_referrals, 
                                 :site_referrals, :allow_destroy => true
 
+  before_create do
+    # setup fileshare
+    self.fileshare_bucket = self.fileshare.bucket.name
+  end
+
   def byggeweb
     @byggeweb ||= Byggeweb.new byggeweb_username, byggeweb_password, byggeweb_project
+  end
+
+  def fileshare
+    @fileshare ||= Fileshare::Base.new(fileshare_bucket)
   end
 
   def bips_root_sections

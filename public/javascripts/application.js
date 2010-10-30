@@ -47,10 +47,28 @@ var undo_bips_attachment = function(container) {
   container.find('.attachment_origin_section').remove();
 }
 
+var undo_fileshare_attachment = function(container) {
+  if (container.find('.attachment_origin').val() == '4')
+    container.find('.attachment_origin').val('0');
+  container.find('.attachment_origin_id').val('');
+  container.find('.attachment_origin_filename').remove();
+}
+
 var undo_file_upload = function(container) {
   var field = container.find('.attachment_upload');
   field.hide();
   field.html(field.html()); // clear selected file
+}
+
+var switch_attachment_type = function(type, container) {
+  if (type != 1)
+    undo_file_upload(container);
+  if (type != 2)
+    undo_byggeweb_attachment(container);
+  if (type != 3)
+    undo_bips_attachment(container);
+  if (type != 4)
+    undo_fileshare_attachment(container);
 }
 
 var projects_path = function() {
@@ -84,21 +102,14 @@ $(document).ready(function() {
 
   $('select.attachment_origin').live('change', function() {
     var container = $(this).closest('ol');
+    var attachment_type = parseInt($(this).val());
     remove_existing_attachment(container);
-    switch(parseInt($(this).val())) {
-      case 0:
-        undo_file_upload(container);
-        undo_byggeweb_attachment(container);
-        undo_bips_attachment(container);
-        break;
+    switch_attachment_type(attachment_type, container);
+    switch(attachment_type) {
       case 1:
-        undo_byggeweb_attachment(container);
-        undo_bips_attachment(container);
         container.find('.attachment_upload').show();
         break;
       case 2:
-        undo_file_upload(container);
-        undo_bips_attachment(container);
         var id = container.find('.attachment_origin_id').attr('id');
         $.facebox('<div id="byggeweb_attachment" rel="' + id + '"><div id="byggeweb_folders"></div><div id="byggeweb_files"><div class="message">Ingen folder valgt</div></div><div class="clear"></div></div>');
         $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') }); // should we not unbind this later?
@@ -119,8 +130,6 @@ $(document).ready(function() {
         });
         break;
       case 3:
-        undo_file_upload(container);
-        undo_byggeweb_attachment(container);
         var id = container.find('.attachment_origin_id').attr('id');
         $.facebox('<div id="bips_attachment" rel="' + id + '"><div id="bips_sections"></div><div id="bips_content"><div class="message">Ingen sektion valgt</div></div><div class="clear"></div></div>');
         $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') }); // should we not unbind this later?
@@ -138,6 +147,24 @@ $(document).ready(function() {
             icons: true
           },
           plugins: ['themes', 'json_data']
+        });
+        break;
+      case 4:
+        var id = container.find('.attachment_origin_id').attr('id');
+        $.facebox('<div id="fileshare_attachment" rel="' + id + '"><div id="fileshare_folders"></div><div id="fileshare_files"><div class="message">Ingen folder valgt</div></div><div class="clear"></div></div>');
+        $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') }); // should we not unbind this later?
+        $.getJSON(projects_path() + '/fileshare/folders', function(data) {
+          $('#fileshare_folders').jstree({
+            json_data: {
+              data: [data]
+            },
+            themes: {
+              theme: 'apple',
+              dots: true,
+              icons: true
+            },
+            plugins: ['themes', 'json_data']
+          });
         });
         break;
     }
@@ -160,6 +187,18 @@ $(document).ready(function() {
     $.getJSON(url, function(data) {
       console.log(data);
       $('#bips_content').html('<h3>' + data.headline + '</h3><p>' + data.body + '</p><p><input type="button" value="Benyt" rel="' + data.id + '" /></p>');
+    });
+  });
+
+  $('#fileshare_attachment .tree-node').live('click', function(e) {
+    e.preventDefault();
+    var path = $(this).parents('li.jstree-open').map(function() { return $(this).children('a').text().trim(); }).get().reverse();
+    path.push($(this).text().trim());
+    path = path.slice(1).join('/') + '/'
+    var url = projects_path() + '/fileshare/files';
+    $.getJSON(url, {path: path}, function(data) {
+      var names = $.map(data, function(a) { return '<li><a href="' + path + a.name + '">' + a.name + '</a></li>' });
+      $('#fileshare_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
     });
   });
 
