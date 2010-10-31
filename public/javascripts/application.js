@@ -196,7 +196,6 @@ $(document).ready(function() {
     var id = $(this).parent().attr('rel');
     var url = projects_path() + '/bips/sections/' + id + '/content';
     $.getJSON(url, function(data) {
-      console.log(data);
       $('#bips_content').html('<h3>' + data.headline + '</h3><p>' + data.body + '</p><p><input type="button" value="Benyt" rel="' + data.id + '" /></p>');
     });
   });
@@ -206,7 +205,9 @@ $(document).ready(function() {
     var path = fileshare_path(this);
     var url = projects_path() + '/fileshare/files';
     $.getJSON(url, {path: path}, function(data) {
-      var names = $.map(data, function(a) { return '<li><a href="' + path + '/' + a.name + '">' + a.name + '</a></li>' });
+      if (path != '')
+        path += '/';
+      var names = $.map(data, function(a) { return '<li><a href="' + path + a.name + '">' + a.name + '</a></li>' });
       $('#fileshare_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
     });
   });
