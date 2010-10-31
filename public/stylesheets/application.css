@@ -369,17 +369,17 @@ button#form_submitter:hover {
 /* Fileshare --------------------------------- */
 
 #fileshare_attachment {
-  width: 600px;
+  width: 700px;
 }
 
 #fileshare_folders {
-  width: 250px;
+  width: 320px;
   float: left;
   margin-right: 20px;
 }
 
 #fileshare_files {
-  width: 330px;
+  width: 360px;
   float: left;
 }
 
