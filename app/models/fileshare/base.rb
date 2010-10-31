@@ -58,7 +58,9 @@ module Fileshare
 
     def create_bucket(retry_count = 10)
       retry_count.times do
-        @bucket = Digest::MD5.hexdigest(Time.now.to_s)
+        # generate a random bucket name that is not currently in use
+        @bucket = Digest::MD5.hexdigest((Time.now + rand(1000)).to_s)
+        next unless Project.find_by_fileshare_bucket(@bucket).nil?
         Rails.logger.debug "[FILESHARE] Trying to create new S3 bucket named #{@bucket}..."
 
         begin
@@ -73,7 +75,11 @@ module Fileshare
           end
         rescue AWS::S3::ResponseError => e
           Rails.logger.debug "[FILESHARE] Captured S3 exception: #{e.response.inspect}"
-          if e.response.error.code != 'BucketAlreadyExists'
+          if e.response.error.code == 'BucketAlreadyExists'
+            # if the bucket-name is already in use on S3, try again
+            next
+          else
+            # in all other situations, something is wrong - and we fail
             Rails.logger.error "[FILESHARE] Could not create S3 bucket #{@bucket} (error: #{e.response.inspect})"
             return
           end

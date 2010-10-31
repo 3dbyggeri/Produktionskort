@@ -1,6 +1,11 @@
 <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_external_systems' do %>
   <h3>Eksterne systemer</h3>
 
+  <%= f.inputs "Filbibliotek", :class => "table_group" do %>
+    <h4>S3 Bucket</h4>
+    <%= @project.fileshare_bucket %>
+  <% end %>
+
   <%= f.inputs "Byggeweb", :class => "table_group" do %>
     <%= f.input :byggeweb_username, :label => 'Brugernavn' %>
     <%= f.input :byggeweb_password, :label => 'Password', :as => :password %>
