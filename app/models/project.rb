@@ -27,7 +27,7 @@ class Project < ActiveRecord::Base
 
   before_create do
     # setup fileshare
-    self.fileshare_bucket = self.fileshare.bucket.name
+    self.fileshare_bucket = self.fileshare.bucket
   end
 
   def byggeweb

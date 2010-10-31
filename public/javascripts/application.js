@@ -77,7 +77,7 @@ var projects_path = function() {
 }
 
 var fileshare_path = function(node) {
-  var path = $(node).parents('li.jstree-last').map(function() { return $(this).children('a').text().trim(); }).get().reverse();
+  var path = $(node).parents('li').map(function() { return $(this).children('a').text().trim(); }).get().reverse();
   return path.slice(1).join('/');
 }
 
