@@ -1,7 +1,7 @@
 class Fileshare::FilesController < ApplicationController
   def index
     find_project
-    render :json => @project.fileshare.files(params[:path])
+    render :json => @project.fileshare.files(params[:path]).to_json
   end
 
   private

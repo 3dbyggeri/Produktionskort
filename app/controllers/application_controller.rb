@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
           if object[:new_attachment_import] == '1'
             object[:attachment] = Tempfile.new 'bips-beskrivelse.txt'
           end
+        when 4
+          # import from Fileshare requested by user
+          if object[:new_attachment_import] == '1'
+            raise ArgumentError, "Unable to connect to Fileshare unless current_project is given" if current_project.nil?
+            object[:attachment] = current_project.fileshare.file(object[:attachment_origin_id])
+          end
         end
 
         # remove existing attachment if requested by user (only relevant when updating)

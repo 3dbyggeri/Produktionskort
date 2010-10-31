@@ -1,7 +1,11 @@
 class Fileshare::FoldersController < ApplicationController
   def index
     find_project
-    render :json => @project.fileshare.folders.to_json(true)
+    if params[:path]
+      render :json => @project.fileshare.folders(params[:path]).to_json
+    else
+      render :json => @project.fileshare.folders.to_json('Filbibliotek')
+    end
   end
 
   private

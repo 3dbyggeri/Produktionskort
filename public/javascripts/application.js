@@ -76,6 +76,11 @@ var projects_path = function() {
   return path == null ? '/projects/' + getCookie('active_project') : path[0]
 }
 
+var fileshare_path = function(node) {
+  var path = $(node).parents('li.jstree-last').map(function() { return $(this).children('a').text().trim(); }).get().reverse();
+  return path.slice(1).join('/');
+}
+
 $.jstree._themes = "/jstree_themes/"
 
 $(document).ready(function() {
@@ -117,8 +122,9 @@ $(document).ready(function() {
           json_data: {
             ajax: {
               url: function(n) {
-                return projects_path() + '/byggeweb/folders' + (n == -1 ? '' : '/' + n.attr('rel')) + '.json';
-              }
+                return projects_path() + '/byggeweb/folders' + (n == -1 ? '' : '/' + n.attr('rel'));
+              },
+              dataType: 'json'
             }
           },
           themes: {
@@ -137,8 +143,9 @@ $(document).ready(function() {
           json_data: {
             ajax: {
               url: function(n) {
-                return projects_path() + '/bips/sections' + (n == -1 ? '' : '/' + n.attr('rel')) + '.json';
-              }
+                return projects_path() + '/bips/sections' + (n == -1 ? '' : '/' + n.attr('rel'));
+              },
+              dataType: 'json'
             }
           },
           themes: {
@@ -153,18 +160,22 @@ $(document).ready(function() {
         var id = container.find('.attachment_origin_id').attr('id');
         $.facebox('<div id="fileshare_attachment" rel="' + id + '"><div id="fileshare_folders"></div><div id="fileshare_files"><div class="message">Ingen folder valgt</div></div><div class="clear"></div></div>');
         $(document).bind('close.facebox', function() { container.find('.attachment_origin').val('0') }); // should we not unbind this later?
-        $.getJSON(projects_path() + '/fileshare/folders', function(data) {
-          $('#fileshare_folders').jstree({
-            json_data: {
-              data: [data]
-            },
-            themes: {
-              theme: 'apple',
-              dots: true,
-              icons: true
-            },
-            plugins: ['themes', 'json_data']
-          });
+        $('#fileshare_folders').jstree({
+          json_data: {
+            ajax: {
+              url: projects_path() + '/fileshare/folders',
+              dataType: 'json',
+              data: function(n) {
+                return n == -1 ? null : { path: fileshare_path($(n).find('a')) };
+              }
+            }
+          },
+          themes: {
+            theme: 'apple',
+            dots: true,
+            icons: true
+          },
+          plugins: ['themes', 'json_data']
         });
         break;
     }
@@ -192,12 +203,10 @@ $(document).ready(function() {
 
   $('#fileshare_attachment .tree-node').live('click', function(e) {
     e.preventDefault();
-    var path = $(this).parents('li.jstree-open').map(function() { return $(this).children('a').text().trim(); }).get().reverse();
-    path.push($(this).text().trim());
-    path = path.slice(1).join('/') + '/'
+    var path = fileshare_path(this);
     var url = projects_path() + '/fileshare/files';
     $.getJSON(url, {path: path}, function(data) {
-      var names = $.map(data, function(a) { return '<li><a href="' + path + a.name + '">' + a.name + '</a></li>' });
+      var names = $.map(data, function(a) { return '<li><a href="' + path + '/' + a.name + '">' + a.name + '</a></li>' });
       $('#fileshare_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
     });
   });
@@ -226,5 +235,18 @@ $(document).ready(function() {
     container.find('.new_attachment_import input').val('1');
     $(document).trigger('close.facebox');
     container.find('.attachment_origin').val('3'); // reset select box due to too agressive close.facebox hook
+  });
+
+  $('#fileshare_files a').live('click', function(e) {
+    e.preventDefault();
+    var id = $(this).attr('href');
+    var name = $(this).html();
+    var attachment_origin_id = $('#' + $('#fileshare_attachment').attr('rel'));
+    var container = attachment_origin_id.closest('ol');
+    attachment_origin_id.val(id);
+    container.find('.attachment_origin').after('<p class="inline-hints attachment_origin_filename">' + name + '</p>');
+    container.find('.new_attachment_import input').val('1');
+    $(document).trigger('close.facebox');
+    container.find('.attachment_origin').val('4'); // reset select box due to too agressive close.facebox hook
   });
 });

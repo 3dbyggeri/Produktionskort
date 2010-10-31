@@ -17,37 +17,47 @@ module Fileshare
       end
     end
 
-    def folders
-      return @folders if @folders
-
-      @folders = Folder.new('Filbibliotek')
-      self.bucket.objects.each { |o| @folders << o.key.split('/') }
-      @folders
+    def folders(path = '')
+      Rails.logger.debug "[FILESHARE] Loading sub-folders for #{path}"
+      Folders.new folder(path).select { |k| k =~ /_\$folder\$$/ }.map { |k| k.sub(/_\$folder\$$/, '') }
     end
 
-    def files(path)
-      # make sure the path ends with a /
-      path += '/' if path !~ /\/$/
-      Rails.logger.debug "--> #{path.inspect}"
+    def files(path = '')
+      Rails.logger.debug "[FILESHARE] Loading files in #{path}"
+      Files.new folder(path).select { |k| k !~ /_\$folder\$$/ }
+    end
 
-      # get all keys under the given path
-      keys = self.bucket.objects(:prefix => path).map(&:key)
-      Rails.logger.debug "--> #{keys.inspect}"
+    def file(key)
+      filename = key.split('/').last
+      objects = self.bucket.objects(:prefix => key)
+      raise "Could not find attachment #{key}!" if objects.empty?
+      raise "Search for #{key} produced ambiguous result!" if objects.size > 1
 
-      # trim away the pre-path, so the base is the current directory
-      keys.map! { |k| k.gsub(/^#{path.gsub('/', '\/')}/, '') }
-      Rails.logger.debug "--> #{keys.inspect}"
+      Rails.logger.debug "[FILESHARE] Importing attachment #{objects.first.key}"
 
-      # ignore sub-directories
-      keys.reject! { |k| k =~ /\// }
-      Rails.logger.debug "--> #{keys.inspect}"
-      keys.reject! { |k| k =~ /_\$folder\$$/ }
-      Rails.logger.debug "--> #{keys.inspect}"
+      attachment = StringIO.new objects.first.value
+      attachment.instance_eval <<-RUBY
+        def original_filename
+          '#{filename}'
+        end
+      RUBY
 
-      keys.map { |k| { :name => k } }
+      return attachment
     end
 
     private
+
+    def folder(path)
+      # make sure the path ends with a /
+      path += '/' if !path.blank? && path !~ /\/$/
+
+      # only the keys that matches the path
+      keys = self.bucket.objects(:prefix => path).map(&:key)
+      # remove the base of the key
+      keys.map! { |k| k.sub(/^#{path.gsub('/', '\/')}/, '') }
+      # ignore sub-folders
+      keys.select { |k| k !~ /\// }
+    end
 
     def create_bucket(retry_count = 10)
       retry_count.times do
