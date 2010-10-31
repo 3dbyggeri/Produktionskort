@@ -15,7 +15,7 @@ module Fileshare
     def jsonize_folder(name, children = [])
       {
         :data => {
-          :title => name,
+          :title => name.force_encoding('UTF-8'),
           :attr => { :class => 'tree-node' }
         },
         :state => (children.empty? ? 'closed' : 'open'),

@@ -105,7 +105,7 @@ class Byggeweb
   def jsonize_folder(name, id, open = false, children = [])
     {
       :data => {
-        :title => name,
+        :title => name.force_encoding('UTF-8'),
         :attr => { :class => 'tree-node' }
       },
       :attr => { :rel => id },

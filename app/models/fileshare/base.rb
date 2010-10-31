@@ -51,7 +51,7 @@ module Fileshare
       # only the keys that matches the path
       keys = AWS::S3::Bucket.objects(@bucket, :prefix => path).map(&:key)
       # remove the base of the key
-      keys.map! { |k| k.sub(/^#{path.gsub('/', '\/')}/, '') }
+      keys.map! { |k| k.force_encoding('UTF-8').sub(/^#{path.gsub('/', '\/')}/, '') }
       # ignore sub-folders
       keys.select { |k| k !~ /\// }
     end
