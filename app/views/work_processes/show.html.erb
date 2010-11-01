@@ -1,5 +1,5 @@
 <% title 'Produktionskort' %>
-<% quicklinks [['Generer PDF', new_work_process_pdf_path(@work_process)],
+<% quicklinks [['Download', new_work_process_export_path(@work_process)],
                ['Rediger', edit_work_process_path(@work_process)]] %>
 <% sidebar [['Stamdata',                  '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
             ['Byggeplads',                '#', {:class => 'tab', :rel => 'pane_buildingsite'}],

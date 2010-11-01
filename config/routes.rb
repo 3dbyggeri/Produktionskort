@@ -12,7 +12,7 @@ Produktionskort::Application.routes.draw do
     end
 
     resources :work_processes, :shallow => true do
-      resource :pdf, :only => [:new, :create]
+      resource :export, :controller => 'export', :only => [:new, :create]
     end
 
     namespace :byggeweb do

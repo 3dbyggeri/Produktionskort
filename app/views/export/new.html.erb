@@ -1,10 +1,10 @@
-<% title 'Generer PDF' %>
+<% title 'Download produktionskort' %>
 <% quicklinks [['Tilbage', work_process_path(@work_process)]] %>
 
 <div class="content">
   <h3>Vælg bilag</h3>
 
-  <%= form_tag work_process_pdf_path(@work_process) do %>
+  <%= form_tag work_process_export_path(@work_process) do %>
     <table>
       <thead>
         <tr>
@@ -43,6 +43,6 @@
       </tbody>
     </table>
 
-    <p><%= submit_tag 'Generer' %></p>
+    <p><%= submit_tag 'Download' %></p>
   <% end %>
 </div>
