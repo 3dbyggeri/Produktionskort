@@ -15,15 +15,15 @@ class Byggeweb
       response = @client.request :authenticate do
         soap.body = { :_userName => user, :_password => password }
       end
-    rescue Savon::SOAP::Fault => e
-      Rails.logger.error "[BYGGEWEB] Could not log in with #{user}: #{e.message}"
-    end
 
-    case response.http.code.to_i
-    when 200
-      @client.http.headers["cookie"] = response.http.headers["Set-Cookie"]
-    else
-      Rails.logger.error "[BYGGEWEB] Could not log in with #{user} (http response code: #{response.http.code.to_i})"
+      case response.http.code.to_i
+      when 200
+        @client.http.headers["cookie"] = response.http.headers["Set-Cookie"]
+      else
+        Rails.logger.error "[BYGGEWEB] Could not log in with #{user} (http response code: #{response.http.code.to_i})"
+      end
+    rescue Savon::HTTP::Error, Savon::SOAP::Fault => e
+      Rails.logger.error "[BYGGEWEB] Could not log in with #{user}: #{e.message}"
     end
   end
 

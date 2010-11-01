@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
   end
 
   def byggeweb
-    return if (byggeweb_username && byggeweb_password).nil?
+    return if [byggeweb_username, byggeweb_password].grep(/./).empty?
     @byggeweb ||= Byggeweb.new byggeweb_username, byggeweb_password, byggeweb_project
   end
 
