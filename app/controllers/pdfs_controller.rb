@@ -182,9 +182,11 @@ class PdfsController < ApplicationController
     file = File.new(filename)
     Rails.logger.error "--> #{file.size}"
 
-    send_file file.path, :type => 'text/plan',
-                         :disposition => 'attachment',
-                         :filename => 'produktionskort.txt'
+    File.open(file.path, 'r') do |f|
+      send_data f.read, :type => 'text/plan',
+                           :disposition => 'attachment',
+                           :filename => 'produktionskort.txt'
+    end
   end
 
   private
