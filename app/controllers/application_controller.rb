@@ -66,19 +66,24 @@ class ApplicationController < ActionController::Base
     # iterate over the nested attribute keys for the given model
     model.nested_attributes_options.keys.each do |key|
       # skip if current data-set doesn't contain this key
-      next unless data.has_key? key
+      next unless data.is_a?(Hash) && data.has_key?(key)
+
+      if data[key].is_a?(Hash)
+        # If the wrapper xml node didn't have the 'type="array"' and only contains a single
+        # sub-node, it will convert it to a Hash and not an Array as usual. We just need to
+        # ensure that the content is wrapped inside an array
+        raise "More than one sub-key found inside a nested attribute key" if data[key].keys.size > 1
+        sub_key = data[key].keys[0]
+        data[key] = [ data[key].delete(sub_key) ].flatten
+      end
 
       # When recieving the XML all nested attributes are "doubble-nested".
-      # We need to remove this doubble-nesting and also ensure that the
-      # content is wrapped inside an array (e.g. if the orignal XML only
-      # contained a single sub-node, the XML->Hash conversion would not
-      # have done this)
-      raise "More than one sub-key found inside a nested attribute key" if data[key].keys.size > 1
-      sub_key = data[key].keys[0]
-      data[key] = [ data[key].delete(sub_key) ].flatten
+      # We need to remove this doubble-nesting.
 
       # Recursively fix nested attributes
-      fix_nested_attribute_structure data[key], eval(key.to_s.classify)
+      data[key].each do |sub_data|
+        fix_nested_attribute_structure sub_data, eval(key.to_s.classify)
+      end
 
       # Renamed the nested attribute name by appending '_attributes' to
       # the key-name
