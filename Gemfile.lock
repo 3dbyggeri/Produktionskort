@@ -18,6 +18,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    Ascii85 (1.0.0)
     abstract (1.0.0)
     actionmailer (3.0.0)
       actionpack (= 3.0.0)
@@ -74,8 +75,12 @@ GEM
     paperclip (2.3.3)
       activerecord
       activesupport
+    pdf-reader (0.8.6)
+      Ascii85 (>= 0.9)
     pg (0.9.0)
     polyglot (0.3.1)
+    prawn (0.11.1.pre)
+      pdf-reader (>= 0.8.1)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
@@ -95,6 +100,7 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
+    rubyzip2 (2.0.1)
     thor (0.14.2)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -116,6 +122,8 @@ DEPENDENCIES
   libxml-ruby
   paperclip
   pg
+  prawn (= 0.11.1.pre)
   rails (= 3.0.0)
+  rubyzip2
   savon!
   validation_reflection

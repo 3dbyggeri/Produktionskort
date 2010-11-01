@@ -11,7 +11,9 @@ Produktionskort::Application.routes.draw do
       post :switch
     end
 
-    resources :work_processes, :shallow => true
+    resources :work_processes, :shallow => true do
+      resource :pdf, :only => [:new, :create]
+    end
 
     namespace :byggeweb do
       resources :folders, :only => [:index, :show] do

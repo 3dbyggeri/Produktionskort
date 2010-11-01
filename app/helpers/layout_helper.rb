@@ -8,7 +8,7 @@ module LayoutHelper
   end
 
   def quicklinks(links)
-    quicklinks = links.map do |link|
+    quicklinks = links.reverse.map do |link|
       name, path = link
       content_tag :li, link_to(name, path)
     end.join

@@ -165,6 +165,11 @@ ul#quicklinks {
   font-size: 14px;
 }
 
+ul#quicklinks li {
+  float: right;
+  margin-left: 1em;
+}
+
 ul#quicklinks a {
   color: #646464;
   text-decoration: none;

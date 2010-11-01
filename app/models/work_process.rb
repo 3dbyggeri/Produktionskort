@@ -53,4 +53,14 @@ class WorkProcess < ActiveRecord::Base
       }
     )
   end
+
+  def attachments
+    (project.planning_referrals +
+     project.site_referrals +
+     project.approvals +
+     activity_referrals +
+     equipment_referrals +
+     material_referrals +
+     crew_referrals).reject { |m| m.attachment_file_name.blank? }
+  end
 end
