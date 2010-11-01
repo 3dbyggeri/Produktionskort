@@ -1,7 +1,8 @@
 # coding: utf-8
 class WorkProcessReport < Prawn::Document
   def initialize(work_process, options = {})
-    options = {:page_size => 'A4', :template => 'doc1.pdf'}.merge(options)
+    options = {:page_size => 'A4'}.merge(options)
+
     super options do |pdf|
       pdf.define_grid :columns => 2, :rows => 1, :column_gutter => 10
 
