@@ -158,10 +158,6 @@ class PdfsController < ApplicationController
       end
     end.render
 
-    # send_data produktionskort, :type => 'application/pdf',
-    #                            :disposition => 'inline',
-    #                            :filename => 'produktionskort.pdf'
-
     file = Tempfile.new "produktionskort.zip"
     Zip::ZipOutputStream.open(file.path) do |zip|
       filename = "#{@work_process.component_type.blank? ? 'Produktionskort' : @work_process.component_type}.pdf"
@@ -177,15 +173,14 @@ class PdfsController < ApplicationController
     end
     file.close
 
-    filename = "#{Rails.root}/public/robots.txt"
-    Rails.logger.error "--> #{File.exist?(filename)}: #{filename}"
-    file = File.new(filename)
-    Rails.logger.error "--> #{file.size}"
-
+    # for some reason send_file sends an empty file on Heroku - hence we the hack below
+    # send_file file.path, :type => 'application/zip',
+    #                      :disposition => 'attachment',
+    #                      :filename => 'produktionskort.zip'
     File.open(file.path, 'r') do |f|
-      send_data f.read, :type => 'text/plan',
-                           :disposition => 'attachment',
-                           :filename => 'produktionskort.txt'
+      send_data f.read, :type => 'application/zip',
+                        :disposition => 'attachment',
+                        :filename => 'produktionskort.zip'
     end
   end
 
