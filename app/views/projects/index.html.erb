@@ -19,14 +19,12 @@
   <% for project in @projects %>
   <tbody>
     <tr class="<%= cycle("odd", "even") -%>">
-      <td><%= project.name %></td>
+      <td><%= link_to project.name, switch_projects_path(:id => project.id) %></td>
       <td><%= project.address %></td>
       <td><%= project.title_number %></td>
       <td><%= project.postal_code %></td>
       <td class="action" style="white-space:nowrap">
-        <%= link_to 'Vælg', switch_projects_path(:id => project.id), :class => 'view' %>
         <%= link_to t('navigation.edit'), edit_project_path(project), :class => 'edit' %>
-        <%= link_to t('navigation.destroy'), project, :confirm => 'Er du sikker?', :method => :delete, :class => 'delete' %>
       </td>
     </tr>
   </tbody>

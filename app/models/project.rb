@@ -25,6 +25,8 @@ class Project < ActiveRecord::Base
                                 :planning_referrals, 
                                 :site_referrals, :allow_destroy => true
 
+  validates_presence_of :name
+
   before_create do
     # setup fileshare
     self.fileshare_bucket = self.fileshare.bucket

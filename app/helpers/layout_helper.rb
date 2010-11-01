@@ -9,8 +9,8 @@ module LayoutHelper
 
   def quicklinks(links)
     quicklinks = links.reverse.map do |link|
-      name, path = link
-      content_tag :li, link_to(name, path)
+      name, path, options = link
+      content_tag :li, link_to(name, path, options)
     end.join
 
     unless links.empty?
