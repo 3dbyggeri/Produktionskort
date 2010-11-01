@@ -5,9 +5,12 @@ class PdfsController < ApplicationController
   end
 
   def create
-    send_data "foo", :type => 'text/plan',
+    t = Tempfile.new "produktionskort"
+    t.print "foo"
+    send_file t.path, :type => 'text/plan',
                       :disposition => 'attachment',
                       :filename => 'produktionskort.txt'
+    t.close
   end
 
   private
