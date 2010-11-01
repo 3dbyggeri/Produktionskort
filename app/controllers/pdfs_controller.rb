@@ -163,7 +163,7 @@ class PdfsController < ApplicationController
     #                            :filename => 'produktionskort.pdf'
 
     t = Tempfile.new "produktionskort"
-    Zip::ZipOutputStream.open(t.path) do |z|; z.put_next_entry 'foo.txt'; z.print "foobar"; end
+    # Zip::ZipOutputStream.open(t.path) do |z|; z.put_next_entry 'foo.txt'; z.print "foobar"; end
     t.close
 
     send_file t.path, :type => 'application/zip',
