@@ -177,8 +177,9 @@ class PdfsController < ApplicationController
     end
     file.close
 
-    file = File.new("#{Rails.root}/public/robots.txt")
-    Rails.logger.error "--> #{file.exist?}: #{Rails.root}/public/robots.txt"
+    filename = "#{Rails.root}/public/robots.txt"
+    Rails.logger.error "--> #{File.exist?(filename)}: #{filename}"
+    file = File.new(filename)
 
     send_file file.path, :type => 'text/plan',
                          :disposition => 'attachment',
