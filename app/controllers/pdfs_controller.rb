@@ -162,7 +162,8 @@ class PdfsController < ApplicationController
     #                            :disposition => 'inline',
     #                            :filename => 'produktionskort.pdf'
 
-    io = Zip::ZipOutputStream.open(t.path) do |zip|
+    file = Tempfile.new "produktionskort.zip"
+    Zip::ZipOutputStream.open(file.path) do |zip|
       filename = "#{@work_process.component_type.blank? ? 'Produktionskort' : @work_process.component_type}.pdf"
       zip.put_next_entry "produktionskort/#{filename}"
       zip.print produktionskort
@@ -174,10 +175,11 @@ class PdfsController < ApplicationController
         zip.print open(url) {|f| f.read }
       end
     end
+    file.close
 
-    send_data io, :type => 'application/zip',
-                      :disposition => 'attachment',
-                      :filename => 'produktionskort.zip'
+    send_file "#{Rails.root}/public/robots.txt", :type => 'text/plan',
+                         :disposition => 'attachment',
+                         :filename => 'produktionskort.txt'
   end
 
   private
