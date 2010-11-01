@@ -30,7 +30,9 @@
 
     <ul id="mainNav">
       <li><%= link_to 'Byggesager', root_path, :class => (current_page?('/') ? 'active' : nil) %></li>
-      <li><%= link_to 'Produktionskort', project_work_processes_path(current_project), :class => (current_page?(about_path) || current_page?('/') ? nil : 'active') if current_project %></li>
+      <% if current_project && !current_project.new_record? %>
+      <li><%= link_to 'Produktionskort', project_work_processes_path(current_project), :class => (current_page?(about_path) || current_page?('/') ? nil : 'active') %></li>
+      <% end %>
       <li><%= link_to 'Om denne applikation', about_path, :class => (current_page?(about_path) ? 'active' : nil) %></li>
       <li class="project">
         <span>
