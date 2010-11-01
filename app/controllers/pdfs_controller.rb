@@ -164,11 +164,11 @@ class PdfsController < ApplicationController
 
     t = Tempfile.new "produktionskort"
     # Zip::ZipOutputStream.open(t.path) do |z|; z.put_next_entry 'foo.txt'; z.print "foobar"; end
-    t.close
 
-    send_file t.path, :type => 'application/zip',
+    send_file t.path, :type => 'text/plan',
                       :disposition => 'attachment',
-                      :filename => 'produktionskort.zip'
+                      :filename => 'produktionskort.txt'
+    t.close
   end
 
   private
