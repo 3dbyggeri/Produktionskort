@@ -160,11 +160,14 @@ class PdfsController < ApplicationController
 
     t = Tempfile.new "produktionskort"
     Zip::ZipOutputStream.open(t.path) do |z|
-      z.put_next_entry 'produktionskort/produktionskort.pdf'
+      filename = "#{@work_process.component_type.blank? ? 'Produktionskort' : @work_process.component_type}.pdf"
+      z.put_next_entry "produktionskort/#{filename}"
       z.print produktionskort
+      z.put_next_entry 'produktionskort/Se produktionskort online.url'
+      z.print "[InternetShortcut]\nURL=#{work_process_url(@work_process)}\n"
       params['attachments'].try(:each) do |url|
         url, filename = process_url(url)
-        z.put_next_entry "produktionskort/#{filename}"
+        z.put_next_entry "produktionskort/bilag/#{filename}"
         z.print open(url) {|f| f.read }
       end
     end
