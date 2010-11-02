@@ -91,14 +91,14 @@ Der findes p.t. ikke nogen officiel XSD for Produktionskort API'et. Du kan få
 en idé om den XML-struktur systemet benytter ved at studere resultatet af de
 GET requests der er beskrevet oven for.
 
-*Du skal dog være opmærksom på følgende: *
+<b>Du skal dog være opmærksom på følgende:</b>
 
 Ifm. POST og PUT requests bør den XML du sender til API'et ikke indeholde
-tagsne <tt><created-at></tt> og <tt><updated-at></tt>. Disse
-timestamps vedligeholdes selv af Produktionskort.
+<tt><created-at></tt> og <tt><updated-at></tt>. Disse timestamps
+vedligeholdes selv af Produktionskort.
 
-Ifm. POST requests bør du undlade at angive <tt><id></tt> tagget, da
-resoursens ID automatisk vil blive tildelt af Produktionskort.
+Ifm. POST requests bør du undlade at angive <tt><id></tt>, da resoursens ID
+automatisk vil blive tildelt af Produktionskort.
 
 === GET eksempler
 
