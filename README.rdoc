@@ -95,7 +95,7 @@ GET requests der er beskrevet oven for.
 
 Ifm. POST og PUT requests bør den XML du sender til API'et ikke indeholde
 <tt><created-at></tt> og <tt><updated-at></tt>. Disse timestamps
-vedligeholdes selv af Produktionskort.
+vedligeholdes af Produktionskort.
 
 Ifm. POST requests bør du undlade at angive <tt><id></tt>, da resoursens ID
 automatisk vil blive tildelt af Produktionskort.
