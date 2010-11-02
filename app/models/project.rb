@@ -83,11 +83,13 @@ class Project < ActiveRecord::Base
   end
 
   def to_xml(options = {}, &block)
+    options[:except] ||= []
     options[:except].concat([:byggeweb_project, :byggeweb_username, :byggeweb_password]).uniq!
     super
   end
 
   def to_json(options = {})
+    options[:except] ||= []
     options[:except].concat([:byggeweb_project, :byggeweb_username, :byggeweb_password]).uniq!
     super
   end
