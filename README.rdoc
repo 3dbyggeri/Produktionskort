@@ -94,8 +94,8 @@ GET requests der er beskrevet oven for.
 <b>Du skal dog være opmærksom på følgende:</b>
 
 Ifm. POST og PUT requests bør den XML du sender til API'et ikke indeholde
-<tt><created-at></tt> og <tt><updated-at></tt>. Disse timestamps
-vedligeholdes af Produktionskort.
+<tt><created-at></tt> og <tt><updated-at></tt>. Disse timestamps vedligeholdes
+af Produktionskort.
 
 Ifm. POST requests bør du undlade at angive <tt><id></tt>, da resoursens ID
 automatisk vil blive tildelt af Produktionskort.
@@ -125,9 +125,9 @@ Se alle byggesager
     <project>...</project>
   </projects>
 
-===== Ingen data?
+==== Ingen data?
 
-Hvis din forespårgsel ikke giver noget resultat vil du modtage dette XML
+Hvis din forespørgsel ikke giver noget resultat vil du modtage dette XML
 response:
 
   HTTP/1.1 200 OK
