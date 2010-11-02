@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def process_attachments(base_key, attachment_keys, current_project = nil)
     attachment_keys.each do |attachment_key|
       next unless params[base_key].has_key? attachment_key
-      params[base_key][attachment_key].each_value do |object|
+      params[base_key][attachment_key].try(:each_value) do |object|
         object.delete :existing_attachment # input field only used client-side
 
         case object[:attachment_origin].to_i
@@ -75,6 +75,11 @@ class ApplicationController < ActionController::Base
         raise "More than one sub-key found inside a nested attribute key" if data[key].keys.size > 1
         sub_key = data[key].keys[0]
         data[key] = [ data[key].delete(sub_key) ].flatten
+      elsif data[key].nil?
+        # if nested attributes are nil, ActiveRecord will fire an exception:
+        # ArgumentError: Hash or Array expected, got NilClass (nil)
+        data.delete(key)
+        next
       end
 
       # When recieving the XML all nested attributes are "doubble-nested".

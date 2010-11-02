@@ -85,6 +85,21 @@ af URL'en:
 
   http://brugernavn:password@produktionskort.heroku.com
 
+=== XML Schema
+
+Der findes p.t. ikke nogen officiel XSD for Produktionskort API'et. Du kan få
+en idé om den XML-struktur systemet benytter ved at studere resultatet af de
+GET requests der er beskrevet oven for.
+
+*Du skal dog være opmærksom på følgende:*
+
+Ifm. POST og PUT requests bør den XML du sender til API'et ikke indeholde
+tagsne <tt>&lt;created-at&gt;</tt> og <tt>&lt;updated-at&gt;</tt>. Disse
+timestamps vedligeholdes selv af Produktionskort.
+
+Ifm. POST requests bør du undlade at angive <tt>&lt;id&gt;</tt> tagget, da
+resoursens ID automatisk vil blive tildelt af Produktionskort.
+
 === GET eksempler
 
 Se alle byggesager
@@ -109,6 +124,18 @@ Se alle byggesager
     <project>...</project>
     <project>...</project>
   </projects>
+
+===== Ingen data?
+
+Hvis din forespårgsel ikke giver noget resultat vil du modtage dette XML
+response:
+
+  HTTP/1.1 200 OK
+  Content-Type: application/xml; charset=utf-8
+  Status: 200
+  
+  <?xml version="1.0" encoding="UTF-8"?>
+  <nil-classes type="array"/>
 
 ==== Andre GET eksempler
 
