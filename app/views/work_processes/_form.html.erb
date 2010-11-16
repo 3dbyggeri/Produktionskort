@@ -62,7 +62,7 @@
 
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_work_method' do %>
     <h3>Arbejdsmetode</h3>
-    <%= f.input :assembly_direction %>
+    <%= f.input :assembly_direction, :as => :text, :input_html => { :rows => 10 } %>
 
     <fieldset class="table_group"><legend><span>Krav</span></legend>
       <%= f.semantic_fields_for :requirements do |builder| %>

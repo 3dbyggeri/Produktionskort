@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101030014801) do
+ActiveRecord::Schema.define(:version => 20101116153117) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -297,7 +297,7 @@ ActiveRecord::Schema.define(:version => 20101030014801) do
     t.string   "location"
     t.datetime "project_delivery_time"
     t.string   "project_delivery_person"
-    t.string   "assembly_direction"
+    t.text     "assembly_direction"
     t.datetime "planned_start"
     t.datetime "planned_end"
     t.datetime "actual_start"
