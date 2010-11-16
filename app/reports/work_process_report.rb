@@ -6,8 +6,6 @@ class WorkProcessReport < Prawn::Document
     super options do |pdf|
       pdf.define_grid :columns => 2, :rows => 1, :column_gutter => 10
 
-      pdf.start_new_page
-
       pdf.text work_process.activity, :align => :center, :size => 22
 
       left = pdf.grid 0,0
