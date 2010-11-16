@@ -55,6 +55,7 @@
 <div class="pane content" style="display:none" id="pane_activity">
   <h3>Montage</h3>
   <dl>
+    <dt>Aktivitet</dt><dd><%= @work_process.activity %></dd>
     <dt>Placering</dt><dd><%= @work_process.location %></dd>
     <dt>Levering senest</dt><dd><%= @work_process.project_delivery_time.to_s(:short) unless @work_process.project_delivery_time.blank? %></dd>
     <dt>Ansvarlig</dt><dd><%= @work_process.project_delivery_person %></dd>
