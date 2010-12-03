@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203130033) do
+ActiveRecord::Schema.define(:version => 20101203155931) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -281,15 +281,6 @@ ActiveRecord::Schema.define(:version => 20101203130033) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-  create_table "wasted_times", :force => true do |t|
-    t.integer  "work_process_id"
-    t.string   "caused_by"
-    t.datetime "start"
-    t.datetime "end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "work_processes", :force => true do |t|
     t.integer  "project_id"
     t.string   "component_type"
@@ -300,12 +291,6 @@ ActiveRecord::Schema.define(:version => 20101203130033) do
     t.text     "assembly_direction"
     t.datetime "planned_start"
     t.datetime "planned_end"
-    t.datetime "actual_start"
-    t.string   "actual_start_place"
-    t.string   "actual_start_person"
-    t.datetime "actual_end"
-    t.string   "actual_end_place"
-    t.string   "actual_end_person"
     t.datetime "main_start"
     t.datetime "main_end"
     t.string   "preceding"
