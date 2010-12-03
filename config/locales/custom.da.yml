@@ -33,12 +33,6 @@ da:
         assembly_direction: Montagevejledning
         planned_start: Planlagt start
         planned_end: Planlagt slut
-        actual_start: "Faktisk start, tid"
-        actual_start_place: "Faktisk start, sted"
-        actual_start_person: "Faktisk start, person"
-        actual_end: "Faktisk slut, tid"
-        actual_end_place: "Faktisk slut, sted"
-        actual_end_person: "Faktisk slut, person"
         main_start: Hovedtid start
         main_end: Hovedtid slut
         preceding: Forudgående
@@ -161,10 +155,6 @@ da:
         alternative_supplier: Alternativ leverandør
         delivery_conditions: Leveringsbetingelser
         return_policy: Returpolitik
-      wasted_time:
-        caused_by: Årsag
-        start: Start
-        end: Slut
       requirement:
         kind: Type
         component: Krav

@@ -39,7 +39,7 @@ class WorkProcessReport < Prawn::Document
         end
 
         pdf.move_down 5
-        pdf.text 'Planlægning og opfølgning', :size => 14
+        pdf.text 'Planlægning', :size => 14
         table = []
         table << ['Planlagt start', work_process.planned_start.to_s(:short)] unless work_process.planned_start.blank?
         table << ['Planlagt slut', work_process.planned_end.to_s(:short)] unless work_process.planned_end.blank?

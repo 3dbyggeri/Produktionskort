@@ -1,14 +1,14 @@
 <% title 'Produktionskort' %>
 <% quicklinks [['Download', new_work_process_export_path(@work_process)],
                ['Rediger', edit_work_process_path(@work_process)]] %>
-<% sidebar [['Stamdata',                  '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
-            ['Byggeplads',                '#', {:class => 'tab', :rel => 'pane_buildingsite'}],
-            ['Planlægning / opfølgning',  '#', {:class => 'tab', :rel => 'pane_planning_and_follow_up'}],
-            ['Aktivitet',                 '#', {:class => 'tab', :rel => 'pane_activity'}],
-            ['Arbejdsmetode',             '#', {:class => 'tab', :rel => 'pane_work_method'}],
-            ['Materiel',                  '#', {:class => 'tab', :rel => 'pane_equipment'}],
-            ['Materialer',                '#', {:class => 'tab', :rel => 'pane_materials'}],
-            ['Mandskab',                  '#', {:class => 'tab', :rel => 'pane_men'}]] %>
+<% sidebar [['Stamdata',      '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
+            ['Byggeplads',    '#', {:class => 'tab', :rel => 'pane_buildingsite'}],
+            ['Planlægning',   '#', {:class => 'tab', :rel => 'pane_planning'}],
+            ['Aktivitet',     '#', {:class => 'tab', :rel => 'pane_activity'}],
+            ['Arbejdsmetode', '#', {:class => 'tab', :rel => 'pane_work_method'}],
+            ['Materiel',      '#', {:class => 'tab', :rel => 'pane_equipment'}],
+            ['Materialer',    '#', {:class => 'tab', :rel => 'pane_materials'}],
+            ['Mandskab',      '#', {:class => 'tab', :rel => 'pane_men'}]] %>
 <div id="left_print_col">
 <div class="pane content" id="pane_stemdata">
   <h3 class="first"><%= @work_process.activity %></h3>
@@ -41,8 +41,8 @@
   </ul>
 </div>
 
-<div class="pane content" style="display:none" id="pane_planning_and_follow_up">
-  <h3>Planlægning og opfølgning</h3>
+<div class="pane content" style="display:none" id="pane_planning">
+  <h3>Planlægning</h3>
   <dl>
     <dt>Planlagt start</dt><dd><%= @work_process.planned_start.to_s(:short) unless @work_process.planned_start.blank? %></dd>
     <dt>Planlagt slut</dt><dd><%= @work_process.planned_end.to_s(:short) unless @work_process.planned_end.blank? %></dd>

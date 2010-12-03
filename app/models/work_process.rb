@@ -8,7 +8,6 @@ class WorkProcess < ActiveRecord::Base
   has_many :protections, :dependent => :destroy
   has_many :qualifications, :dependent => :destroy
   has_many :requirements, :dependent => :destroy
-  has_many :wasted_times, :dependent => :destroy
   has_many :activity_referrals, :dependent => :destroy
   has_many :work_method_referrals, :dependent => :destroy
   has_many :crew_referrals, :dependent => :destroy
@@ -22,7 +21,6 @@ class WorkProcess < ActiveRecord::Base
                                 :protections,
                                 :qualifications,
                                 :requirements,
-                                :wasted_times,
                                 :activity_referrals,
                                 :work_method_referrals,
                                 :equipment_referrals,
@@ -43,7 +41,6 @@ class WorkProcess < ActiveRecord::Base
         :protections => {},
         :qualifications => {},
         :requirements => {},
-        :wasted_times => {},
         :activity_referrals => {},
         :work_method_referrals => {},
         :equipment_referrals => {},
