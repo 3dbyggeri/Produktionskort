@@ -17,12 +17,13 @@ Produktionskort::Application.routes.draw do
 
     namespace :byggeweb do
       resources :folders, :only => [:index, :show] do
-        resources :files, :only => :index
+        resources :files, :only => [:index, :show]
       end
     end
     namespace :fileshare do
       resources :folders, :only => :index
       resources :files, :only => :index
+      match 'files/*key' => 'files#download'
     end
     namespace :bips do
       resources :sections, :only => [:index, :show] do

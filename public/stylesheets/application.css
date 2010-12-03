@@ -367,8 +367,19 @@ button#form_submitter:hover {
   margin-top: 0;
 }
 
-#byggeweb_files li {
-  margin-bottom: 5px;
+#byggeweb_files table,
+#fileshare_files table {
+  width: 100%;
+}
+
+#byggeweb_files table td,
+#fileshare_files table td {
+  line-height: 1.5em;
+}
+
+#byggeweb_files table td.right,
+#fileshare_files table td.right {
+  text-align: right;
 }
 
 /* Fileshare --------------------------------- */
@@ -390,10 +401,6 @@ button#form_submitter:hover {
 
 #fileshare_files h3 {
   margin-top: 0;
-}
-
-#fileshare_files li {
-  margin-bottom: 5px;
 }
 
 /* Bips --------------------------------- */

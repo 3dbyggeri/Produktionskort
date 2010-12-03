@@ -186,8 +186,10 @@ $(document).ready(function() {
     var id = $(this).parent().attr('rel');
     var url = projects_path() + '/byggeweb/folders/' + id + '/files';
     $.getJSON(url, function(data) {
-      var names = $.map(data, function(a) { return '<li><a href="#" rel="' + a.id + '">' + a.name + '</a></li>' });
-      $('#byggeweb_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
+      var names = $.map(data, function(a) {
+        return '<tr><td>' + a.name + '</td><td class="right"><a href="' + url + '/' + a.id + '">Preview</a> | <a href="#" class="attach" rel="' + a.id + '">Vedhæft</a></td></tr>';
+      });
+      $('#byggeweb_files').html('<h3>Filer</h3><table><tbody>' + names.join('') + '</tbody></table>');
     });
   });
 
@@ -207,15 +209,17 @@ $(document).ready(function() {
     $.getJSON(url, {path: path}, function(data) {
       if (path != '')
         path += '/';
-      var names = $.map(data, function(a) { return '<li><a href="' + path + a.name + '">' + a.name + '</a></li>' });
-      $('#fileshare_files').html('<h3>Filer</h3><ul>' + names.join('') + '</ul>');
+      var names = $.map(data, function(a) {
+        return '<tr><td>' + a.name + '</td><td class="right"><a href="' + url + '/' + path + a.name + '">Preview</a> | <a href="' + path + a.name + '" class="attach">Vedhæft</a></td></tr>';
+      });
+      $('#fileshare_files').html('<h3>Filer</h3><table><tbody>' + names.join('') + '</tbody></table>');
     });
   });
 
-  $('#byggeweb_files a').live('click', function(e) {
+  $('#byggeweb_files a.attach').live('click', function(e) {
     e.preventDefault();
     var id = $(this).attr('rel');
-    var name = $(this).html();
+    var name = $(this).closest('tr').find('td:first').html();
     var attachment_origin_id = $('#' + $('#byggeweb_attachment').attr('rel'));
     var container = attachment_origin_id.closest('ol');
     attachment_origin_id.val(id);
@@ -238,10 +242,10 @@ $(document).ready(function() {
     container.find('.attachment_origin').val('3'); // reset select box due to too agressive close.facebox hook
   });
 
-  $('#fileshare_files a').live('click', function(e) {
+  $('#fileshare_files a.attach').live('click', function(e) {
     e.preventDefault();
     var id = $(this).attr('href');
-    var name = $(this).html();
+    var name = $(this).closest('tr').find('td:first').html();
     var attachment_origin_id = $('#' + $('#fileshare_attachment').attr('rel'));
     var container = attachment_origin_id.closest('ol');
     attachment_origin_id.val(id);
