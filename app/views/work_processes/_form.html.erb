@@ -65,6 +65,13 @@
       <% end %>
       <p><%= link_to_add_fields "Tilføj værnemiddel", f, :protections %></p>
     </fieldset>
+
+    <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
+      <%= f.semantic_fields_for :work_method_referrals do |builder| %>
+        <%= render 'work_method_referral_fields', :f => builder %>
+       <% end %>
+       <p><%= link_to_add_fields "Tilføj henvisning", f, :work_method_referrals %></p>
+    </fieldset>
   <% end %>
 
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_equipment' do %>

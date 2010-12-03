@@ -80,6 +80,8 @@
     <li><%= "#{protection.kind}:" %><%= " #{protection.notes}" unless protection.notes.blank? %><%= " #{protection.usage}" unless protection.usage.blank? %></li>
     <% end %>
   </ul>
+
+  <%= render 'group_referrals', :ref_arr => @work_process.work_method_referrals %>
 </div>
 
 <div class="pane content" style="display:none" id="pane_equipment">

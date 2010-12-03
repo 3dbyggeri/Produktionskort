@@ -1,5 +1,5 @@
 class WorkProcessesController < ApplicationController
-  ATTACHMENT_KEYS = [:activity_referrals_attributes, :equipment_referrals_attributes, :material_referrals_attributes, :crew_referrals_attributes]
+  ATTACHMENT_KEYS = [:activity_referrals_attributes, :equipment_referrals_attributes, :material_referrals_attributes, :crew_referrals_attributes, :work_method_referrals_attributes]
 
   before_filter :fix_nested_attribute_structure, :only => [:create, :update]
 
