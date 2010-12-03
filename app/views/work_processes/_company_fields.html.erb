@@ -1,10 +1,9 @@
 <%= f.inputs :class => "tableize inputs" do %>
   <%= f.input :kind, :collection => Company::KINDS, :include_blank => false %>
   <%= f.input :name %>
-  <%= f.input :postal_code %>
-  <%= f.input :city %>
+  <%= f.input :postal_code, :input_html => { :size => 5 }, :wrapper_html => { :class => 'col1' } %>
+  <%= f.input :city, :input_html => { :size => 30 }, :wrapper_html => { :class => 'col2' } %>
   <%= f.input :tel %>
-  <%= f.input :fax %>
   <%= f.input :email %>
   <%= f.input :url %>
   <%= link_to_remove_fields "Slet", f %>

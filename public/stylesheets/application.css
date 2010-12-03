@@ -329,11 +329,11 @@ button#form_submitter:hover {
   list-style-type: disc;
 }
 
-#main .content dt {
+#main dt {
   font-weight: bold;
 }
 
-#main .content dd {
+#main dd {
   margin: 4px 0 8px 20px;
 }
 

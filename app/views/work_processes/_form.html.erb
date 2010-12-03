@@ -10,13 +10,26 @@
     <h3>Aktivitet</h3>
     <%= f.input :component_type %>
     <%= f.input :activity %>
+    <%= f.input :activity_number %>
+    <%= f.input :extra_work %>
+    <%= f.input :value, :input_html => { :size => 5 }, :wrapper_html => { :class => 'col1' } %>
+    <%= f.input :unit, :input_html => { :size => 5 }, :wrapper_html => { :class => 'col2' } %>
     <%= f.input :location %>
     <%= f.input :project_delivery_time %>
     <%= f.input :project_delivery_person %>
-    <%= f.input :value %>
-    <%= f.input :unit %>
 
-    <fieldset class="table_group"><legend><span>Adresser</span></legend>
+    <fieldset class="table_group"><legend><span>Byggepladsadresse</span></legend>
+      <dl>
+        <dt>Vej</dt>
+        <dd><%= @work_process.project.address %></dd>
+        <dt>Matrikelnr</dt>
+        <dd><%= @work_process.project.title_number %></dd>
+        <dt>Postnr</dt>
+        <dd><%= @work_process.project.postal_code %></dd>
+      </dl>
+    </fieldset>
+
+    <fieldset class="table_group"><legend><span>Andre adresser</span></legend>
       <%= f.semantic_fields_for :companies do |builder| %>
         <%= render 'company_fields', :f => builder %>
       <% end %>
@@ -110,14 +123,14 @@
 
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_men' do %>
     <h3>Mandskab</h3>
-    <%= f.input :social_responsibility %>
+    <%= f.input :responsible %>
+    <%= f.input :duration %>
     <%= f.input :piecework_rate %>
     <%= f.input :hourly_rate %>
     <%= f.input :bonus %>
     <%= f.input :incentive_deal %>
     <%= f.input :allowance %>
     <%= f.input :time_of_day %>
-    <%= f.input :extra_work %>
 
     <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
       <%= f.semantic_fields_for :crew_referrals do |builder| %>

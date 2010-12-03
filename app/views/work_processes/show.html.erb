@@ -12,10 +12,18 @@
 <div id="left_print_col">
 <div class="pane content" id="pane_stemdata">
   <h3 class="first"><%= @work_process.activity %></h3>
-  <%= @work_process.project.title_number %> <%= @work_process.project.name %><br />
+  <dl>
+    <dt>Projekt</dt><dd><%= @work_process.project.name %></dd>
+    <dt>Aktivitetsnummer</dt><dd><%= @work_process.activity_number %></dd>
+    <dt>Ekstraarbejde</dt><dd><%= @work_process.extra_work ? "Ja" : "Nej" %></dd>
+  </dl>
 
   <h3>Adresse</h3>
-  <%= @work_process.project.address %>
+  <dl>
+    <dt>Vej</dt><dd><%= @work_process.project.address %></dd>
+    <dt>Matrikelnr</dt><dd><%= @work_process.project.title_number %></dd>
+    <dt>Postnr</dt><dd><%= @work_process.project.postal_code %></dd>
+  </dl>
 
   <h3>Personer</h3>
   <dl>
@@ -99,7 +107,7 @@
 <div class="pane content" style="display:none" id="pane_materials">
   <h3>Materialer</h3>
   <% for material_package in @work_process.material_packages do %>
-    <h3>Materialepakke, unitnr.: <%= material_package.unit_number %></h3>
+    <h3>Materialepakke, unitnr.: <%= material_package.unit_number %> (<%= material_package.supplier %>)</h3>
     <table>
       <thead>
         <tr>
@@ -123,14 +131,14 @@
 <div class="pane content" style="display:none" id="pane_men">
   <h3>Mandskab</h3>
   <dl>
-    <% unless @work_process.social_responsibility.blank? %><dt>Socialt ansvar</dt><dd><%= @work_process.social_responsibility %></dd><% end %>
+    <% unless @work_process.responsible.blank? %><dt>Ansvarlig</dt><dd><%= @work_process.responsible %></dd><% end %>
+    <% unless @work_process.duration.blank? %><dt>Varighed (timer)</dt><dd><%= @work_process.duration %></dd><% end %>
     <% unless @work_process.piecework_rate.blank? %><dt>Akkord</dt><dd><%= @work_process.piecework_rate %></dd><% end %>
     <% unless @work_process.hourly_rate.blank? %><dt>Timeløn</dt><dd><%= @work_process.hourly_rate %></dd><% end %>
     <dt>Bonus</dt><dd><%= @work_process.bonus ? "Ja" : "Nej" %></dd>
     <dt>Incitamentaftale</dt><dd><%= @work_process.incentive_deal ? "Ja" : "Nej" %></dd>
     <% unless @work_process.allowance.blank? %><dt>Godtgørelse</dt><dd><%= @work_process.allowance %></dd><% end %>
     <% unless @work_process.time_of_day.blank? %><dt>Tid på dagen</dt><dd><%= @work_process.time_of_day %></dd><% end %>
-    <dt>Ekstra arbejde</dt><dd><%= @work_process.extra_work ? "Ja" : "Nej" %></dd>
   </dl>
   <%= render 'group_referrals', :ref_arr => @work_process.crew_referrals %>
 

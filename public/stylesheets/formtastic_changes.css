@@ -48,6 +48,36 @@ form.formtastic legend {
   color: #646464;
 }
 
+form.formtastic fieldset > ol > li label {
+  width: 175px;
+}
+
+form.formtastic ul.errors,
+form.formtastic fieldset > ol > li p.inline-hints,
+form.formtastic fieldset > ol > li p.inline-errors,
+form.formtastic fieldset > ol > li ul.errors {
+  margin-left: 175px;
+}
+
+form.formtastic fieldset > ol > li fieldset ol {
+  width: 488px;
+}
+
+form.formtastic fieldset.buttons,
+form.formtastic fieldset > ol > li fieldset ol,
+form.formtastic fieldset > ol > li.boolean label {
+  padding-left: 175px;
+}
+
+form.formtastic fieldset > ol > li.col1 {
+  float: left;
+}
+
+form.formtastic fieldset > ol > li.col2 label {
+  width: auto;
+  margin: 0 1em;
+}
+
 form.no-headline {
   margin-top: 20px;
 }

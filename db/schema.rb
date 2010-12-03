@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20101203155931) do
     t.integer  "postal_code"
     t.string   "city"
     t.string   "tel"
-    t.string   "fax"
     t.string   "email"
     t.string   "url"
     t.datetime "created_at"
@@ -105,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20101203155931) do
     t.string   "return_policy"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "supplier"
   end
 
   create_table "materials", :force => true do |t|
@@ -156,7 +156,6 @@ ActiveRecord::Schema.define(:version => 20101203155931) do
     t.string   "tel"
     t.string   "direct_tel"
     t.string   "mobile_tel"
-    t.string   "fax"
     t.string   "email"
     t.string   "url"
     t.datetime "created_at"
@@ -295,7 +294,6 @@ ActiveRecord::Schema.define(:version => 20101203155931) do
     t.datetime "main_end"
     t.string   "preceding"
     t.string   "subsequent"
-    t.string   "social_responsibility"
     t.decimal  "piecework_rate"
     t.decimal  "hourly_rate"
     t.boolean  "bonus"
@@ -307,6 +305,9 @@ ActiveRecord::Schema.define(:version => 20101203155931) do
     t.datetime "updated_at"
     t.string   "unit"
     t.string   "value"
+    t.string   "activity_number"
+    t.string   "responsible"
+    t.string   "duration"
   end
 
 end

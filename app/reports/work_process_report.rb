@@ -126,14 +126,15 @@ class WorkProcessReport < Prawn::Document
         pdf.move_down 5
         pdf.text 'Mandskab', :size => 14
         table = []
-        table << ['Socialt ansvar', work_process.social_responsibility] unless work_process.social_responsibility.blank?
+        table << ['Ansvarlig', work_process.responsible] unless work_process.responsible.blank?
+        table << ['Varighed (timer)', work_process.duration] unless work_process.duration.blank?
         table << ['Akkord', work_process.piecework_rate] unless work_process.piecework_rate.blank?
         table << ['Timeløn', work_process.hourly_rate] unless work_process.hourly_rate.blank?
         table << ['Bonus', work_process.bonus ? "Ja" : "Nej"]
         table << ['Incitamentaftale', work_process.incentive_deal ? "Ja" : "Nej"]
         table << ['Godtgørelse', work_process.allowance] unless work_process.allowance.blank?
         table << ['Tid på dagen', work_process.time_of_day] unless work_process.time_of_day.blank?
-        table << ['Ekstra arbejde', work_process.extra_work ? "Ja" : "Nej"]
+        table << ['Ekstraarbejde', work_process.extra_work ? "Ja" : "Nej"]
         pdf.table table
 
         pdf.stroke do

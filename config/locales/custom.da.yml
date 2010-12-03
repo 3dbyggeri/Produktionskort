@@ -27,6 +27,7 @@ da:
         project: Sag
         component_type: Bygningsdel
         activity: Aktivitet
+        activity_number: Aktivitetsnummer
         location: Placering
         project_delivery_time: "Projektoverdragelse, tid"
         project_delivery_person: "Projektoverdragelse, person"
@@ -37,15 +38,16 @@ da:
         main_end: Hovedtid slut
         preceding: Forudgående
         subsequent: Efterfølgende
-        social_responsibility: Socialt ansvar
+        responsible: Ansvarlig
+        duration: "Varighed (timer)"
         piecework_rate: "Akkord, kr"
         hourly_rate: "Timeløn, kr"
         bonus: "Bonus"
         incentive_deal: "Incitamentaftale"
         allowance: Godtgørelse
         time_of_day: Tid på dagen
-        extra_work: Ekstra arbejde
-        value: Værdi
+        extra_work: Ekstraarbejde
+        value: Mængde
         unit: Enhed
       project:
         name: Navn
@@ -65,7 +67,6 @@ da:
         postal_code: Postnummer
         city: By
         tel: Telefon
-        fax: Fax
         email: E-mail
         url: Web
       person:
@@ -78,7 +79,6 @@ da:
         tel: Telefon
         direct_tel: Direkte
         mobile_tel: Mobil
-        fax: Fax
         email: E-mail
         url: Web
       meeting:
@@ -122,6 +122,7 @@ da:
         start_time: Starttid
         end_time: Sluttid
       material_package:
+        supplier: Leverandør
         unit_number: Unitnr.
         load_number: Læsnr.
         gate_number: Portnr.
