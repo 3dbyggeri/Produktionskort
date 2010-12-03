@@ -1,21 +1,33 @@
-<% sidebar [['Stamdata',      '#', {:class => 'active tab', :rel => 'pane_stemdata'}],
+<% sidebar [['Aktivitet',     '#', {:class => 'active tab', :rel => 'pane_activity'}],
             ['Planlægning',   '#', {:class => 'tab', :rel => 'pane_planning'}],
-            ['Aktivitet',     '#', {:class => 'tab', :rel => 'pane_activity'}],
             ['Arbejdsmetode', '#', {:class => 'tab', :rel => 'pane_work_method'}],
             ['Materiel',      '#', {:class => 'tab', :rel => 'pane_equipment'}],
             ['Materialer',    '#', {:class => 'tab', :rel => 'pane_materials'}],
             ['Mandskab',      '#', {:class => 'tab', :rel => 'pane_men'}]], :submit => ['Gem', 'work_process_form'] %>
 
 <%= semantic_form_for [@project, @work_process], :html => {:id => 'work_process_form', :multipart => true} do |f| %>
-  <%= f.inputs :class => 'pane', :id => 'pane_stemdata' do %>
-    <h3>Stamdata</h3>
+  <%= f.inputs :class => 'pane', :id => 'pane_activity' do %>
+    <h3>Aktivitet</h3>
     <%= f.input :component_type %>
+    <%= f.input :activity %>
+    <%= f.input :location %>
+    <%= f.input :project_delivery_time %>
+    <%= f.input :project_delivery_person %>
+    <%= f.input :value %>
+    <%= f.input :unit %>
 
     <fieldset class="table_group"><legend><span>Adresser</span></legend>
       <%= f.semantic_fields_for :companies do |builder| %>
         <%= render 'company_fields', :f => builder %>
       <% end %>
       <p><%= link_to_add_fields "Tilføj virksomhed", f, :companies %></p>
+    </fieldset>
+
+    <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
+      <%= f.semantic_fields_for :activity_referrals do |builder| %>
+        <%= render 'activity_referral_fields', :f => builder %>
+      <% end %>
+      <p><%= link_to_add_fields "Tilføj henvisning", f, :activity_referrals %></p>
     </fieldset>
   <% end %>
 
@@ -27,23 +39,6 @@
     <%= f.input :subsequent %>
     <%= f.input :planned_start %>
     <%= f.input :planned_end %>
-  <% end %>
-
-  <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_activity' do %>
-    <h3>Aktivitet</h3>
-    <%= f.input :activity %>
-    <%= f.input :location %>
-    <%= f.input :project_delivery_time %>
-    <%= f.input :project_delivery_person %>
-    <%= f.input :value %>
-    <%= f.input :unit %>
-
-    <fieldset class="table_group"><legend><span>Henvisninger</span></legend>
-      <%= f.semantic_fields_for :activity_referrals do |builder| %>
-        <%= render 'activity_referral_fields', :f => builder %>
-      <% end %>
-      <p><%= link_to_add_fields "Tilføj henvisning", f, :activity_referrals %></p>
-    </fieldset>
   <% end %>
 
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_work_method' do %>
