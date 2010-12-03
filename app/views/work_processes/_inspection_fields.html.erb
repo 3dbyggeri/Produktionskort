@@ -3,7 +3,7 @@
   <%= f.input :method, :collection => Inspection::METHODS, :include_blank => false %>
   <%= f.input :notes %>
   <%= f.input :person %>
-  <%= f.input :time, :as => :string %>
+  <%= f.input :time %>
   <%= f.input :location %>
   <%= link_to_remove_fields "Slet", f %>
 <% end %>

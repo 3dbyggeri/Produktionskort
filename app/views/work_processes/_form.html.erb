@@ -21,13 +21,12 @@
 
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_planning' do %>
     <h3>Planlægning</h3>
-    <%# see http://groups.google.com.au/group/formtastic/browse_thread/thread/5ffd565ddcad412f regarding default date values %>
-    <%= f.input :main_start, :as => :string %>
-    <%= f.input :main_end, :as => :string %>
+    <%= f.input :main_start %>
+    <%= f.input :main_end %>
     <%= f.input :preceding %>
     <%= f.input :subsequent %>
-    <%= f.input :planned_start, :as => :string %>
-    <%= f.input :planned_end, :as => :string %>
+    <%= f.input :planned_start %>
+    <%= f.input :planned_end %>
   <% end %>
 
   <%= f.inputs :class => 'pane', :style => 'display:none', :id => 'pane_activity' do %>

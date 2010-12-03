@@ -44,6 +44,10 @@ form.formtastic fieldset.table_group p.sub_insert {
   margin-bottom: 12px;
 }
 
+form.formtastic legend {
+  color: #646464;
+}
+
 form.no-headline {
   margin-top: 20px;
 }
