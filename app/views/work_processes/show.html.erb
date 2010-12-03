@@ -57,7 +57,7 @@
   <dl>
     <dt>Aktivitet</dt><dd><%= @work_process.activity %></dd>
     <dt>Placering</dt><dd><%= @work_process.location %></dd>
-    <dt>Levering senest</dt><dd><%= @work_process.project_delivery_time.to_s(:short) unless @work_process.project_delivery_time.blank? %></dd>
+    <dt>Levering senest</dt><dd><%= @work_process.project_delivery_time %></dd>
     <dt>Ansvarlig</dt><dd><%= @work_process.project_delivery_person %></dd>
     <dt><%= @work_process.unit %></dt><dd><%= @work_process.value %></dd>
   </dl>

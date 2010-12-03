@@ -57,7 +57,7 @@ class WorkProcessReport < Prawn::Document
         pdf.text 'Montage', :size => 14
         table = []
         table << ['Placering', work_process.location]
-        table << ['Levering senest', work_process.project_delivery_time.to_s(:short)] unless work_process.project_delivery_time.blank?
+        table << ['Levering senest', work_process.project_delivery_time]
         table << ['Ansvarlig', work_process.project_delivery_person]
         table << [work_process.unit, work_process.value] unless work_process.unit.blank?
         pdf.table table

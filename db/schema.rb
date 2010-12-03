@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116153117) do
+ActiveRecord::Schema.define(:version => 20101203130033) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -295,7 +295,7 @@ ActiveRecord::Schema.define(:version => 20101116153117) do
     t.string   "component_type"
     t.string   "activity"
     t.string   "location"
-    t.datetime "project_delivery_time"
+    t.string   "project_delivery_time",   :limit => nil
     t.string   "project_delivery_person"
     t.text     "assembly_direction"
     t.datetime "planned_start"
