@@ -71,7 +71,7 @@ class WorkProcessReport < Prawn::Document
           c.size = 16
         end
       end
-      pdf.image "#{Rails.root}/assets/spaane3.png", :position => :right, :width => 75, :at => [pdf.bounds.right-75, 0]
+      pdf.image "#{Rails.root}/assets/spaane.png", :position => :right, :width => 75, :at => [pdf.bounds.right-75, 0]
 
       # *****************************************************************
       # *****************************************************************
