@@ -204,10 +204,12 @@ class WorkProcessReport < Prawn::Document
   end
 
   def unordered_list(elements = [])
+    return if elements.empty?
     self.table elements.map { |element| ["•", element] }, :cell_style => { :borders => [], :padding => 0 }, :column_widths => { 0 => 7 }
   end
 
   def definition_list(pairs = [])
+    return if pairs.empty?
     self.table pairs, :cell_style => { :borders => [], :padding => [0,8,0,0] }
   end
 end
