@@ -168,14 +168,14 @@ class WorkProcessReport < Prawn::Document
 
         pdf.text 'Mandskab', :size => 14
         pairs = []
-        pairs << ['Ansvarlig', work_process.responsible] unless work_process.responsible.blank?
-        pairs << ['Varighed (timer)', work_process.duration] unless work_process.duration.blank?
-        pairs << ['Akkord', work_process.piecework_rate] unless work_process.piecework_rate.blank?
-        pairs << ['Timeløn', work_process.hourly_rate] unless work_process.hourly_rate.blank?
+        pairs << ['Ansvarlig', work_process.responsible.to_s] unless work_process.responsible.blank?
+        pairs << ['Varighed (timer)', work_process.duration.to_s] unless work_process.duration.blank?
+        pairs << ['Akkord', work_process.piecework_rate.to_s] unless work_process.piecework_rate.blank?
+        pairs << ['Timeløn', work_process.hourly_rate.to_s] unless work_process.hourly_rate.blank?
         pairs << ['Bonus', work_process.bonus ? "Ja" : "Nej"]
         pairs << ['Incitamentaftale', work_process.incentive_deal ? "Ja" : "Nej"]
-        pairs << ['Godtgørelse', work_process.allowance] unless work_process.allowance.blank?
-        pairs << ['Tid på dagen', work_process.time_of_day] unless work_process.time_of_day.blank?
+        pairs << ['Godtgørelse', work_process.allowance.to_s] unless work_process.allowance.blank?
+        pairs << ['Tid på dagen', work_process.time_of_day.to_s] unless work_process.time_of_day.blank?
         pairs << ['Ekstraarbejde', work_process.extra_work ? "Ja" : "Nej"]
         pdf.definition_list pairs
 
