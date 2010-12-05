@@ -5,8 +5,9 @@ class ExportController < ApplicationController
 
   def create
     @work_process = WorkProcess.find(params[:work_process_id])
+    table_of_content = params[:pdf][:table_of_content].split(/\n|\r\n/).map(&:strip).reject(&:blank?)
 
-    produktionskort = WorkProcessReport.new(@work_process).render
+    produktionskort = WorkProcessReport.new(@work_process, table_of_content).render
 
     file = Tempfile.new "produktionskort.zip"
     Zip::ZipOutputStream.open(file.path) do |zip|

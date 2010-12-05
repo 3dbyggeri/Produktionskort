@@ -2,9 +2,36 @@
 <% quicklinks [['Tilbage', work_process_path(@work_process)]] %>
 
 <div class="content">
-  <h3>Vælg bilag</h3>
-
   <%= form_tag work_process_export_path(@work_process) do %>
+    <h3>Indholdsfortegnelse</h3>
+    <p>
+      Indholdsfortegnelsen redigeres i feltet neden for. Hver linie bliver til punkt i
+      den endelige indholdsfortegnelse. Hvert punkt bliver desuden automatisk nummereret
+      fortløbende.
+    </p>
+    <%= text_area(:pdf, :table_of_content, :size => "60x15", :value => "Tegningsliste, Arkitekt
+Brandplaner
+Væg- og døroversigt / Dørliste
+Snit - Planer - Opstalter
+Facadekomplettering
+Beskrivelser
+Tidsplan
+Byggepladsplan - Adgangsveje, Affalds- og materialecontainere
+Montagevejledning
+Telefonliste - Byggeleder og formand
+Materialelister
+Tegningsliste Ingeniør
+Føringsveje Installationsfag
+Rumskema
+Aktivitetsnumre
+APV
+KS - Egenkontrol
+Slutkontrol
+Nedrivning, eksisterende forhold
+Variabelt tekstfelt til andre emner") %>
+
+    <h3>Vælg bilag</h3>
+
     <table>
       <thead>
         <tr>
