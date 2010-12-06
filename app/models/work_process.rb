@@ -58,6 +58,7 @@ class WorkProcess < ActiveRecord::Base
      activity_referrals +
      equipment_referrals +
      material_referrals +
-     crew_referrals).reject { |m| m.attachment_file_name.blank? }
+     crew_referrals +
+     work_method_referrals).reject { |m| m.attachment_file_name.blank? }
   end
 end
