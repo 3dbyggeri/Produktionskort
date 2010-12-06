@@ -14,7 +14,7 @@ class WorkProcessReport < Prawn::Document
       pdf.move_down 20
       pdf.text "Svendemappe\n#{work_process.project.name}\n#{work_process.project.address}", :size => 28, :leading => 5
       pdf.move_down 30
-      pdf.text "Sagsnr.: #{work_process.activity_number}", :size => 16
+      pdf.text "Sagsnr.: ", :size => 16
       pdf.move_down 10
       pdf.image "#{Rails.root}/assets/jakon_fp.jpg", :position => :center, :width => 335
       pdf.move_down 25
@@ -25,12 +25,9 @@ class WorkProcessReport < Prawn::Document
         pdf.move_down 20
       end
       pdf.text work_process.component_type, :size => 14, :leading => 5
-      pdf.text "• #{work_process.activity} #{work_process.activity_number ? "(#work_process.activity_number)" : ''}", :leading => 5
+      pdf.text "• #{work_process.activity}#{work_process.activity_number ? " (##{work_process.activity_number})" : ''}", :leading => 5
       pdf.text "• #{work_process.location}", :leading => 5
-      # pdf.text "• Etape", :leading => 5
-      # pdf.text "• Område", :leading => 5
-      # pdf.text "• Afsnit", :leading => 5
-      # pdf.text "• Personer", :leading => 5
+      pdf.text "• Ansvarlig: #{work_process.responsible}", :leading => 5 if work_process.responsible
       pdf.text "JAKON", :align => :right, :valign => :bottom, :style => :bold, :character_spacing => 1
 
       # *****************************************************************

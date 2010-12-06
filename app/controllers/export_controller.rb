@@ -23,10 +23,12 @@ class ExportController < ApplicationController
       zip.print produktionskort
       zip.put_next_entry 'produktionskort/Se produktionskort online.url'.force_encoding('ISO-8859-1')
       zip.print "[InternetShortcut]\nURL=#{work_process_url(@work_process)}\n"
-      params['attachments'].try(:each) do |url|
-        url, filename = process_url(url)
-        zip.put_next_entry "produktionskort/bilag/#{filename}".force_encoding('ISO-8859-1')
-        zip.print open(url) {|f| f.read }
+      params[:attachments].try(:each) do |klass, urls|
+        urls.each do |url|
+          url, filename = process_url(url)
+          zip.put_next_entry "produktionskort/bilag/#{klass.constantize.human_name}/#{filename}".force_encoding('ISO-8859-1')
+          zip.print open(url) {|f| f.read }
+        end
       end
     end
     file.close

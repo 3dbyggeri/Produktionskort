@@ -44,25 +44,8 @@ Variabelt tekstfelt til andre emner") %>
       <tbody>
       <% for attachment in @work_process.attachments %>
         <tr class="<%= cycle("odd", "even") -%>">
-          <td><%= check_box_tag "attachments[]", attachment.attachment.url(:original, false) %></td>
-          <td><%= 
-            case attachment.class.to_s
-            when 'PlanningReferral'
-              'Projekt planlægning'
-            when 'SiteReferral'
-              'Byggeplads'
-            when 'Approval'
-              'Godkendelse'
-            when 'ActivityReferral'
-              'Aktivitet'
-            when 'EquipmentReferral'
-              'Materiel'
-            when 'MaterialReferral'
-              'Materialer'
-            when 'CrewReferral'
-              'Mandskab'
-            end
-          %></td>
+          <td><%= check_box_tag "attachments[#{attachment.class}][]", attachment.attachment.url(:original, false) %></td>
+          <td><%= attachment.class.human_name %></td>
           <td><%= attachment.is_a?(Approval) ? attachment.kind : attachment.notes %></td>
           <td><%= link_to(attachment.attachment_file_name, attachment.attachment.url) %></td>
         </tr>

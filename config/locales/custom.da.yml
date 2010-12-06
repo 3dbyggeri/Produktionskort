@@ -187,3 +187,11 @@ da:
       work_process: Produktionskort
       project: Sag
       user: Bruger
+      planning_referral: Projekt planlægning
+      site_referral: Byggeplads
+      approval: Godkendelse
+      activity_referral: Aktivitet
+      equipment_referral: Materiel
+      material_referral: Materialer
+      crew_referral: Mandskab
+      work_method_referral: Arbejdsmetode
