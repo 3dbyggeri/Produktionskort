@@ -44,7 +44,7 @@ Variabelt tekstfelt til andre emner") %>
       <tbody>
       <% for attachment in @work_process.attachments %>
         <tr class="<%= cycle("odd", "even") -%>">
-          <td><%= check_box_tag "attachments[]", attachment.attachment.url %></td>
+          <td><%= check_box_tag "attachments[]", attachment.attachment.url(:original, false) %></td>
           <td><%= 
             case attachment.class.to_s
             when 'PlanningReferral'

@@ -18,7 +18,7 @@ class ExportController < ApplicationController
       zip.print "[InternetShortcut]\nURL=#{work_process_url(@work_process)}\n"
       params['attachments'].try(:each) do |url|
         url, filename = process_url(url)
-        zip.put_next_entry "produktionskort/bilag/#{CGI::escape(filename)}" # TODO: Fix encoding in zip file so we don't have to escape weird chars
+        zip.put_next_entry "produktionskort/bilag/#{CGI::escape(filename).gsub('+', ' ')}" # TODO: Fix filename-encoding in zip file so we don't have to escape weird chars
         zip.print open(url) {|f| f.read }
       end
     end
@@ -38,10 +38,10 @@ class ExportController < ApplicationController
   private
 
   def process_url(url)
-    @used_filenames ||= ['produktionskort.pdf']
+    @used_filenames ||= []
     url_segments = url.split('/')
-    filename, id = url_segments.last.match(/(.*)\?(\d+)$/).to_a[1..2]
-    url_segments[url_segments.size-1] = CGI::escape(filename) << '?' << id
+    filename = url_segments.last
+    url_segments[url_segments.size-1] = CGI::escape(filename)
 
     if @used_filenames.include?(filename)
       extname = File.extname(filename)
