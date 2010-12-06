@@ -11,14 +11,21 @@ class ExportController < ApplicationController
 
     file = Tempfile.new "produktionskort.zip"
     Zip::ZipOutputStream.open(file.path) do |zip|
+      # The ZIP file format is not Unicode aware. Filenames are just 8-bit strings
+      # internally, with (afaik) no defined charset, or Unicode encoding.
+      #
+      # That means that the writer and reader of the file have to agree on a mutually
+      # comprehensible format.
+      #
+      # TODO: Could we have issues with chars not compatible with ISO-8859-1 ?
       filename = "#{@work_process.component_type.blank? ? 'Produktionskort' : @work_process.component_type}.pdf"
-      zip.put_next_entry "produktionskort/#{filename}"
+      zip.put_next_entry "produktionskort/#{filename}".force_encoding('ISO-8859-1')
       zip.print produktionskort
-      zip.put_next_entry 'produktionskort/Se produktionskort online.url'
+      zip.put_next_entry 'produktionskort/Se produktionskort online.url'.force_encoding('ISO-8859-1')
       zip.print "[InternetShortcut]\nURL=#{work_process_url(@work_process)}\n"
       params['attachments'].try(:each) do |url|
         url, filename = process_url(url)
-        zip.put_next_entry "produktionskort/bilag/#{CGI::escape(filename).gsub('+', ' ')}" # TODO: Fix filename-encoding in zip file so we don't have to escape weird chars
+        zip.put_next_entry "produktionskort/bilag/#{filename}".force_encoding('ISO-8859-1')
         zip.print open(url) {|f| f.read }
       end
     end
