@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203155931) do
+ActiveRecord::Schema.define(:version => 20110522212931) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -187,6 +187,7 @@ ActiveRecord::Schema.define(:version => 20101203155931) do
     t.string   "byggeweb_username"
     t.string   "byggeweb_password"
     t.string   "fileshare_bucket"
+    t.integer  "user_id"
   end
 
   create_table "protections", :force => true do |t|

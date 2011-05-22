@@ -252,6 +252,11 @@ p {
 
 #footer a:hover { text-decoration: none; }
 
+#footer .right {
+  display: block;
+  float: right;
+}
+
 /* Flash notices --------------------------------- */
 
 #flash_notice, #flash_error, #flash_alert {

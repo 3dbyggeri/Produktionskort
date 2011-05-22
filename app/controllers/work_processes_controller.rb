@@ -4,7 +4,7 @@ class WorkProcessesController < ApplicationController
   before_filter :fix_nested_attribute_structure, :only => [:create, :update]
 
   def index
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
     @work_processes = @project.work_processes
 
     respond_to do |format|
@@ -14,7 +14,7 @@ class WorkProcessesController < ApplicationController
   end
   
   def show
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = current_user.work_processes.find(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
@@ -25,12 +25,12 @@ class WorkProcessesController < ApplicationController
   end
   
   def new
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
     @work_process = @project.work_processes.build
   end
   
   def create
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
     process_attachments :work_process, ATTACHMENT_KEYS, @project
     @work_process = @project.work_processes.build(params[:work_process])
     respond_to do |format|
@@ -46,11 +46,11 @@ class WorkProcessesController < ApplicationController
   end
   
   def edit
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = current_user.work_processes.find(params[:id])
   end
   
   def update
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = current_user.work_processes.find(params[:id])
     process_attachments :work_process, ATTACHMENT_KEYS, @work_process.project
 
     respond_to do |format|
@@ -66,7 +66,7 @@ class WorkProcessesController < ApplicationController
   end
   
   def destroy
-    @work_process = WorkProcess.find(params[:id])
+    @work_process = current_user.work_processes.find(params[:id])
     project_id = @work_process.project_id
     @work_process.destroy
     respond_to do |format|

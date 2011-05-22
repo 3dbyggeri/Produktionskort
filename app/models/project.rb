@@ -11,7 +11,9 @@ class Project < ActiveRecord::Base
   has_many :site_responsibilities, :dependent => :destroy
   has_many :planning_referrals, :dependent => :destroy
   has_many :site_referrals, :dependent => :destroy
-  
+
+  belongs_to :user
+
   accepts_nested_attributes_for :work_processes, 
                                 :approvals, 
                                 :attentions, 

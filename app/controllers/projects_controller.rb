@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   ATTACHMENT_KEYS = [:planning_referrals_attributes, :site_referrals_attributes, :approvals_attributes]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
 
     respond_to do |format|
       format.html
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   
   def create
     process_attachments :project, ATTACHMENT_KEYS
-    @project = Project.new(params[:project])
+    @project = current_user.projects.build(params[:project])
 
     respond_to do |format|
       if @project.save
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
 
     respond_to do |format|
       format.html { render :nothing => true, :status => 404 }
@@ -43,11 +43,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
   end
   
   def update
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     process_attachments :project, ATTACHMENT_KEYS, @project
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
     @project.destroy
     respond_to do |format|
       flash[:notice] = "Byggesag slettet."
@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
     if params[:id] == 'new'
       redirect_to :action => 'new'
     else
-      project = Project.find(params[:id])
+      project = current_user.projects.find(params[:id])
       cookies['active_project'] = project.id
       redirect_to project_work_processes_path(project)
     end

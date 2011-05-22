@@ -34,7 +34,7 @@ entreprenøren kan få nye fleksible værktøjer til rådighed.
 == Demo
 
 Du kan se en demo af Produktionskort på http://produktionskort.heroku.com.
-Demoen er password-beskyttet. For adgang hertil bedes du kontakte
+Demoen er password-beskyttet. For brugs-spørgsmål bedes du kontakte
 projektkoordinator {Torben Klitgaard}[mailto:tk@linksadvice.com].
 
 == API
