@@ -1,5 +1,6 @@
 .bundle
 .DS_Store
+.powrc
 config/initializers/secrets.rb
 db/*.sql
 db/*.sqlite3
