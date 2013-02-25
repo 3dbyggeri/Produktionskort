@@ -14,24 +14,23 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
 
-  accepts_nested_attributes_for :work_processes, 
-                                :approvals, 
-                                :attentions, 
-                                :companies, 
-                                :equipment, 
-                                :meetings, 
-                                :people, 
-                                :site_focuses, 
-                                :site_operations, 
-                                :site_responsibilities, 
-                                :planning_referrals, 
+  accepts_nested_attributes_for :work_processes,
+                                :approvals,
+                                :attentions,
+                                :companies,
+                                :equipment,
+                                :meetings,
+                                :people,
+                                :site_focuses,
+                                :site_operations,
+                                :site_responsibilities,
+                                :planning_referrals,
                                 :site_referrals, :allow_destroy => true
 
   validates_presence_of :name
 
   before_create do
-    # setup fileshare
-    self.fileshare_bucket = self.fileshare.bucket
+    self.fileshare_bucket ||= SecureRandom.hex
   end
 
   def byggeweb
