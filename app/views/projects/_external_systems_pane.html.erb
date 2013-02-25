@@ -2,8 +2,8 @@
   <h3>Eksterne systemer</h3>
 
   <%= f.inputs "Filbibliotek", :class => "table_group" do %>
-    <h4>S3 Bucket</h4>
-    <%= @project.fileshare_bucket %>
+    <h4>S3 Bucket / Folder</h4>
+    <%= @project.fileshare.bucket %> / <%= @project.fileshare.prefix %>
   <% end %>
 
   <%= f.inputs "Byggeweb", :class => "table_group" do %>
