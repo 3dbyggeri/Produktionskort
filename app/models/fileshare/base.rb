@@ -4,7 +4,7 @@ module Fileshare
     attr_reader :prefix
     attr_reader :bucket
 
-    def initialize(prefix)
+    def initialize(prefix = nil)
       @prefix = prefix
       @bucket = case Rails.env
         when "development" then "development-bb559243a8067d77c669d1cd129c17e5"
@@ -18,7 +18,7 @@ module Fileshare
         :secret_access_key => ENV['S3_SECRET']
       )
 
-      check_create_default_folders
+      check_create_default_folders unless prefix.nil?
 
       Rails.logger.debug "[FILESHARE] Using S3 bucket #{@bucket} / #{@prefix}"
     end
