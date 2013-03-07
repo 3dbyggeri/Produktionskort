@@ -29,8 +29,11 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name
 
-  before_create do
-    self.fileshare_bucket ||= SecureRandom.hex
+  def fileshare_prefix
+    if self[:fileshare_prefix].blank?
+      self[:fileshare_prefix] = SecureRandom.hex
+    end
+    self[:fileshare_prefix]
   end
 
   def byggeweb
@@ -39,7 +42,7 @@ class Project < ActiveRecord::Base
   end
 
   def fileshare
-    @fileshare ||= Fileshare::Base.new(fileshare_bucket)
+    @fileshare ||= Fileshare::Base.new(fileshare_prefix)
   end
 
   def bips_root_sections
