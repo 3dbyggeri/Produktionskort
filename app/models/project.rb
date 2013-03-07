@@ -14,24 +14,26 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
 
-  accepts_nested_attributes_for :work_processes, 
-                                :approvals, 
-                                :attentions, 
-                                :companies, 
-                                :equipment, 
-                                :meetings, 
-                                :people, 
-                                :site_focuses, 
-                                :site_operations, 
-                                :site_responsibilities, 
-                                :planning_referrals, 
+  accepts_nested_attributes_for :work_processes,
+                                :approvals,
+                                :attentions,
+                                :companies,
+                                :equipment,
+                                :meetings,
+                                :people,
+                                :site_focuses,
+                                :site_operations,
+                                :site_responsibilities,
+                                :planning_referrals,
                                 :site_referrals, :allow_destroy => true
 
   validates_presence_of :name
 
-  before_create do
-    # setup fileshare
-    self.fileshare_bucket = self.fileshare.bucket
+  def fileshare_prefix
+    if self[:fileshare_prefix].blank?
+      self[:fileshare_prefix] = SecureRandom.hex
+    end
+    self[:fileshare_prefix]
   end
 
   def byggeweb
@@ -40,7 +42,7 @@ class Project < ActiveRecord::Base
   end
 
   def fileshare
-    @fileshare ||= Fileshare::Base.new(fileshare_bucket)
+    @fileshare ||= Fileshare::Base.new(fileshare_prefix)
   end
 
   def bips_root_sections

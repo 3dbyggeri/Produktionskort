@@ -1,10 +1,16 @@
 # coding: utf-8
 module Fileshare
   class Base
+    attr_reader :prefix
     attr_reader :bucket
 
-    def initialize(bucket = nil)
-      @bucket = bucket
+    def initialize(prefix = nil)
+      @prefix = prefix
+      @bucket = case Rails.env
+        when "development" then "development-bb559243a8067d77c669d1cd129c17e5"
+        when "production"  then "production-5690de0c11e938105fe5d662f0e12afa"
+        else raise "Bucket not configured for #{Rails.env} environment"
+        end
 
       Rails.logger.debug "[FILESHARE] Connecting to S3..."
       AWS::S3::Base.establish_connection!(
@@ -12,9 +18,9 @@ module Fileshare
         :secret_access_key => ENV['S3_SECRET']
       )
 
-      raise "Could not create S3 bucket!" if !@bucket && !create_bucket
+      check_create_default_folders unless prefix.nil?
 
-      Rails.logger.debug "[FILESHARE] Using S3 bucket #{@bucket}"
+      Rails.logger.debug "[FILESHARE] Using S3 bucket #{@bucket} / #{@prefix}"
     end
 
     def folders(path = '')
@@ -44,9 +50,15 @@ module Fileshare
 
     private
 
+    def check_create_default_folders
+      return unless folders().size == 0
+      create_default_folders
+    end
+
     def folder(path)
       # make sure the path ends with a /
       path += '/' if !path.blank? && path !~ /\/$/
+      path = File.join(@prefix, path)
 
       # only the keys that matches the path
       keys = AWS::S3::Bucket.objects(@bucket, :prefix => path).map(&:key)
@@ -56,39 +68,10 @@ module Fileshare
       keys.select { |k| k !~ /\// }
     end
 
-    def create_bucket(retry_count = 10)
-      retry_count.times do
-        # generate a random bucket name that is not currently in use
-        @bucket = Digest::MD5.hexdigest((Time.now + rand(1000)).to_s)
-        next unless Project.find_by_fileshare_bucket(@bucket).nil?
-        Rails.logger.debug "[FILESHARE] Trying to create new S3 bucket named #{@bucket}..."
-
-        begin
-          if AWS::S3::Bucket.create(@bucket)
-            Rails.logger.debug "[FILESHARE] S3 bucket #{@bucket} created successfully"
-            Rails.logger.debug "[FILESHARE] Creating default directories..."
-            create_default_folders
-            return @bucket
-          else
-            Rails.logger.error "[FILESHARE] Could not create S3 bucket #{@bucket}"
-            return
-          end
-        rescue AWS::S3::ResponseError => e
-          Rails.logger.debug "[FILESHARE] Captured S3 exception: #{e.response.inspect}"
-          if e.response.error.code == 'BucketAlreadyExists'
-            # if the bucket-name is already in use on S3, try again
-            next
-          else
-            # in all other situations, something is wrong - and we fail
-            Rails.logger.error "[FILESHARE] Could not create S3 bucket #{@bucket} (error: #{e.response.inspect})"
-            return
-          end
-        end
-      end
-    end
-
     def create_default_folders
+      AWS::S3::S3Object.store "#{@prefix}_$folder$", nil, @bucket
       DEFAULT_FOLDERS.each do |folder|
+        folder = File.join(@prefix, folder)
         AWS::S3::S3Object.store folder, nil, @bucket
       end
     end

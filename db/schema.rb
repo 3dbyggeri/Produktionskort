@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522212931) do
+ActiveRecord::Schema.define(:version => 20130307080836) do
 
   create_table "approvals", :force => true do |t|
     t.integer  "project_id"
@@ -186,7 +187,7 @@ ActiveRecord::Schema.define(:version => 20110522212931) do
     t.string   "byggeweb_project"
     t.string   "byggeweb_username"
     t.string   "byggeweb_password"
-    t.string   "fileshare_bucket"
+    t.string   "fileshare_prefix"
     t.integer  "user_id"
   end
 
@@ -286,7 +287,7 @@ ActiveRecord::Schema.define(:version => 20110522212931) do
     t.string   "component_type"
     t.string   "activity"
     t.string   "location"
-    t.string   "project_delivery_time",   :limit => nil
+    t.string   "project_delivery_time"
     t.string   "project_delivery_person"
     t.text     "assembly_direction"
     t.datetime "planned_start"
