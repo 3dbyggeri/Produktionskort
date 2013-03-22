@@ -62,7 +62,7 @@ Produktionskort::Application.configure do
   # config.assets.manifest = YOUR_PATH
    
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( print_work_process.css )
+  config.assets.precompile += %w( print_work_process.css ie6.css ie7.css )
    
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
