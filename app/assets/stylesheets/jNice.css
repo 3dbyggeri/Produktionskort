@@ -17,14 +17,14 @@ button {
 *:first-child+html button[type]{width: 1;} /* IE7 */
 
 button span {
-	background: transparent url(../img/btn_left.gif) no-repeat scroll right top;
+	background: transparent url(<%= asset_path "btn_left.gif" %>) no-repeat scroll right top;
 	display: block;
 	padding: 0px 10px 0px 0px; /* sliding doors padding */
 	margin: 0px;
 }
 
 button span span {
-	background: transparent url(../img/btn_right.gif) no-repeat left top;
+	background: transparent url(<%= asset_path "btn_right.gif" %>) no-repeat left top;
 	color: #646464;
 	margin: 0;
 	padding: 0 0 0 10px;
@@ -38,14 +38,14 @@ button span span {
  * Inputs
  * ------------- */
 .jNiceInputWrapper {
-	background: transparent url(../../elements/input_left.gif) no-repeat left top;
+	background: transparent url(<%= asset_path "input_left.gif" %>) no-repeat left top;
 	height: 23px;
 	padding: 0px;
 
 }
 
 .jNiceInputInner {
-	background: transparent url(../../elements/input_right.gif) no-repeat right top;
+	background: transparent url(<%= asset_path "input_right.gif" %>) no-repeat right top;
 	padding: 2px 4px 2px 0px;
 	margin: 0px 0px 0px 4px;
 }
@@ -84,7 +84,7 @@ button span span {
  * ------------- */
 .jRadioWrapper {float: left; width: 25px;}
 .jNiceRadio {
-	background: transparent url(../img/radio.gif) no-repeat center top;
+	background: transparent url(<%= asset_path "radio.gif" %>) no-repeat center top;
 	vertical-align: middle;
 	height: 14px;
 	width: 15px;
@@ -97,7 +97,7 @@ button span span {
  * Checkboxes
  * ------------- */
 .jNiceCheckbox {
-	background: transparent url(../img/checkbox.gif) no-repeat center top;
+	background: transparent url(<%= asset_path "checkbox.gif" %>) no-repeat center top;
 	vertical-align: middle;
 	height: 13px;
 	float: left;
@@ -128,7 +128,7 @@ button span span {
 	position: absolute;
 	width: 250px;
 	height: 26px;
-	background: url(../img/select_left.gif) no-repeat left top;
+	background: url(<%= asset_path "select_left.gif" %>) no-repeat left top;
 	line-height: 18px;
 	font: 11px/11px Arial, Helvetica, sans-serif;
 	color: #646464;
@@ -144,7 +144,7 @@ button span span {
 	width: 30px;
 	border: none;
 	height: 26px;
-	background: url(../img/select_right.gif) no-repeat center center;
+	background: url(<%= asset_path "select_right.gif" %>) no-repeat center center;
 }
 
 .jNiceSelectWrapper ul {

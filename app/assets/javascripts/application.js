@@ -1,3 +1,9 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery.FormNavigate
+//= require facebox
+//= require jquery.jstree
+
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".inputs").hide();
@@ -98,14 +104,16 @@ $(document).ready(function() {
     $('#' + pane).show();
   });
 
-  $('#form_submitter').click(function() {
+  $('#form_submitter').click(function(e) {
+    e.preventDefault();
+    global_formNavigate = true;
     var form = $(this).attr('rel');
     $('#' + form).submit();
   });
 
   $('#project_form, #work_process_form').FormNavigate("Du har foretaget ændringer!\n\nEr du sikker på du vil fortsætte uden at gemme?");
 
-  $('select.attachment_origin').live('change', function() {
+  $('select.attachment_origin').on('change', function() {
     var container = $(this).closest('ol');
     var attachment_type = parseInt($(this).val());
     remove_existing_attachment(container);
@@ -181,7 +189,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#byggeweb_attachment .tree-node').live('click', function(e) {
+  $('#byggeweb_attachment .tree-node').on('click', function(e) {
     e.preventDefault();
     var id = $(this).parent().attr('rel');
     var url = projects_path() + '/byggeweb/folders/' + id + '/files';
@@ -193,7 +201,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#bips_attachment .tree-node').live('click', function(e) {
+  $('#bips_attachment .tree-node').on('click', function(e) {
     e.preventDefault();
     var id = $(this).parent().attr('rel');
     var url = projects_path() + '/bips/sections/' + id + '/content';
@@ -202,7 +210,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#fileshare_attachment .tree-node').live('click', function(e) {
+  $('#fileshare_attachment .tree-node').on('click', function(e) {
     e.preventDefault();
     var path = fileshare_path(this);
     var url = projects_path() + '/fileshare/files';
@@ -216,7 +224,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#byggeweb_files a.attach').live('click', function(e) {
+  $('#byggeweb_files a.attach').on('click', function(e) {
     e.preventDefault();
     var id = $(this).attr('rel');
     var name = $(this).closest('tr').find('td:first').html();
@@ -229,7 +237,7 @@ $(document).ready(function() {
     container.find('.attachment_origin').val('2'); // reset select box due to too agressive close.facebox hook
   });
 
-  $('#bips_content input').live('click', function(e) {
+  $('#bips_content input').on('click', function(e) {
     e.preventDefault();
     var id = $(this).attr('rel');
     var name = $(this).closest('div').find('h3').html();
@@ -242,7 +250,7 @@ $(document).ready(function() {
     container.find('.attachment_origin').val('3'); // reset select box due to too agressive close.facebox hook
   });
 
-  $('#fileshare_files a.attach').live('click', function(e) {
+  $('#fileshare_files a.attach').on('click', function(e) {
     e.preventDefault();
     var id = $(this).attr('href');
     var name = $(this).closest('tr').find('td:first').html();
